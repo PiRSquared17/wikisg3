@@ -1,0 +1,15 @@
+#summary Introducción al wiki realizado como práctica de ISG3.
+#labels Phase-Requirements
+
+= Introducción =
+
+Add your content here.
+
+
+= Aspectos básicos =
+
+Puesto que la temática de la práctica de este curso trata sobre *democracia participativa*, el proyecto del wiki se centrará fundamentalmente en los aspectos relacionados con los usuarios y los artículos, obviando en todo lo posible los detalles más técnicos y de "decoración"(en ISG2, el wiki, en su fase de diseño, ofrecía la posibilidad de traducir los artículos, añadir contenido multimedia al wiki, etc.)
+
+= Funcionalidad =
+
+Como ya se ha explicado antes, nos centraremos en toda aquella funcionalidad que involucre a usuarios y/o artículos del wiki
