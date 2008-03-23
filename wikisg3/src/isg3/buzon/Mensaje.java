@@ -82,7 +82,7 @@ public class Mensaje {
 		return this.leido;
 	}
 	
-	public boolean setLeido(boolean l){
+	public void setLeido(boolean l){
 		this.leido = l;
 	}
 }
