@@ -1,0 +1,10 @@
+-logarse *
+-registrarse
+-consultar perfiles
+-editar perfil
+-consultar buzon mensajes *
+-crear/mandar mensaje *
+-eliminar mensaje
+-crear/editar articulo *
+-valorar articulo *
+-consultar articulos
