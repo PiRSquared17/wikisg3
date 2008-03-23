@@ -3,9 +3,6 @@
     <wb-module deploy-name="wikisg3">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/wikisg3/WebContent/WEB-INF/lib/j2ee.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="wikisg3"/>
         <property name="java-output-path" value="build/classes"/>
     </wb-module>

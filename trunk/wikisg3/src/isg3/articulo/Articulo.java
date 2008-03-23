@@ -89,5 +89,18 @@ public class Articulo {
 		valoraciones.add(val);
 	}
 
+	public Articulo(String titulo, String contenido, Categoria categoria) {
+		this.titulo = titulo;
+		this.contenido = contenido;
+		this.categoria = categoria;
+		usuariosMod = new ArrayList();
+		valoraciones = new ArrayList();
+		fecha = new Date();
+		fecha.setTime(System.currentTimeMillis());
+		lecturas=0;
+		
+		categoria.añadirArticulo(this);
+	}
+
 	
 }
