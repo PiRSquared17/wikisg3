@@ -1,5 +1,7 @@
 package isg3.articulo;
 
+import java.util.*;
+
 public class Categoria {
 	
 	/**
@@ -11,6 +13,11 @@ public class Categoria {
 	 * Descripcion de la categoria.
 	 */
 	private String descripcion;
+	
+	/**
+	 * Conjunto de los articulos de la categoria.
+	 */
+	Collection articulos;
 
 	
 	//Metodos getters y setters
@@ -22,6 +29,16 @@ public class Categoria {
 	public String getDescripcion() {
 		return descripcion;
 	}
+	
+	public Collection getArticulos() {
+		return articulos;
+	}
+	
+	//Otros metodos
+	
+	public void añadirArticulo(Articulo a){
+		articulos.add(a);
+	}
 
 	
 	//Constructor
@@ -29,7 +46,10 @@ public class Categoria {
 	public Categoria(String nombre, String descripcion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		articulos = new ArrayList();
 	}
+
+
 	
 	
 	
