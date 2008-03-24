@@ -14,15 +14,15 @@ public class Login {
 		m.put("pepe", "ole");
 		m.put("danialves", "lateral");
 		m.put("antonio", "sevilla");
-		m.put("carlos", "españa");
+		m.put("carlos", "espaï¿½a");
 		m.put("mediavida", "mvida");
 		m.put("wiki", "alga");
 	}
 	
 	
-	public Usuario login(String nick, String contraseña){
+	public Usuario login(String nick, String pass){
 		Usuario u = null;
-		if (m.get(nick).equals(contraseña))
+		if (m.get(nick).equals(pass))
 			u = new Usuario();
 		return u;
 	}

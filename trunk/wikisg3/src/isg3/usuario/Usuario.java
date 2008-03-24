@@ -9,9 +9,9 @@ public class Usuario {
 	private String nick;
 	
 	/**
-	 * Contraseña del usuario.
+	 * Contraseï¿½a del usuario.
 	 */
-	private String contraseña;
+	private String pass;
 	
 	/**
 	 * Perfil del usuario.
@@ -21,12 +21,12 @@ public class Usuario {
 	
 	//Metodos getters y setters
 
-	public String getContraseña() {
-		return contraseña;
+	public String getPass() {
+		return pass;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public String getNick() {
@@ -40,15 +40,15 @@ public class Usuario {
 	
 	//Constructor
 
-	public Usuario(String nick, String contraseña, Perfil perfil) {
+	public Usuario(String nick, String pass, Perfil perfil) {
 		this.nick = nick;
-		this.contraseña = contraseña;
+		this.pass = pass;
 		this.perfil = perfil;
 	}
 	
-	public Usuario(String nick, String contraseña){
+	public Usuario(String nick, String pass){
 		this.nick = nick;
-		this.contraseña = contraseña;
+		this.pass = pass;
 	}
 	
 	public Usuario(){
