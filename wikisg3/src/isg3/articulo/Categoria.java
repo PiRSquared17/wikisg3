@@ -36,7 +36,7 @@ public class Categoria {
 	
 	//Otros metodos
 	
-	public void añadirArticulo(Articulo a){
+	public void addArticulo(Articulo a){
 		articulos.add(a);
 	}
 

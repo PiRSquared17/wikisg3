@@ -85,7 +85,7 @@ public class Articulo {
 	
 	//Otros metodos
 	
-	public void añadirValoracion(Valoracion val){
+	public void addValoracion(Valoracion val){
 		valoraciones.add(val);
 	}
 
@@ -99,7 +99,7 @@ public class Articulo {
 		fecha.setTime(System.currentTimeMillis());
 		lecturas=0;
 		
-		categoria.añadirArticulo(this);
+		categoria.addArticulo(this);
 	}
 
 	
