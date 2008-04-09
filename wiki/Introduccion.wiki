@@ -7,4 +7,8 @@ Puesto que la temática de la práctica de este curso trata sobre *democracia pa
 
 = Funcionalidad =
 
-Como ya se ha explicado antes, nos centraremos en toda aquella funcionalidad que involucre a usuarios y/o artículos del wiki
+Como ya se ha explicado antes, nos centraremos en toda aquella funcionalidad que involucre a usuarios y/o artículos del wiki. Los casos de uso contemplados son los que se muestran en el siguiente diagrama: 
+
+(INSERTAR AQUI DIAGRAMA DE CASOS DE USO)
+
+Aunque haremos hincapié en 2 casos de uso: crear/editar artículos, y valorar los artículos.
