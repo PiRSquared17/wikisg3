@@ -1,4 +1,4 @@
-#summary Diseño de la aplicación
+#summary Aspectos generales sobre el diseño de la aplicación
 #labels Phase-Design
 
 = Introducción =
