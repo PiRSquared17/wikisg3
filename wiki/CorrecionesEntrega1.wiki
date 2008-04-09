@@ -1,0 +1,15 @@
+#summary Correcciones a hacer sobre la práctica tras la primera entrega.
+#labels Phase-Design
+
+= Introducción =
+
+Retocar el *diagrama de clases* (la *navegabilidad* sobre todo), e ir *añadiendo* la *funcionalidad* principal, que debe estar definida en una *interfaz*
+
+
+= Navegabilidad del diagrama de clases =
+
+Añadir contenido.
+
+= Interfaz = 
+
+Añadir contenido
