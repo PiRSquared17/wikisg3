@@ -1,0 +1,5 @@
+#summary Ideas donde aplicar el uso de sesiones.
+
+= Introducción =
+
+En esta página qué utilidad podemos darle a las sesiones en nuestra aplicación, analizando de forma detallada las ventajas e inconvenientes de cada uno de los posibles usos.
