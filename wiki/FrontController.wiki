@@ -1,0 +1,6 @@
+#summary Ideas de labores que pueda ejercer.
+#labels Phase-Design
+
+= Introducción =
+
+En esta página del wiki propondremos las distintas labores o funcionalidades comunes que pueda llevar a cabo al FrontController, analizando sus pros y sus contras.
