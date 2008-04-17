@@ -1,4 +1,5 @@
 #summary Ideas donde aplicar el uso de sesiones.
+#labels Phase-Design
 
 = Introducción =
 
