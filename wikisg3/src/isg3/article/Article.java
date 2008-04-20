@@ -25,7 +25,8 @@ public class Article {
 		this.title = title;
 		this.content = content;
 		this.cat = cat;
-		
+		this.visits = 0;
+		this.rates = new RatesCollection();
 		usersEditor = new ArrayList();
 		usersEditor.add(user);
 	}
@@ -60,6 +61,19 @@ public class Article {
 
 	public RatesCollection getRates() {
 		return rates;
+	}
+	
+	//implementar el equals. ¿como decidir si dos artículos son iguales?
+	//en principio por el titulo
+	public boolean equals(Object o){
+		boolean b = false;
+		Article a = (Article)o;
+		
+		if (this.title.equals(a.getTitle())){
+			b = true;
+		}
+		
+		return b;
 	}
 	
 	
