@@ -1,11 +1,43 @@
 package isg3.user;
 
-public abstract class User {
+import isg3.mailBox.*;
 
-	private String ip;
+public class User extends AbstractUser{
+
+	private String nick;
 	
-	public String getIp(){
-		return this.ip;
+	private String password;
+	
+	private MailBox mailbox;
+	
+	private UserProfile profile;
+
+	public String getNick() {
+		return nick;
+	}
+
+	public MailBox getMailbox() {
+		return mailbox;
+	}
+
+	public UserProfile getProfile() {
+		return profile;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	//¿usuario iguales si nick igual?
+	public boolean equals(Object o){
+		boolean b = false;
+		User usr = (User)o;
+		
+		if (this.nick.equals(usr.getNick())){
+			b = true;
+		}
+		
+		return b;
 	}
 	
 }

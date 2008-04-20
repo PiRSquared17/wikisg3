@@ -20,6 +20,15 @@
 		<servlet-class>
 		Pr2</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		FrontController</display-name>
+		<servlet-name>FrontController</servlet-name>
+		<servlet-class>
+		FrontController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Prueba</servlet-name>
 		<url-pattern>/Prueba</url-pattern>
@@ -27,6 +36,10 @@
 	<servlet-mapping>
 		<servlet-name>Pr2</servlet-name>
 		<url-pattern>/Pr2</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FrontController</servlet-name>
+		<url-pattern>/FrontController</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
