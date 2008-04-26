@@ -1,5 +1,5 @@
 package isg3.login;
-import isg3.usuario.Usuario;
+import isg3.user.User;
 
 import java.util.*;
 
@@ -20,10 +20,10 @@ public class Login {
 	}
 	
 	
-	public Usuario login(String nick, String pass){
-		Usuario u = null;
+	public User login(String nick, String pass){
+		User u = null;
 		if (m.get(nick).equals(pass))
-			u = new Usuario();
+			u = new User();
 		return u;
 	}
 }
