@@ -40,4 +40,13 @@ public class User extends AbstractUser{
 		return b;
 	}
 	
+	public User(String nick, String pass){
+		this.nick=nick;
+		this.password=pass;
+	}
+	
+	public User(){
+		
+	}
+	
 }
