@@ -1,0 +1,55 @@
+body {
+	
+}
+
+#contenedor{
+	float: left;
+	width: 90%;
+	
+}
+
+#cabecera{
+	float: left;
+}
+
+#contenido{
+	float:left;
+	clear: both;
+}
+
+#menuizq{
+	float: left;
+	border-width: 2px;
+	border-color: #FF0000;
+	margin: 10px;
+}
+
+#inicio{
+	float: left;
+}
+
+#usuario{
+	float: left;
+}
+
+#principal{
+	margin: 10px;
+	float: left;
+}
+
+#artPrincipal{
+	
+}
+
+#ultArticulos{
+	
+}
+
+#menuder{
+	float: left;
+	margin: 10px;
+}
+
+#pie{
+	float: left;
+}
