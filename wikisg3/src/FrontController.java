@@ -4,13 +4,20 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+import java.util.TreeMap;
+import java.util.Map;
 
 /**
  * Servlet implementation class for Servlet: FrontController
  *
  */
  public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
-   static final long serialVersionUID = 1L;
+   
+	 private Map resources;
+	 
+	 static final long serialVersionUID = 1L;
    
     /* (non-Java-doc)
 	 * @see javax.servlet.http.HttpServlet#HttpServlet()
@@ -19,11 +26,21 @@ import javax.servlet.http.HttpServletResponse;
 		super();
 	}   	
 	
+	public void init(){
+		resources = new TreeMap();
+		resources.put("1", "article.jsp");
+		resources.put("2", "category.jsp");
+		resources.put("3", "editProfile.jsp");
+		resources.put("4", "index.jsp");
+		
+		//Con esto resolvemos el tema de la ofuscacion.
+	}
 	/* (non-Java-doc)
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+			processRequest(request, response);
 	}  	
 	
 	/* (non-Java-doc)
@@ -31,5 +48,153 @@ import javax.servlet.http.HttpServletResponse;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}   	  	    
+		processRequest(request, response);
+	}
+		
+	private void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		String resource = (String)request.getAttribute("res");
+		if (loginRequire(resource)){
+			if (login()){
+				//Si quiere acceder a una pagina que requiere que este registrado
+				if (isSearchPage(resource)){
+					//Quiere acceder a una pagina de busqueda
+					HttpSession s = request.getSession(false);
+					Long lastSearch = (Long)s.getAttribute("session.lastSearch");
+					
+					if (lastSearch == null){
+						//No ha realizado ninguna busqueda
+						lastSearch = new Long(System.currentTimeMillis());
+						RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+						if(d!=null){
+							d.forward(request,response);
+						}
+						s.setAttribute("session.lastSearch", lastSearch);
+					}else{
+						//Ya ha realizado alguna busqueda
+						Long currentSearch = System.currentTimeMillis();
+						if ((currentSearch-lastSearch) > 30000){
+							//Han pasado mas de 30 segundos
+							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+							if(d!=null){
+								d.forward(request,response);
+							}
+							s.setAttribute("session.lastSearch", currentSearch);
+						}else{
+							//No han pasado mas de 30 segundos
+							RequestDispatcher d = request.getRequestDispatcher("errorSearch.jsp");
+							if(d!=null){
+								d.forward(request,response);
+							}
+						}
+					}
+				}//fin search
+				else if(isEditPage(resource)){
+					//Quiere acceder a una pagina de edicion
+					HttpSession s = request.getSession(false);
+					Long lastEdit = (Long)s.getAttribute("session.lastEdit");
+					
+					if (lastEdit == null){
+						//No ha realizado ninguna busqueda
+						lastEdit = new Long(System.currentTimeMillis());
+						RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+						if(d!=null){
+							d.forward(request,response);
+						}
+						s.setAttribute("session.lastSearch", lastEdit);
+					}else{
+						//Ya ha realizado alguna busqueda
+						Long currentEdit = System.currentTimeMillis();
+						if ((currentEdit - lastEdit) > 300000){
+							//Han pasado mas de 5 minutos (300 segundos)
+							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+							if(d!=null){
+								d.forward(request,response);
+							}
+							s.setAttribute("session.lastSearch", currentEdit);
+						}else{
+							//No han pasado mas de 5 minutos (300 segundos)
+							RequestDispatcher d = request.getRequestDispatcher("errorEdit.jsp");
+							if(d!=null){
+								d.forward(request,response);
+							}
+						}
+					}
+				
+				
+				
+				
+				}//fin edit
+				else{
+					RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+					if(d!=null){
+						d.forward(request,response);
+					}
+				}//fin sino search o edit
+			}//fin login
+			else{
+				RequestDispatcher d = request.getRequestDispatcher((String)resources.get("login.jsp"));
+				if(d!=null){
+					d.forward(request,response);
+				}
+			}//fin sino login
+		}//fin login required
+		else{
+			RequestDispatcher d = request.getRequestDispatcher(resource);
+			if(d!=null){
+				d.forward(request,response);
+			}
+		}
+		
+		
+	}
+	
+	
+	private boolean login(){
+		// TODO
+		return true;
+	}
+	
+	/**
+	 * Este metodo recibe un parametro y decide si es necesario estar
+	 * logeado para entrar en la pagina.
+	 * @param s
+	 * @return
+	 */
+	private boolean loginRequire(String s){
+		boolean b = false;
+		//un recurso que termine en l implica que es necesario
+		//estar logado para acceder a el.
+		//un recurso que termine en s significa que es una página
+		//de busqueda, para las cuales tambien es necesario estar
+		//logado.
+		//un recurso que termine en e implica que es una pagina
+		//para editar articulos.
+		if (s.endsWith("l") || s.endsWith("s") || s.endsWith("e")){
+			b=true;
+		}
+		return b;
+	}
+	
+	/**
+	 * Metodo que determina si la pagina a la que queremos entrar
+	 * es una pagina de busqueda.
+	 * @param s
+	 * @return
+	 */
+	private boolean isSearchPage(String s){
+		boolean b = false;
+		if (s.endsWith("s")){
+			b = true;
+		}
+		return b;
+	}
+	
+	private boolean isEditPage(String s){
+		boolean b = false;
+		if (s.endsWith("e")){
+			b = true;
+		}
+		return b;
+	}
+	
 }
