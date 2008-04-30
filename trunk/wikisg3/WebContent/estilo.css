@@ -18,13 +18,21 @@ body {
 }
 
 #menuizq{
+	width: 150px;
 	float: left;
-	border-width: 2px;
 	border-color: #FF0000;
+	border:1px solid #42432d;
 	margin: 10px;
 }
 
 #inicio{
+	float: left;
+	border-color: #FF0000;
+	border:1px solid #42432d;
+	margin: 5px;
+	padding: 10px;
+}
+#buscador{
 	float: left;
 }
 
@@ -32,17 +40,43 @@ body {
 	float: left;
 }
 
+.inputBlock{
+	display:block;
+}
+
 #principal{
 	margin: 10px;
 	float: left;
+	border-color: #FF0000;
+	border:1px solid #42432d;
+	width:450px;
 }
 
 #artPrincipal{
 	
 }
 
+#artPrincipal #tituloArt{
+	text-align: center;
+	margin: 5px;
+	border-color: #FF0000;
+	border:1px solid #42432d;
+}
+
+#artPrincipal #cuerpoArt{
+	padding: 8px;
+	text-align: left;
+	margin: 5px;
+	border-color: #FF0000;
+	border:1px solid #42432d;
+}
+
 #ultArticulos{
-	
+	border-color: #FF0000;
+	border:1px solid #42432d;
+	height: 75px;
+	padding: 8px;
+	margin: 5px;
 }
 
 #menuder{

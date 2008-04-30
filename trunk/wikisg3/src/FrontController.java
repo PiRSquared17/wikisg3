@@ -81,7 +81,7 @@ import java.util.Map;
 							s.setAttribute("session.lastSearch", currentSearch);
 						}else{
 							//No han pasado mas de 30 segundos
-							RequestDispatcher d = request.getRequestDispatcher("errorSearch.jsp");
+							RequestDispatcher d = request.getRequestDispatcher("error.jsp?type=search");
 							if(d!=null){
 								d.forward(request,response);
 							}
@@ -113,7 +113,7 @@ import java.util.Map;
 							s.setAttribute("session.lastSearch", currentEdit);
 						}else{
 							//No han pasado mas de 5 minutos (300 segundos)
-							RequestDispatcher d = request.getRequestDispatcher("errorEdit.jsp");
+							RequestDispatcher d = request.getRequestDispatcher("error.jsp?type=edit");
 							if(d!=null){
 								d.forward(request,response);
 							}
