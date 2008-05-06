@@ -15,6 +15,7 @@
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
 				<h1>Articulos mas valorados </h1>
+				<table>
 				<%
 				IWikiOperations op = new WikiOperations();
 				
@@ -27,16 +28,17 @@
 				//en un futuro, mostrar tambien las valoraciones, junto al enlace
 				%>
 				
-				<table>
+				
 					<tr>
 						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getOID()); %>"><% out.print(ar.getTitle()); %> </a><td>
 						
 					</tr>
-				</table>
+				
 				
 				<%
 				}
 				%>
+				</table>
 			</div>
 			
 		</div>

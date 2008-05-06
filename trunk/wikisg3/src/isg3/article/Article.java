@@ -67,6 +67,13 @@ public class Article {
 		return usersEditor;
 	}
 
+	public boolean hasRates(){
+		boolean b = false;
+		if (rates.getRates().size()>0)
+			b = true;
+		return b;
+	}
+	
 	public RatesCollection getRates() {
 		return rates;
 	}

@@ -10,7 +10,7 @@ public class RatesCollection {
 
 	private float averageRate;
 	
-	Map rates;
+	private Map rates;
 
 	
 	public RatesCollection(){
