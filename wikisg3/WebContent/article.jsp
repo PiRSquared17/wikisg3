@@ -14,6 +14,8 @@
 	IWikiOperations op = new WikiOperations();
 	Article art = op.getArticle(oid);
 	
+	RatesCollection rates = art.getRates();
+	
 	
 %>
 
@@ -29,6 +31,34 @@
 					</div>
 					<div id="cuerpoArt">
 							<% out.print(art.getContent()); %>
+					</div>
+					<div id="valoraciones">
+						<table>
+							<tr>
+								<td>Usuario</td>
+								<td>Nota</td>
+								<td>Raz&oacute;n</td>
+							</tr>
+						<%
+						if (art.hasRates()){
+							Iterator it = rates.getRates().iterator();
+							while (it.hasNext()){
+								Rate r = (Rate)it.next();
+							%>
+							
+							
+								<tr>
+									<td><% out.print(r.getUser().getNick()); %></td>
+									<td><% out.print(r.getRate()) ;%></td>
+									<td><% out.print(r.getReason()); %></td>
+								</tr>
+							
+							
+							<%	
+							}
+						}
+						%>
+						</table>
 					</div>
 				</div>
 				
