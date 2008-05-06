@@ -1,11 +1,10 @@
 package isg3.operations;
 
-import isg3.article.Article;
-import isg3.article.Category;
-import isg3.article.Rate;
+import isg3.article.*;
 import isg3.user.User;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 public class WikiOperations implements IWikiOperations {
 
@@ -44,6 +43,26 @@ public class WikiOperations implements IWikiOperations {
 	public Collection getArticles(String name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Collection getMostRatedArticles(){
+		//Provisional, implementar luego.
+		return Wiki.getInstance().getListArt();
+	}
+	
+	public Article getArticle(String oid){
+		Collection arts = Wiki.getInstance().getListArt();
+		Article art = null;
+		Iterator it = arts.iterator();
+		
+		while(it.hasNext()){
+			Article aux = (Article)it.next();
+			if (aux.getOID().equals(oid)){
+				art = aux;;
+			}
+		}
+		
+		return art;
 	}
 
 }

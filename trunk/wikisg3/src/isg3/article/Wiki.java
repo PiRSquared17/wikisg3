@@ -41,15 +41,15 @@ public class Wiki {
 			return wiki;
 		}
 
-		public List getListArt() {
+		public Collection getListArt() {
 			return listArt;
 		}
 
-		public List getListCat() {
+		public Collection getListCat() {
 			return listCat;
 		}
 
-		public List getListUser() {
+		public Collection getListUser() {
 			return listUser;
 		}
 }

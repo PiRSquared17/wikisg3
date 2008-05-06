@@ -9,7 +9,7 @@
 						<ul>
 							<li><a href="FrontController?mod=1">Portada</a></li>
 							<li><a href="FrontController?mod=1">Categorias</a></li>
-							<li><a href="FrontController?mod=1">Art&iacute;culos</a></li>
+							<li><a href="FrontController?res=A1">Art&iacute;culos</a></li>
 							<li><a href="FrontController?mod=1">Actualidad</a></li>
 							<li><a href="FrontController?mod=1">Ayuda</a></li>
 						</ul>
