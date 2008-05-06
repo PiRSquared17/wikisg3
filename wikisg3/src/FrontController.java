@@ -28,10 +28,14 @@ import java.util.Map;
 	
 	public void init(){
 		resources = new TreeMap();
-		resources.put("1", "article.jsp");
+		
+		resources.put("A1", "printArticles.jsp");
+		resources.put("A2", "article.jsp");
+		
+		/*resources.put("1", "article.jsp");
 		resources.put("2", "category.jsp");
 		resources.put("3", "editProfile.jsp");
-		resources.put("4", "index.jsp");
+		resources.put("4", "index.jsp");*/
 		
 		//Con esto resolvemos el tema de la ofuscacion.
 	}
@@ -52,7 +56,7 @@ import java.util.Map;
 	}
 		
 	private void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-		String resource = (String)request.getAttribute("res");
+		String resource = (String)request.getParameter("res");
 		if (loginRequire(resource)){
 			if (login()){
 				//Si quiere acceder a una pagina que requiere que este registrado
@@ -139,7 +143,7 @@ import java.util.Map;
 			}//fin sino login
 		}//fin login required
 		else{
-			RequestDispatcher d = request.getRequestDispatcher(resource);
+			RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
 			if(d!=null){
 				d.forward(request,response);
 			}

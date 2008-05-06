@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link type="text/css" href="./estilo.css" rel="stylesheet"></link>
+<title>WikiMedia</title>
 </head>
 <body>
 	<div id="contenedor">

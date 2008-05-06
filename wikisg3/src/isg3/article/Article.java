@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import isg3.user.*;
-
+import isg3.utils.*;
+ 
 public class Article {
 
+	private String oid;
+	
 	private String title;
 	
 	private String content;
@@ -29,8 +32,13 @@ public class Article {
 		this.rates = new RatesCollection();
 		usersEditor = new ArrayList();
 		usersEditor.add(user);
+		oid = UIDGenerator.getInstance().getKey();
 	}
 
+	public String getOID(){
+		return this.oid;
+	}
+	
 	public String getContent() {
 		return content;
 	}

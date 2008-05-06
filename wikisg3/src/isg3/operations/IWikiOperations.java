@@ -16,6 +16,10 @@ public interface IWikiOperations {
 	
 	public Collection getArticles(String name);
 	
+	public Article getArticle(String oid);
+	
 	public boolean existsRate(User user, Article art);
+	
+	public Collection getMostRatedArticles();
 	
 }
