@@ -10,9 +10,9 @@
 <body>
 
 <%
-	String oid = (String)request.getParameter("id");
+	String id = (String)request.getParameter("id");
 	IWikiOperations op = new WikiOperations();
-	Article art = op.getArticle(oid);
+	Article art = op.getArticle(id);
 	
 	RatesCollection rates = art.getRates();
 	

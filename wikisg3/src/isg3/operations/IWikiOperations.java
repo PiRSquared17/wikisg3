@@ -5,7 +5,11 @@ import isg3.article.*;
 import isg3.user.User;
 
 public interface IWikiOperations {
-
+	
+	public Category getCategory(String id);
+	
+	public Collection getAllCategories();
+	
 	public void addRate(Rate rate);
 	
 	public void addArticle(User author, String title, String content, Category cat);

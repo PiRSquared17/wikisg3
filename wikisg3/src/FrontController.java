@@ -15,6 +15,10 @@ import java.util.Map;
  */
  public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
    
+	 private String user;
+	 
+	 private String pass;
+	 
 	 private Map resources;
 	 
 	 static final long serialVersionUID = 1L;
@@ -27,10 +31,17 @@ import java.util.Map;
 	}   	
 	
 	public void init(){
+		user = "practica";
+		pass = "practica";
+		
 		resources = new TreeMap();
 		
 		resources.put("A1", "printArticles.jsp");
 		resources.put("A2", "article.jsp");
+		resources.put("A3e","newArticleName.jsp" );
+		resources.put("C1", "printCategories.jsp");
+		resources.put("C2", "category.jsp");
+		
 		
 		/*resources.put("1", "article.jsp");
 		resources.put("2", "category.jsp");
@@ -56,15 +67,15 @@ import java.util.Map;
 	}
 		
 	private void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		HttpSession sss = request.getSession(false);
 		String resource = (String)request.getParameter("res");
 		if (loginRequire(resource)){
-			if (login()){
+			if (login(request)){
 				//Si quiere acceder a una pagina que requiere que este registrado
 				if (isSearchPage(resource)){
 					//Quiere acceder a una pagina de busqueda
 					HttpSession s = request.getSession(false);
 					Long lastSearch = (Long)s.getAttribute("session.lastSearch");
-					
 					if (lastSearch == null){
 						//No ha realizado ninguna busqueda
 						lastSearch = new Long(System.currentTimeMillis());
@@ -96,7 +107,6 @@ import java.util.Map;
 					//Quiere acceder a una pagina de edicion
 					HttpSession s = request.getSession(false);
 					Long lastEdit = (Long)s.getAttribute("session.lastEdit");
-					
 					if (lastEdit == null){
 						//No ha realizado ninguna busqueda
 						lastEdit = new Long(System.currentTimeMillis());
@@ -123,10 +133,6 @@ import java.util.Map;
 							}
 						}
 					}
-				
-				
-				
-				
 				}//fin edit
 				else{
 					RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
@@ -152,10 +158,50 @@ import java.util.Map;
 		
 	}
 	
-	
-	private boolean login(){
-		// TODO
-		return true;
+	/**
+	 * copy & paste de us virtual
+	 * revisarlo en un futuro
+	 * @param request
+	 * @return
+	 */
+	private boolean login(HttpServletRequest request){
+		boolean logado = false;
+
+		HttpSession session = request.getSession(false);
+
+		String userForm = request.getParameter("user");
+		String passwdForm = request.getParameter("passwd");
+
+		if (session == null) {
+			session = request.getSession();
+			if (userForm == null || passwdForm == null
+					|| userForm.length() == 0 || passwdForm.length() == 0) {
+				logado = false;
+
+			} else {
+				if (valido(userForm, passwdForm)) {
+					logado = true;
+					session.setAttribute("session.user", userForm);
+				} else {
+					logado = false;
+				}
+
+			}
+
+		} else {
+			if (userForm == null || passwdForm == null) {
+				logado = true;
+			} else {
+				if (valido(userForm, passwdForm)) {
+					logado = true;
+					session.setAttribute("session.user", userForm);
+				} else {
+					logado = false;
+				}
+
+			}
+		}
+		return logado;
 	}
 	
 	/**
@@ -199,6 +245,20 @@ import java.util.Map;
 			b = true;
 		}
 		return b;
+	}
+	
+	/**
+	 * copy & paste de us virtual
+	 * revisarlo en un futuro
+	 * @param userForm
+	 * @param passwdForm
+	 * @return
+	 */
+	public boolean valido(String userForm, String passwdForm) {
+		boolean res = false;
+		res = (userForm.equals(this.user) && passwdForm.equals(this.pass));
+		return res;
+
 	}
 	
 }
