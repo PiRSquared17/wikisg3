@@ -8,29 +8,35 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	String id = (String)request.getParameter("id");
-	IWikiOperations op = new WikiOperations();
-	Category cat = op.getCategory(id);
-
-%>
-
 	<div id="contenedor">
 		<jsp:include  page="head.jsp"/>
 		
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
-				<div id="artPrincipal">
-					<div id="tituloArt">
-						<% out.print(cat.getName()); %>
-					</div>
-					<div id="cuerpoArt">
-							<% out.print(cat.getDescription()); %>
-					</div>
-					
-				</div>
+				<h1>Categor&iacute;as </h1>
+				<table>
+				<% 
+				IWikiOperations op = new WikiOperations();
+				Collection cat = op.getAllCategories();
+				Iterator it = cat.iterator();
 				
+				while (it.hasNext()){
+					Category c = (Category)it.next();
+				//en un futuro, mostrar tambien las valoraciones, junto al enlace
+				%>
+				
+				
+					<tr>
+						<td><a href="./FrontController?res=C2&id=<%out.print(c.getName()); %>"><% out.print(c.getName()); %> </a><td>
+						
+					</tr>
+				
+				
+				<%
+				}
+				%>
+				</table>
 			</div>
 			
 		</div>

@@ -30,7 +30,7 @@
 				
 				
 					<tr>
-						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getOID()); %>"><% out.print(ar.getTitle()); %> </a><td>
+						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a><td>
 						
 					</tr>
 				

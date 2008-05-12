@@ -45,24 +45,51 @@ public class WikiOperations implements IWikiOperations {
 		return null;
 	}
 	
+	@Override
 	public Collection getMostRatedArticles(){
 		//Provisional, implementar luego.
 		return Wiki.getInstance().getListArt();
 	}
 	
-	public Article getArticle(String oid){
+	@Override
+	public Article getArticle(String id){
 		Collection arts = Wiki.getInstance().getListArt();
 		Article art = null;
 		Iterator it = arts.iterator();
 		
 		while(it.hasNext()){
 			Article aux = (Article)it.next();
-			if (aux.getOID().equals(oid)){
+			if (aux.getTitle().equals(id)){
 				art = aux;;
 			}
 		}
 		
 		return art;
+	}
+	
+	@Override
+	public Collection getAllCategories(){
+		Collection c;
+		
+		c = Wiki.getInstance().getListCat();
+		
+		return c;
+	}
+	
+	@Override
+	public Category getCategory(String id){
+		Collection arts = Wiki.getInstance().getListCat();
+		Category cat = null;
+		Iterator it = arts.iterator();
+		
+		while(it.hasNext()){
+			Category aux = (Category)it.next();
+			if (aux.getName().equals(id)){
+				cat = aux;
+			}
+		}
+		
+		return cat;
 	}
 
 }

@@ -7,6 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h2>Est&aacute; intentando acceder a un &aacute;rea restringida</h2>
+	Por favor, ingrese como usuario.
+	<form action="por determinar">
+		<fieldset>
+			<legend>Login</legend>
+			<label class="inputBlock" for="usuario">Usuario: </label>
+			<input class="inputBlock" type="text"id="usuario" name="usuario" size="12">
+			<label class="inputBlock" for="pass">Contraseña: </label>
+			<input class="inputBlock" id="pass" type="password" name="pass" size="12">
+			<input class="inputBlock" type="submit" value="login">
+		</fieldset>
+	</form>
 </body>
 </html>
