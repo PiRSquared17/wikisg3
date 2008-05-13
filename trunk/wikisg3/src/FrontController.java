@@ -39,6 +39,9 @@ import java.util.Map;
 		resources.put("A1", "printArticles.jsp");
 		resources.put("A2", "article.jsp");
 		resources.put("A3e","newArticleName.jsp" );
+		resources.put("A4e", "editArticle.jsp");
+		resources.put("A5l", "rateArticle.jsp");
+		resources.put("A6l", "ratingNew");
 		resources.put("C1", "printCategories.jsp");
 		resources.put("C2", "category.jsp");
 		
