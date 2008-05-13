@@ -26,6 +26,9 @@
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
 				<div id="artPrincipal">
+					<div id="barrita">
+						<a href="./FrontController?res=A4e&id=<%out.print(art.getTitle()); %>">Edite</a> o <a href="">valore</a> este art&iacute;culo
+					</div>
 					<div id="tituloArt">
 						<% out.print(art.getTitle()); %>
 					</div>
