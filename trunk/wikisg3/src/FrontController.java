@@ -44,6 +44,7 @@ import java.util.Map;
 		resources.put("A6l", "ratingNew");
 		resources.put("C1", "printCategories.jsp");
 		resources.put("C2", "category.jsp");
+		resources.put("L1", "login.jsp");
 		
 		
 		/*resources.put("1", "article.jsp");
@@ -70,7 +71,6 @@ import java.util.Map;
 	}
 		
 	private void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-		HttpSession sss = request.getSession(false);
 		String resource = (String)request.getParameter("res");
 		if (loginRequire(resource)){
 			if (login(request)){
@@ -145,7 +145,7 @@ import java.util.Map;
 				}//fin sino search o edit
 			}//fin login
 			else{
-				RequestDispatcher d = request.getRequestDispatcher((String)resources.get("login.jsp"));
+				RequestDispatcher d = request.getRequestDispatcher((String)resources.get("L1"));
 				if(d!=null){
 					d.forward(request,response);
 				}
@@ -171,39 +171,11 @@ import java.util.Map;
 		boolean logado = false;
 
 		HttpSession session = request.getSession(false);
-
-		String userForm = request.getParameter("user");
-		String passwdForm = request.getParameter("passwd");
-
-		if (session == null) {
-			session = request.getSession();
-			if (userForm == null || passwdForm == null
-					|| userForm.length() == 0 || passwdForm.length() == 0) {
-				logado = false;
-
-			} else {
-				if (valido(userForm, passwdForm)) {
-					logado = true;
-					session.setAttribute("session.user", userForm);
-				} else {
-					logado = false;
-				}
-
-			}
-
-		} else {
-			if (userForm == null || passwdForm == null) {
-				logado = true;
-			} else {
-				if (valido(userForm, passwdForm)) {
-					logado = true;
-					session.setAttribute("session.user", userForm);
-				} else {
-					logado = false;
-				}
-
-			}
+		
+		if (session != null){
+			logado=true;
 		}
+		
 		return logado;
 	}
 	
