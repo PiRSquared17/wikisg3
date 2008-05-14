@@ -14,17 +14,7 @@
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
-			<%
-			out.print("sdfsdflsd");
-			HttpSession h = request.getSession(false);
-			if (h==null){
-				out.print("no ");
-			}
-			else{
-				
-				out.print("tenemos un problema");
-			}
-			%>
+			
 				<div id="artPrincipal">
 					<div id="tituloArt">
 						gdfgdfg
