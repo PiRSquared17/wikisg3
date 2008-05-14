@@ -11,17 +11,22 @@
 	Por favor, ingrese como usuario.
 	<%
 		String s = request.getParameter("b");
+		String res = request.getParameter("res");
+		if (res.equals("L1")){
+			res = request.getParameter("oldres");
+		}
 		if (s != null){
 			out.print("Usuario o contraseña incorrecta");
 		}
 	%>
-	<form action="por determinar">
+	<form action="./Login" method="post">
 		<fieldset>
 			<legend>Login</legend>
 			<label class="inputBlock" for="usuario">Usuario: </label>
 			<input class="inputBlock" type="text"id="usuario" name="usuario" size="12">
 			<label class="inputBlock" for="pass">Contraseña: </label>
 			<input class="inputBlock" id="pass" type="password" name="pass" size="12">
+			<input type="hidden" name="oldres" value="<%out.print(res); %>"/>
 			<input class="inputBlock" type="submit" value="login">
 		</fieldset>
 	</form>

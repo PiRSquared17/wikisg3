@@ -17,7 +17,7 @@
 					</div>
 					<div id="usuario">
 						<!-- Aquí irá el login y los datos del usuario -->
-						<form action="por determinar">
+						<form action="./Login" method="post">
 							<fieldset>
 								<legend>Login</legend>
 								<label class="inputBlock" for="usuario">Usuario: </label>

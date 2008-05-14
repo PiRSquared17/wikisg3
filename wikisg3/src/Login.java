@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		login(request,response);
 	}  	
 	
 	/* (non-Java-doc)
@@ -36,16 +37,22 @@ import javax.servlet.http.HttpServletResponse;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		login(request,response);
 	}   	  	  
 	
 	private void login(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		String user = req.getParameter("usuario");
 		String pass = req.getParameter("pass");
+		String resource = req.getParameter("oldres");
 		
 		if (user.equals(usuario) && pass.equals(password)){
 			req.getSession(true);
+			RequestDispatcher d = req.getRequestDispatcher("./FrontController?res="+resource);
+			if(d!=null){
+				d.forward(req,res);
+			}
 		}else{
-			RequestDispatcher d = req.getRequestDispatcher("./FrontController?res=L1&b=false");
+			RequestDispatcher d = req.getRequestDispatcher("./FrontController?res=L1&b=false&oldres="+resource);
 			if(d!=null){
 				d.forward(req,res);
 			}

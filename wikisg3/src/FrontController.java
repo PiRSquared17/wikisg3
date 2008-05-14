@@ -114,20 +114,22 @@ import java.util.Map;
 						//No ha realizado ninguna busqueda
 						lastEdit = new Long(System.currentTimeMillis());
 						RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+						s.setAttribute("session.lastSearch", lastEdit);
 						if(d!=null){
 							d.forward(request,response);
 						}
-						s.setAttribute("session.lastSearch", lastEdit);
+						
 					}else{
 						//Ya ha realizado alguna busqueda
 						Long currentEdit = System.currentTimeMillis();
 						if ((currentEdit - lastEdit) > 300000){
 							//Han pasado mas de 5 minutos (300 segundos)
 							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+							s.setAttribute("session.lastSearch", currentEdit);
 							if(d!=null){
 								d.forward(request,response);
 							}
-							s.setAttribute("session.lastSearch", currentEdit);
+							
 						}else{
 							//No han pasado mas de 5 minutos (300 segundos)
 							RequestDispatcher d = request.getRequestDispatcher("error.jsp?type=edit");
