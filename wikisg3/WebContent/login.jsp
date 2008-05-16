@@ -12,6 +12,7 @@
 	<%
 		String s = request.getParameter("b");
 		String res = request.getParameter("res");
+		String idArt = request.getParameter("id");
 		if (res.equals("L1")){
 			res = request.getParameter("oldres");
 		}
@@ -27,6 +28,7 @@
 			<label class="inputBlock" for="pass">Contraseña: </label>
 			<input class="inputBlock" id="pass" type="password" name="pass" size="12">
 			<input type="hidden" name="oldres" value="<%out.print(res); %>"/>
+			<input type="hidden" name="id" value="<%out.print(idArt); %>"/>
 			<input class="inputBlock" type="submit" value="login">
 		</fieldset>
 	</form>

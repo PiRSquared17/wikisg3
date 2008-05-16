@@ -44,10 +44,17 @@ import javax.servlet.http.HttpServletResponse;
 		String user = req.getParameter("usuario");
 		String pass = req.getParameter("pass");
 		String resource = req.getParameter("oldres");
+		String id = req.getParameter("id");
 		
 		if (user.equals(usuario) && pass.equals(password)){
 			req.getSession(true);
-			RequestDispatcher d = req.getRequestDispatcher("./FrontController?res="+resource);
+			RequestDispatcher d;
+			if (id == null){
+				d = req.getRequestDispatcher("./FrontController?res="+resource);
+			}else{
+				d = req.getRequestDispatcher("./FrontController?id="+id+"&res="+resource);
+			}
+			
 			if(d!=null){
 				d.forward(req,res);
 			}

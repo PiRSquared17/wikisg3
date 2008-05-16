@@ -22,9 +22,17 @@ public class WikiOperations implements IWikiOperations {
 	}
 
 	@Override
-	public void editArticle(User editor) {
+	public void editArticle(String content, String idArticle) {
 		// TODO Auto-generated method stub
-
+		Wiki w = Wiki.getInstance();
+		Collection l = w.getListArt();
+		Iterator it = l.iterator();
+		while (it.hasNext()){
+			Article art = (Article)it.next();
+			if (art.getTitle().equals(idArticle)){
+				art.setContent(content);
+			}
+		}
 	}
 
 	@Override

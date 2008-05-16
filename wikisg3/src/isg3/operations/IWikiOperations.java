@@ -14,7 +14,7 @@ public interface IWikiOperations {
 	
 	public void addArticle(User author, String title, String content, Category cat);
 	
-	public void editArticle(User editor);
+	public void editArticle(String content,  String idArticle);
 	
 	public boolean existsArticle(String name);
 	
