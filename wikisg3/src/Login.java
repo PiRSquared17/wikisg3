@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class for Servlet: Login
@@ -47,7 +48,8 @@ import javax.servlet.http.HttpServletResponse;
 		String id = req.getParameter("id");
 		
 		if (user.equals(usuario) && pass.equals(password)){
-			req.getSession(true);
+			HttpSession session = req.getSession(true);
+			session.setAttribute("user", user);
 			RequestDispatcher d;
 			if (id == null){
 				d = req.getRequestDispatcher("./FrontController?res="+resource);

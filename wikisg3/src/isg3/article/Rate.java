@@ -28,6 +28,17 @@ public class Rate {
 		return user;
 	}
 	
+	public boolean equals(Object o){
+		boolean b = false;
+		if (o instanceof Rate){
+			Rate r = (Rate)o;
+			if (r.getUser().getNick().equals(this.getUser().getNick())){
+				b = true;
+			}
+		}
+		return b;
+		
+	}
 	
 	
 }

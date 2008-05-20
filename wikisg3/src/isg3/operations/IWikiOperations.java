@@ -10,11 +10,13 @@ public interface IWikiOperations {
 	
 	public Collection getAllCategories();
 	
-	public void addRate(Rate rate);
+	public User getUser(String user);
+	
+	public void addRate(String user, String reason, int rate, String title);
 	
 	public void addArticle(User author, String title, String content, Category cat);
 	
-	public void editArticle(String content,  String idArticle);
+	public void editArticle(String content,  String idArticle, String user);
 	
 	public boolean existsArticle(String name);
 	
@@ -25,5 +27,7 @@ public interface IWikiOperations {
 	public boolean existsRate(User user, Article art);
 	
 	public Collection getMostRatedArticles();
+	
+	public Rate getRate(String title, String user);
 	
 }
