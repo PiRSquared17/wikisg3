@@ -31,6 +31,7 @@
 					</div>
 					<div id="tituloArt">
 						<% out.print(art.getTitle()); %>
+						<% out.print("  -  Categoría:   "+art.getCat().getName()); %>
 					</div>
 					<div id="cuerpoArt">
 							<% out.print(art.getContent()); %>

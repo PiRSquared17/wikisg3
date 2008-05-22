@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import isg3.article.Article;
+import isg3.article.Category;
 import isg3.operations.*;
+import isg3.user.User;
 
 /**
  * Servlet implementation class for Servlet: EditArticle
@@ -38,11 +41,20 @@ import isg3.operations.*;
 		// TODO Auto-generated method stub
 		String content = (String)request.getParameter("content");
 		String idArticle = (String)request.getParameter("id");
+		String cat = (String)request.getParameter("cat");
 		
 		WikiOperations op = new WikiOperations();
+		Category category = op.getCategory(cat);
 		HttpSession session = request.getSession(false);
 		String user = (String)session.getAttribute("user");
-		op.editArticle(content, idArticle, user);
+		User u = op.getUser(user);
+		Article a = op.getArticle(idArticle);
+		if (a!=null){
+			op.editArticle(content, idArticle, user, category);
+		}else{
+			op.addArticle(u, idArticle, content, category);
+		}
+	
 		
 		RequestDispatcher rd = request.getRequestDispatcher("./FrontController?res=A2&id="+idArticle);
 		if (rd != null){

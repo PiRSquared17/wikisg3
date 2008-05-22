@@ -48,14 +48,16 @@ public class WikiOperations implements IWikiOperations {
 	
 	
 	@Override
-	public void editArticle(String content, String idArticle, String user) {
+	public void editArticle(String content, String idArticle, String user, Category cat) {
 		// TODO Auto-generated method stub
 		Wiki w = Wiki.getInstance();
 		Collection l = w.getListArt();
 		Iterator it = l.iterator();
-		while (it.hasNext()){
+		boolean b = false;
+		while (it.hasNext() && !b){
 			Article art = (Article)it.next();
 			if (art.getTitle().equals(idArticle)){
+				b = true;
 				art.setContent(content);
 				User u = getUser(user);
 				//añadimos al articulo el usuario que 
