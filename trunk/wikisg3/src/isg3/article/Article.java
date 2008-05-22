@@ -55,6 +55,10 @@ public class Article {
 	public Category getCat() {
 		return cat;
 	}
+	
+	public void setCat(Category cat){
+		this.cat = cat;
+	}
 
 	public Collection getUsersEditors() {
 		return usersEditor;

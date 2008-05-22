@@ -34,7 +34,16 @@
 								
 								%>
 							</textarea>
-							<input type="submit" value="Cambiar"/>
+							<select name="cat" id="cat">
+								<option value="-">-</option>
+								<option value="Deportes">Deportes</option>
+								<option value="Ciencias">Ciencias</option>
+								<option value="Sociedad">Sociedad</option>
+								<option value="Historia">Historia</option>
+								<option value="Arte">Arte</option>
+								<option value="Tecnologias">Tecnologias</option>
+							</select>
+							<input type="submit" value="Aceptar"/>
 							
 							
 						</form>
