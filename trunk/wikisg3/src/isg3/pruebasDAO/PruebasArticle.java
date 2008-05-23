@@ -20,8 +20,6 @@ public class PruebasArticle {
 		
 		System.out.println("¿Insercion correcta?: "+b);
 		
-		
-		
 	}
 	
 	public void selectArticle(){
@@ -31,6 +29,18 @@ public class PruebasArticle {
 		System.out.println(a.getTitle());
 	}
 	
+	public void updateArticle(){
+		IArticleDAO art_dao = new JDBCArticleDAO();
+		Article a = art_dao.select("El Padrino");
+		
+		a.setContent(a.getContent()+" .Gran papel de Marlon Brando");
+		boolean b = art_dao.update(a, "jesus");
+		a = art_dao.select("El Padrino");
+		
+		System.out.println(a.getTitle());
+		System.out.println(a.getContent());
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -38,7 +48,8 @@ public class PruebasArticle {
 		// TODO Auto-generated method stub
 		PruebasArticle pruebas = new PruebasArticle();
 		//pruebas.selectArticle();
-		pruebas.insertArticle();
+		//pruebas.insertArticle();
+		pruebas.updateArticle();
 	}
 
 }

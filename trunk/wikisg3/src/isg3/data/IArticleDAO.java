@@ -9,7 +9,7 @@ public interface IArticleDAO {
 	
 	public Collection selectAllArticles(Category cat);
 	public boolean insert(Article a);
-	public boolean update(Article a);
+	public boolean update(Article a, String nick);
 	public Article select(String title);
 	public boolean remove(String title);
 	public Collection selectAll();
