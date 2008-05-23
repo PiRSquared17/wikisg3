@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.LinkedList;
 
 
 
@@ -218,5 +219,36 @@ public class JDBCArticleDAO implements IArticleDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Collection getAllArticles(Category cat) {
+		// TODO Auto-generated method stub
+		Collection c = null;
+		ResultSet s1 = null;
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM Article WHERE (categoryOID = ?)";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, this.getOidOfCategory(cat.getName()));
+			s1 = stmt.executeQuery();
+			c = new LinkedList();
+			while(s1.next()){
+				//creamos articulos
+				Article art = new Article();
+				art.setTitle(s1.getString("title"));
+				art.setContent(s1.getString("content"));
+				art.setVisits(s1.getInt("visits"));
+				art.setLastRevision(s1.getDate("lastRevision"));
+				art.setCat(cat);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return c;
+	}
+	
+	
 
 }
