@@ -36,6 +36,8 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 				cat = new Category();
 				cat.setName(s1.getString("name"));
 				cat.setDescription(s1.getString("description"));
+				Collection articles = this.art_dao.selectAllArticles(cat);
+				cat.setArticles(articles);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
