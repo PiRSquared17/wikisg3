@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.LinkedList;
 
 public class JDBCRateDAO implements IRateDAO {
 
@@ -153,7 +154,35 @@ public class JDBCRateDAO implements IRateDAO {
 	@Override
 	public Collection selectAll(String article) {
 		// TODO Auto-generated method stub
-		return null;
+		Collection c = null;
+		
+		ResultSet res = null;
+		String art_oid = this.getOidOfArticle(article);
+		//String user_oid = this.getOidOfUser(user);
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM Rate WHERE(articleOID = ? )";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, art_oid);
+			//stmt.setString(2, user_oid);
+			res = stmt.executeQuery();
+			c = new LinkedList();
+			while (res.next()){
+				String reason = res.getString("reason");
+				int rate = res.getInt("rate");
+				User u = this.user_dao.selectByOID(res.getString("userOID"));
+				Rate r = new Rate();
+				r.setRate(rate);
+				r.setReason(reason);
+				r.setUser(u);
+				c.add(r);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return c;
 	}
 
 	@Override

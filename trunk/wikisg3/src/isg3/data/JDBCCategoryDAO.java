@@ -43,8 +43,8 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 		}
 		
 		if (cat != null){
-			Collection aux = this.art_dao.getAllArticles(cat_oid);
-			cat.setArticles(aux);
+			//Collection aux = this.art_dao.getAllArticles(cat_oid);
+			//cat.setArticles(aux);
 		}
 		
 		return cat;
