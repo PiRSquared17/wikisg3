@@ -1,8 +1,11 @@
 package isg3.data;
 
 import isg3.user.User;
+import isg3.utils.UIDGenerator;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class JDBCUserDAO implements IUserDAO {
@@ -15,8 +18,8 @@ public class JDBCUserDAO implements IUserDAO {
 	
 	public JDBCUserDAO(){
 		con = ConnectionManager.getInstance().checkOut();
-		this.art_dao = new JDBCArticleDAO();
-		this.ms_dao = new JDBCMessageDAO();
+		//this.art_dao = new JDBCArticleDAO();
+		//this.ms_dao = new JDBCMessageDAO();
 	}
 	
 	@Override
@@ -28,7 +31,26 @@ public class JDBCUserDAO implements IUserDAO {
 	@Override
 	public boolean insert(User u) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean b = false;
+		
+		String oid = UIDGenerator.getInstance().getKey();
+		PreparedStatement stmt = null;
+		String query = "INSERT INTO User(oid,nick,pass,mail,registeredDate) VALUES(?,?,?,?,NOW())";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, oid);
+			stmt.setString(2, u.getNick());
+			stmt.setString(3, u.getPass());
+			stmt.setString(4, u.getProfile().getMail());
+			int aux = stmt.executeUpdate();
+			b = (aux == 1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return b;
 	}
 
 	@Override

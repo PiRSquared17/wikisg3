@@ -1,4 +1,6 @@
-package isg3.data;
+package isg3.pruebasDAO;
+
+import isg3.data.ConnectionManager;
 
 import java.sql.*;
 
