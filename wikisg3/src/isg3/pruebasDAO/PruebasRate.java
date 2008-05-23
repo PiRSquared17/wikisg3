@@ -1,5 +1,7 @@
 package isg3.pruebasDAO;
 
+import java.util.*;
+
 import isg3.article.Rate;
 import isg3.data.*;
 import isg3.user.User;
@@ -27,6 +29,19 @@ public class PruebasRate {
 				r.getReason());
 	}
 	
+	public void selectAllRates(){
+		IRateDAO r_dao = new JDBCRateDAO();
+		Collection c = r_dao.selectAll("El padrino");
+		Iterator it = c.iterator();
+		
+		while(it.hasNext()){
+			Rate r = (Rate)it.next();
+			User u = r.getUser();
+			System.out.println("El usuario "+u.getNick()+" opina sobre El padrino: " +
+					r.getReason());
+		}
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -34,7 +49,8 @@ public class PruebasRate {
 		// TODO Auto-generated method stub
 		PruebasRate pruebas = new PruebasRate();
 		//pruebas.insertRate();
-		pruebas.selectRate();
+		//pruebas.selectRate();
+		pruebas.selectAllRates();
 
 	}
 

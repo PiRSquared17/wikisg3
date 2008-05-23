@@ -26,7 +26,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 	
 	public JDBCArticleDAO(){
 		con = ConnectionManager.getInstance().checkOut();
-		this.cat_dao = new JDBCCategoryDAO();
+		//this.cat_dao = new JDBCCategoryDAO();
 		this.user_dao = new JDBCUserDAO();
 		this.rate_dao = new JDBCRateDAO();
 	}
@@ -223,25 +223,31 @@ public class JDBCArticleDAO implements IArticleDAO {
 			if (s1.next()){
 				art = new Article();
 				art_oid = s1.getString("oid");
+				cat_oid = s1.getString("categoryOID");
 				art.setTitle(s1.getString("title"));
 				art.setContent(s1.getString("content"));
 				art.setVisits(s1.getInt("visits"));
 				art.setLastRevision(s1.getDate("lastRevision"));
-				cat_oid = s1.getString("categoryOID");
+				
+				Collection editors = this.user_dao.selectAllEditors(art_oid);
+				art.setUSersEditors(editors);
+				
+				Collection c1 = this.rate_dao.selectAll(art_oid);
+				RatesCollection rates = new RatesCollection();
+				rates.setRates(c1);
+				art.setRatesCollection(rates);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Category cat = this.cat_dao.selectByOID(cat_oid);
-		Collection editors = this.user_dao.selectAllEditors(art_oid);
-		Collection c1 = this.rate_dao.selectAll(art_oid);
-		RatesCollection rates = new RatesCollection();
-		rates.setRates(c1);
+		
+		
 		
 		art.setCat(cat);
-		art.setUSersEditors(editors);
-		art.setRatesCollection(rates);
+		
+		
 		
 		return art;
 	}
