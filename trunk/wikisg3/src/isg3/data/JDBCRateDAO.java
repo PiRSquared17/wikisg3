@@ -221,7 +221,26 @@ public class JDBCRateDAO implements IRateDAO {
 	@Override
 	public boolean update(Rate r, String article) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean b = false;
+		
+		String u_oid = this.getOidOfUser(r.getUser().getNick());
+		String a_oid = this.getOidOfArticle(article);
+		PreparedStatement stmt = null;
+		String query = "UPDATE Rate SET reason = ?, rate = ? WHERE (articleOID = ? AND userOID = ?)";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, r.getReason());
+			stmt.setInt(2, r.getRate());
+			stmt.setString(3, a_oid);
+			stmt.setString(4, u_oid);
+			int aux = stmt.executeUpdate();
+			b = (aux == 1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return b;
 	}
 
 	@Override

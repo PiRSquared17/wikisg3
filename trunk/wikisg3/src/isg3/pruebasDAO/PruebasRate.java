@@ -42,6 +42,19 @@ public class PruebasRate {
 		}
 	}
 	
+	public void updateRate(){
+		IRateDAO r_dao = new JDBCRateDAO();
+		Rate r = r_dao.select("El padrino", "juanito");
+		r.setReason("pos ahora si me gusta");
+		r.setRate(5);
+		
+		boolean b = r_dao.update(r, "El padrino");
+		r = r_dao.select("El padrino", "juanito");
+		User u = r.getUser();
+		
+		System.out.println("Nueva valoración de "+u.getNick()+" sobre El padrino : "+r.getReason());
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -50,7 +63,8 @@ public class PruebasRate {
 		PruebasRate pruebas = new PruebasRate();
 		//pruebas.insertRate();
 		//pruebas.selectRate();
-		pruebas.selectAllRates();
+		//pruebas.selectAllRates();
+		pruebas.updateRate();
 
 	}
 

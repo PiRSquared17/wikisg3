@@ -89,7 +89,23 @@ public class JDBCUserDAO implements IUserDAO {
 	@Override
 	public boolean update(User u) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean b = false;
+		
+		PreparedStatement stmt = null;
+		String query = "UPDATE User SET pass = ?, mail = ? WHERE (nick = ?)";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, u.getPass());
+			stmt.setString(2, u.getProfile().getMail());
+			stmt.setString(3, u.getNick());
+			int aux = stmt.executeUpdate();
+			b = (aux == 1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return b;
 	}
 
 	@Override
