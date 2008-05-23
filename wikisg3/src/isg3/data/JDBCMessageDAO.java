@@ -7,9 +7,13 @@ import java.util.Collection;
 
 public class JDBCMessageDAO implements IMessageDAO {
 	
-	private Connection con;
+	private Connection conn;
 	
 	//pensar si de verdad necesita tener un dao de user
+	
+	public JDBCMessageDAO(){
+		conn = ConnectionManager.getInstance().checkOut();
+	}
 	
 	@Override
 	public boolean delete() {
