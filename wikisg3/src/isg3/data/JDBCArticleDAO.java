@@ -276,8 +276,33 @@ public class JDBCArticleDAO implements IArticleDAO {
 
 	@Override
 	public boolean update(Article a) {
-		// TODO Auto-generated method stub
-		return false;
+		//AQUI SE NOS PRESENTA UN PROBLEMA
+		//¿COMO SACAMOS EL USUARIO QUE HA EDITADO AHORA EL ARTICULO?
+		boolean b = false;
+		
+		String user_art_oid = UIDGenerator.getInstance().getKey();
+		String cat_oid = this.getOidOfCategory(a.getCat().getName());
+		PreparedStatement stmt = null;
+		String query1 = "UPDATE Article SET (content = ?, " +
+				"lastRevision = NOW(), visits = ?, categoryOID = ?) " +
+				"WHERE (title = ?)";
+		String query2 = "INSERT INTO UserArticle(oid, userOID, articleOID) VALUES(?, ?, ?)";
+		try {
+			stmt = this.con.prepareStatement(query1);
+			stmt.setString(1, a.getContent());
+			stmt.setLong(2, a.getVisits());
+			stmt.setString(3, cat_oid);
+			stmt.setString(4, a.getTitle());
+			int aux1 = stmt.executeUpdate();
+			
+			stmt = this.con.prepareStatement(query2);
+			stmt.setString(1, user_art_oid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return b;
 	}
 
 	@Override
