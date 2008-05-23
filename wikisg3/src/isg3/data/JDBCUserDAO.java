@@ -2,10 +2,17 @@ package isg3.data;
 
 import isg3.user.User;
 
+import java.sql.Connection;
 import java.util.Collection;
 
 public class JDBCUserDAO implements IUserDAO {
-
+	
+	private Connection con;
+	
+	private IArticleDAO art_dao;
+	
+	private IMessageDAO ms_dao;
+	
 	@Override
 	public boolean delete(String nick) {
 		// TODO Auto-generated method stub
