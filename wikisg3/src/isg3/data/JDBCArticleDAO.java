@@ -55,16 +55,16 @@ public class JDBCArticleDAO implements IArticleDAO {
 		String art_oid = UIDGenerator.getInstance().getKey();
 		String user_art_oid = UIDGenerator.getInstance().getKey();
 		PreparedStatement stmt = null;
-		String query1 = "INSERT INTO Article(oid, title, content, lastRevision, visits, categoryOID) VALUES(?, ?, ?, ?, ?, ?)";
-		String query2 = "INSER INTO UserArticle(oid, userOID, articleOID) VALUES(? , ?, ?)";
+		String query1 = "INSERT INTO Article(oid, title, content, lastRevision, visits, categoryOID) VALUES(?, ?, ?, NOW(), ?, ?)";
+		String query2 = "INSERT INTO UserArticle(oid, userOID, articleOID) VALUES(?, ?, ?)";
 		try {
 			stmt = this.con.prepareStatement(query1);
 			stmt.setString(1, art_oid);
 			stmt.setString(2, a.getTitle());
 			stmt.setString(3, a.getContent());
-			stmt.setString(4, "NOW()");//funcion de mysql para la fecha actual
-			stmt.setInt(5, 0);
-			stmt.setString(6, cat_oid);
+			//stmt.setString(4, "NOW()");//funcion de mysql para la fecha actual
+			stmt.setInt(4, 0);
+			stmt.setString(5, cat_oid);
 			int aux1 = stmt.executeUpdate();
 			
 			stmt = this.con.prepareStatement(query2);
@@ -249,7 +249,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 				Collection editors = this.user_dao.selectAllEditors(art_oid);
 				art.setUSersEditors(editors);
 				
-				Collection c1 = this.rate_dao.selectAll(art_oid);
+				Collection c1 = this.rate_dao.selectAllByOID(art_oid);
 				RatesCollection rates = new RatesCollection();
 				rates.setRates(c1);
 				art.setRatesCollection(rates);
@@ -295,12 +295,24 @@ public class JDBCArticleDAO implements IArticleDAO {
 			while(s1.next()){
 				//creamos articulos
 				Article art = new Article();
+				String art_oid = s1.getString("oid");
 				art.setTitle(s1.getString("title"));
 				art.setContent(s1.getString("content"));
 				art.setVisits(s1.getInt("visits"));
 				art.setLastRevision(s1.getDate("lastRevision"));
+				
 				art.setCat(cat);
+				
+				Collection editors = this.user_dao.selectAllEditors(art_oid);
+				art.setUSersEditors(editors);
+				
+				Collection c1 = this.rate_dao.selectAllByOID(art_oid);
+				RatesCollection rates = new RatesCollection();
+				rates.setRates(c1);
+				art.setRatesCollection(rates);
+				
 				c.add(art);
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -184,7 +184,40 @@ public class JDBCRateDAO implements IRateDAO {
 		
 		return c;
 	}
-
+	
+	public Collection selectAllByOID(String articleOID){
+		// TODO Auto-generated method stub
+		Collection c = null;
+		
+		ResultSet res = null;
+		//String art_oid = this.getOidOfArticle(article);
+		//String user_oid = this.getOidOfUser(user);
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM Rate WHERE(articleOID = ? )";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, articleOID);
+			//stmt.setString(2, user_oid);
+			res = stmt.executeQuery();
+			c = new LinkedList();
+			while (res.next()){
+				String reason = res.getString("reason");
+				int rate = res.getInt("rate");
+				User u = this.user_dao.selectByOID(res.getString("userOID"));
+				Rate r = new Rate();
+				r.setRate(rate);
+				r.setReason(reason);
+				r.setUser(u);
+				c.add(r);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return c;
+	}
+	
 	@Override
 	public boolean update(Rate r, String article) {
 		// TODO Auto-generated method stub
