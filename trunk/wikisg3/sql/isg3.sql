@@ -34,10 +34,10 @@ UNIQUE (title),
 FOREIGN KEY (categoryOID) REFERENCES isg3.Category(oid)
 );
 
-INSERT INTO isg3.Article VALUES('8A','Sevilla F. C.','El mejor equipo del mundo', NOW(), 0, '1');
-INSERT INTO isg3.Article VALUES('9A','El padrino','Gran película sobre la cosa nostra', NOW(), 0, '3');
-INSERT INTO isg3.Article VALUES('10A','Tabla periodica','El conjunto de elementos', NOW(), 0, '2');
-INSERT INTO isg3.Article VALUES('11A','F. C. Barcelona','Tot el camp es un clam', NOW(), 0, '1');
+INSERT INTO isg3.Article VALUES('8A','Sevilla F. C.','El mejor equipo del mundo', NOW(), 0, '1C');
+INSERT INTO isg3.Article VALUES('9A','El padrino','Gran película sobre la cosa nostra', NOW(), 0, '3C');
+INSERT INTO isg3.Article VALUES('10A','Tabla periodica','El conjunto de elementos', NOW(), 0, '2C');
+INSERT INTO isg3.Article VALUES('11A','F. C. Barcelona','Tot el camp es un clam', NOW(), 0, '1C');
 
 DROP TABLE IF EXISTS isg3.User;
 

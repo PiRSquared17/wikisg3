@@ -7,7 +7,7 @@ import isg3.article.Category;
 
 public interface IArticleDAO {
 	
-	public Collection getAllArticles(Category cat);
+	public Collection selectAllArticles(Category cat);
 	public boolean insert(Article a);
 	public boolean update(Article a);
 	public Article select(String title);
