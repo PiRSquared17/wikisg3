@@ -16,7 +16,7 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 	
 	public JDBCCategoryDAO(){
 		conn = ConnectionManager.getInstance().checkOut();
-		this.art_dao = new JDBCArticleDAO();
+		this.art_dao = new JDBCArticleDAO(false);
 	}
 	
 	@Override
@@ -74,7 +74,29 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 	
 	@Override
 	public Category selectByOID(String oid){
-		return null;
+		Category cat = null;
+		
+		ResultSet res = null;
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM Category WHERE (oid = ?)";
+		try {
+			stmt = this.conn.prepareStatement(query);
+			stmt.setString(1, oid);
+			res = stmt.executeQuery();
+			if (res.next()){
+				cat = new Category();
+				cat.setName(res.getString("name"));
+				cat.setDescription(res.getString("description"));
+				Collection articles = this.art_dao.selectAllArticles(cat);
+				cat.setArticles(articles);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return cat;
 	}
 
 	@Override

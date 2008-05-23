@@ -25,10 +25,24 @@ public class JDBCArticleDAO implements IArticleDAO {
 	private IRateDAO rate_dao;
 	
 	public JDBCArticleDAO(){
+		this(true);
+	}
+	
+	/**
+	 * Constructor
+	 * @param b indica si vamos a constuir tambien el DAO
+	 * de Category. Si es así, b debe de ser true.
+	 * Para no construir el DAO de Category, pasar false.
+	 */
+	public JDBCArticleDAO(boolean b){
 		con = ConnectionManager.getInstance().checkOut();
-		//this.cat_dao = new JDBCCategoryDAO();
 		this.user_dao = new JDBCUserDAO();
 		this.rate_dao = new JDBCRateDAO();
+		
+		if (b){
+			this.cat_dao = new JDBCCategoryDAO();
+		}
+		
 	}
 	
 	@Override
@@ -229,6 +243,9 @@ public class JDBCArticleDAO implements IArticleDAO {
 				art.setVisits(s1.getInt("visits"));
 				art.setLastRevision(s1.getDate("lastRevision"));
 				
+				Category cat = this.cat_dao.selectByOID(cat_oid);
+				art.setCat(cat);
+				
 				Collection editors = this.user_dao.selectAllEditors(art_oid);
 				art.setUSersEditors(editors);
 				
@@ -240,14 +257,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		Category cat = this.cat_dao.selectByOID(cat_oid);
-		
-		
-		
-		art.setCat(cat);
-		
-		
+		}	
 		
 		return art;
 	}
@@ -271,7 +281,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 	}
 
 	@Override
-	public Collection getAllArticles(Category cat) {
+	public Collection selectAllArticles(Category cat) {
 		// TODO Auto-generated method stub
 		Collection c = null;
 		ResultSet s1 = null;
@@ -290,6 +300,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 				art.setVisits(s1.getInt("visits"));
 				art.setLastRevision(s1.getDate("lastRevision"));
 				art.setCat(cat);
+				c.add(art);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
