@@ -6,10 +6,10 @@ import java.util.Collection;
 
 public interface IRateDAO {
 
-	public Collection selectAll(String articleOID);
-	public boolean insert(Rate r, String articleOID);
-	public boolean update(Rate r, String articleOID);
-	public Rate select(String articleOID, String userOID);
-	public boolean removeAll(String articleOID);
+	public Collection selectAll(String article);
+	public boolean insert(Rate r, String article);
+	public boolean update(Rate r, String article);
+	public Rate select(String article, String user);
+	public boolean removeAll(String article);
 	
 }

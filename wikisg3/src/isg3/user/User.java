@@ -43,6 +43,10 @@ public class User extends AbstractUser{
 	public UserProfile getProfile() {
 		return profile;
 	}
+	
+	public void setProfile(UserProfile p){
+		this.profile = p;
+	}
 
 	public void setNick(String nick){
 		this.nick = nick;

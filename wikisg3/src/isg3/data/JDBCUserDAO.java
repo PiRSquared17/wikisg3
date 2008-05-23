@@ -1,10 +1,11 @@
 package isg3.data;
 
-import isg3.user.User;
+import isg3.user.*;
 import isg3.utils.UIDGenerator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -56,7 +57,30 @@ public class JDBCUserDAO implements IUserDAO {
 	@Override
 	public User select(String nick) {
 		// TODO Auto-generated method stub
-		return null;
+		User u = null;
+		
+		ResultSet res = null;
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM User WHERE (nick = ?)";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, nick);
+			res = stmt.executeQuery();
+			if (res.next()){
+				u = new User();
+				UserProfile up = new UserProfile();
+				u.setNick(nick);
+				u.setPass(res.getString("pass"));
+				up.setMail(res.getString("mail"));
+				u.setProfile(up);
+				//FALTA LA FECHA
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return u;
 	}
 
 	@Override

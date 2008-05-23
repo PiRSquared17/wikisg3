@@ -15,11 +15,27 @@ public class Rate {
 		this.reason = reason;
 		this.user = user;
 	}
+	
+	public Rate(){
+		
+	}
 
 	public int getRate() {
 		return rate;
 	}
 
+	public void setRate(int rate){
+		this.rate = rate;
+	}
+	
+	public void setReason(String reason){
+		this.reason = reason;
+	}
+	
+	public void setUser(User u){
+		this.user = u;
+	}
+	
 	public String getReason() {
 		return reason;
 	}
