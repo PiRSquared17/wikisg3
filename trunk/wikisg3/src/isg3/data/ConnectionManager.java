@@ -16,19 +16,18 @@ public class ConnectionManager {
     private static Properties dbprops = new Properties();
     
     
-      private ConnectionManager() {
+    private ConnectionManager() {
        
-
-      try {
-    	  InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("dbconfiguration.properties"); 
-    	  dbprops.load(is);
+    	try {
+    		InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("dbconfiguration.properties"); 
+    	  	dbprops.load(is);
     	  //dbprops.load(new FileInputStream("dbconfiguration.properties"));
-	} catch (Exception e1) {
-		System.err.println("El fichero de propiedades de la BDs no se ha encontrado");
-		e1.printStackTrace();
-	}
+    	} catch (Exception e1) {
+    		System.err.println("El fichero de propiedades de la BDs no se ha encontrado");
+    		e1.printStackTrace();
+    	}
 
-     try {
+    	try {
             String driverName =  dbprops.getProperty("driverName");
         	dBDriver = (Driver) Class.forName(driverName).newInstance();
             DriverManager.registerDriver(dBDriver);
