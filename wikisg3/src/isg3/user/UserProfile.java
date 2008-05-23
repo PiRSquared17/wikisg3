@@ -7,8 +7,6 @@ public class UserProfile {
 
 	private String name;
 	
-	private String surname;
-	
 	private Date lastVisit;
 	
 	private String mail;
@@ -17,24 +15,24 @@ public class UserProfile {
 	
 	private String language;
 	
-	private boolean status;
-	
 	private Collection articles;
-
+	
+	
+	public UserProfile(){
+		
+	}
+	
+	public UserProfile(String name, String mail){
+		this.name = name;
+		this.mail = mail;
+	}
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
 	}
 
 	public String getMail() {
@@ -51,14 +49,6 @@ public class UserProfile {
 
 	public void setLanguage(String language) {
 		this.language = language;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
 	}
 
 	public Collection getArticles() {

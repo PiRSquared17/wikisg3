@@ -12,6 +12,26 @@ public class User extends AbstractUser{
 	
 	private UserProfile profile;
 
+	public User(String nick, String pass){
+		this.nick=nick;
+		this.password=pass;
+		this.profile = new UserProfile();
+	}
+	
+	public User(String nick, String pass, UserProfile p){
+		this.nick=nick;
+		this.password=pass;
+		this.profile = p;
+	}
+	
+	public User(){
+		this.profile = new UserProfile();
+	}
+	
+	public String getPass(){
+		return this.password;
+	}
+	
 	public String getNick() {
 		return nick;
 	}
@@ -24,7 +44,11 @@ public class User extends AbstractUser{
 		return profile;
 	}
 
-	public void setPassword(String password) {
+	public void setNick(String nick){
+		this.nick = nick;
+	}
+	
+	public void setPass(String password) {
 		this.password = password;
 	}
 	
@@ -40,13 +64,6 @@ public class User extends AbstractUser{
 		return b;
 	}
 	
-	public User(String nick, String pass){
-		this.nick=nick;
-		this.password=pass;
-	}
 	
-	public User(){
-		
-	}
 	
 }

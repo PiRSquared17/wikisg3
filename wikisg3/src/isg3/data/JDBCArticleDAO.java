@@ -35,20 +35,30 @@ public class JDBCArticleDAO implements IArticleDAO {
 	public boolean insert(Article a) {
 		boolean b = false;
 		
+		User u = (User)a.getUsersEditors().iterator().next();
+		String user_oid = this.getOidOfUser(u.getNick());
 		String cat_oid = this.getOidOfCategory(a.getCat().getName());
 		String art_oid = UIDGenerator.getInstance().getKey();
+		String user_art_oid = UIDGenerator.getInstance().getKey();
 		PreparedStatement stmt = null;
-		String query = "INSERT INTO Article(oid, title, content, lastRevision, visits, categoryOID) VALUES(?, ?, ?, ?, ?, ?)";
+		String query1 = "INSERT INTO Article(oid, title, content, lastRevision, visits, categoryOID) VALUES(?, ?, ?, ?, ?, ?)";
+		String query2 = "INSER INTO UserArticle(oid, userOID, articleOID) VALUES(? , ?, ?)";
 		try {
-			stmt = this.con.prepareStatement(query);
+			stmt = this.con.prepareStatement(query1);
 			stmt.setString(1, art_oid);
 			stmt.setString(2, a.getTitle());
 			stmt.setString(3, a.getContent());
 			stmt.setString(4, "NOW()");//funcion de mysql para la fecha actual
 			stmt.setInt(5, 0);
 			stmt.setString(6, cat_oid);
-			int aux = stmt.executeUpdate();
-			b = (aux == 1);
+			int aux1 = stmt.executeUpdate();
+			
+			stmt = this.con.prepareStatement(query2);
+			stmt.setString(1, user_art_oid);
+			stmt.setString(2, user_oid);
+			stmt.setString(3, art_oid);
+			int aux2 = stmt.executeUpdate();
+			b = ((aux1 == 1) && (aux2 == 1));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,6 +74,40 @@ public class JDBCArticleDAO implements IArticleDAO {
         }
 		
 		return b;
+	}
+
+	private String getOidOfUser(String nick) {
+		// TODO Auto-generated method stub
+		String s = null;
+		
+		ResultSet results = null;
+		PreparedStatement stmt = null;
+		String query = "SELECT oid FROM User WHERE (nick = ?)";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, nick);
+			results = stmt.executeQuery();
+			if (results.next()){
+				s = results.getString("oid");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+            try {
+                if (results != null) {
+                    results.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+            	}
+            	catch (SQLException e) {
+            	}
+        }
+		
+		return s;
 	}
 
 	private String getOidOfCategory(String name){
