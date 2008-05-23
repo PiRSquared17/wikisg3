@@ -10,6 +10,10 @@ public class Category {
 	
 	private Collection articles;
 
+	public Category(){
+		
+	}
+	
 	public Category(String name, String description) {
 		this.name = name;
 		this.description = description;
@@ -25,6 +29,14 @@ public class Category {
 
 	public String getName() {
 		return name;
+	}
+	
+	public void setName(String n){
+		this.name = n;
+	}
+	
+	public void setArticles(Collection c){
+		this.articles = c;
 	}
 
 	public Collection getArticles() {
