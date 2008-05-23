@@ -67,5 +67,9 @@ public class UserProfile {
 		return registeredDate;
 	}
 	
+	public void setRegisteredDate(Date d){
+		this.registeredDate = d;
+	}
+	
 	
 }
