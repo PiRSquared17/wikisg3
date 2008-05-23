@@ -4,6 +4,7 @@ import isg3.user.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class RatesCollection {
@@ -25,6 +26,18 @@ public class RatesCollection {
 
 	public Collection getRates() {
 		return this.rates.values();
+	}
+	
+	public void setRates(Collection c){
+		Iterator it = c.iterator();
+		this.rates = new HashMap();
+		
+		while(it.hasNext()){
+			Rate r = (Rate)it.next();
+			User u = r.getUser();
+			this.rates.put(u, r);
+		}
+		
 	}
 	
 	public int getNumRates(){

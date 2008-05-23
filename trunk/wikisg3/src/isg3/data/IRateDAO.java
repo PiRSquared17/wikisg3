@@ -10,5 +10,6 @@ public interface IRateDAO {
 	public boolean insert(Rate r, String articleOID);
 	public boolean update(Rate r, String articleOID);
 	public Rate select(String articleOID, String userOID);
+	public boolean removeAll(String articleOID);
 	
 }

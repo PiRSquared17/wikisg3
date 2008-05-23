@@ -11,9 +11,19 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 	
 	private IArticleDAO art_dao;
 	
+	public JDBCCategoryDAO(){
+		conn = ConnectionManager.getInstance().checkOut();
+		this.art_dao = new JDBCArticleDAO();
+	}
+	
 	@Override
-	public Category select(String name) {
+	public Category selectByName(String name) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Category selectByOID(String oid){
 		return null;
 	}
 

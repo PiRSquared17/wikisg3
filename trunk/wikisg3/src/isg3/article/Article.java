@@ -21,6 +21,10 @@ public class Article {
 	
 	RatesCollection rates;
 
+	public Article(){
+		
+	}
+	
 	public Article(String title, String content, Category cat, User user) {
 		this.title = title;
 		this.content = content;
@@ -43,13 +47,25 @@ public class Article {
 	public String getTitle() {
 		return title;
 	}
+	
+	public void setTitle(String t){
+		this.title = t;
+	}
 
 	public Date getLastRevision() {
 		return lastRevision;
 	}
+	
+	public void setLastRevision(Date d){
+		this.lastRevision = d;
+	}
 
 	public long getVisits() {
 		return visits;
+	}
+	
+	public void setVisits(long v){
+		this.visits = v;
 	}
 
 	public Category getCat() {
@@ -63,6 +79,10 @@ public class Article {
 	public Collection getUsersEditors() {
 		return usersEditor;
 	}
+	
+	public void setUSersEditors(Collection c){
+		this.usersEditor = c;
+	}
 
 	public boolean hasRates(){
 		boolean b = false;
@@ -73,6 +93,10 @@ public class Article {
 	
 	public RatesCollection getRates() {
 		return rates;
+	}
+	
+	public void setRatesCollection(RatesCollection c){
+		this.rates = c;
 	}
 	
 	//implementar el equals. ¿como decidir si dos artículos son iguales?

@@ -13,6 +13,12 @@ public class JDBCUserDAO implements IUserDAO {
 	
 	private IMessageDAO ms_dao;
 	
+	public JDBCUserDAO(){
+		con = ConnectionManager.getInstance().checkOut();
+		this.art_dao = new JDBCArticleDAO();
+		this.ms_dao = new JDBCMessageDAO();
+	}
+	
 	@Override
 	public boolean delete(String nick) {
 		// TODO Auto-generated method stub
@@ -41,6 +47,12 @@ public class JDBCUserDAO implements IUserDAO {
 	public boolean update(User u) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Collection selectAllEditors(String art_oid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

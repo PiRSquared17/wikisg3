@@ -13,6 +13,12 @@ public class JDBCRateDAO implements IRateDAO {
 	
 	private IUserDAO user_dao;
 	
+	public JDBCRateDAO(){
+		con = ConnectionManager.getInstance().checkOut();
+		this.art_dao = new JDBCArticleDAO();
+		this.user_dao = new JDBCUserDAO();
+	}
+	
 	@Override
 	public boolean insert(Rate r, String articleOID) {
 		// TODO Auto-generated method stub
@@ -33,6 +39,12 @@ public class JDBCRateDAO implements IRateDAO {
 
 	@Override
 	public boolean update(Rate r, String articleOID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeAll(String articleOID) {
 		// TODO Auto-generated method stub
 		return false;
 	}
