@@ -55,8 +55,14 @@ import javax.servlet.http.HttpSession;
 			HttpSession session = req.getSession(true);
 			session.setAttribute("user", user);
 			RequestDispatcher d;
-			if (id == null){
-				d = req.getRequestDispatcher("./FrontController?res="+resource);
+			if (id.equals("null")){
+				if (resource.equals("null")){
+					d = req.getRequestDispatcher("./FrontController?res=index");
+				}
+				else{
+					d = req.getRequestDispatcher("./FrontController?res="+resource);
+				}
+				
 			}else{
 				d = req.getRequestDispatcher("./FrontController?id="+id+"&res="+resource);
 			}

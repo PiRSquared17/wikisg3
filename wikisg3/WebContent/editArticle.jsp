@@ -28,7 +28,7 @@
 						<% out.print(id); %>
 					</div>
 					<div id="cuerpoArt">
-						<form action="./EditArticle?res=S2&id=<%out.print(id); %>" method="post">
+						<form action="./FrontController?res=S2l&id=<%out.print(id); %>" method="post">
 							<textarea name="content" id="content" rows="20" cols="50">
 								<%
 								if (art != null){

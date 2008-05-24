@@ -41,23 +41,22 @@ import javax.servlet.http.HttpServletResponse;
 	}   	  	
 	
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String artName = request.getParameter("artName");
+		String artName = request.getParameter("id");
 		IWikiOperations op = new WikiOperations();
+		RequestDispatcher d = null;
 		
 		if (op.existsArticle(artName)){
 			//si el articulo ya existe
 			//debemos preguntarle si quiere editarlo
-			RequestDispatcher d = request.getRequestDispatcher("./FrontController?res=A7e");
-			if(d!=null){
-				d.forward(request,response);
-			}
+			d = request.getRequestDispatcher("./FrontController?res=A7e");
 		}
 		else{
 			//si no, a crear el articulo desde 0
-			RequestDispatcher d = request.getRequestDispatcher("./FrontController?res=A4e");
-			if(d!=null){
-				d.forward(request,response);
-			}
+			d = request.getRequestDispatcher("./FrontController?res=A4e");
+		}
+		
+		if(d!=null){
+			d.forward(request,response);
 		}
 	}
 }

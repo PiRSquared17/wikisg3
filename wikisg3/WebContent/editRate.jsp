@@ -26,7 +26,7 @@
 						<% out.print(title); %>
 				</div>
 				<div id="rating">
-					<form action="./FrontController?res=S3" method="post">
+					<form action="./FrontController?res=S3l" method="post">
 						<textarea name="reason" id="reason" rows="20" cols="50">
 							<%
 							if (rate != null){

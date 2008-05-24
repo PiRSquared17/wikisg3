@@ -24,7 +24,7 @@ public interface IWikiOperations {
 	
 	public Article getArticle(String oid);
 	
-	public boolean existsRate(User user, Article art);
+	public boolean existsRate(String user, String art);
 	
 	public Collection getMostRatedArticles();
 	

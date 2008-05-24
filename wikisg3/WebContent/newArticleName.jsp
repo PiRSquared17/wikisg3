@@ -16,7 +16,7 @@
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
 				<h2>Introduzca el nombre del artículo</h2>
-				<form action="./FrontController?res=S4" method="post">
+				<form action="./FrontController?res=S4l" method="post">
 					<input class="inputBlock" type="text" id="id" name="id" size="12">
 					<input class="inputBlock" type="button" id="Confirmar" name="Confirmar" value="Comprobar">				
 				</form>

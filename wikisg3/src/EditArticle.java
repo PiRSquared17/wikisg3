@@ -32,6 +32,7 @@ import isg3.user.User;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		this.processRequest(request, response);
 	}  	
 	
 	/* (non-Java-doc)
@@ -39,6 +40,11 @@ import isg3.user.User;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		this.processRequest(request, response);
+		
+	}   	  	  
+	
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String content = (String)request.getParameter("content");
 		String idArticle = (String)request.getParameter("id");
 		String cat = (String)request.getParameter("cat");
@@ -48,8 +54,8 @@ import isg3.user.User;
 		HttpSession session = request.getSession(false);
 		String user = (String)session.getAttribute("user");
 		User u = op.getUser(user);
-		Article a = op.getArticle(idArticle);
-		if (a!=null){
+		//Article a = op.getArticle(idArticle);
+		if (op.existsArticle(idArticle)){
 			op.editArticle(content, idArticle, user, category);
 		}else{
 			op.addArticle(u, idArticle, content, category);
@@ -60,6 +66,5 @@ import isg3.user.User;
 		if (rd != null){
 			rd.forward(request, response);
 		}
-		
-	}   	  	    
+	}
 }

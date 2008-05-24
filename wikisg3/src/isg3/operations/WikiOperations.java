@@ -36,15 +36,19 @@ public class WikiOperations implements IWikiOperations {
 	@Override
 	public void addRate(String user, String reason, int rate, String title) {
 		// TODO Auto-generated method stub
-
-		//HAY QUE COMPROBAR PRIMERO SI EL USUARIO YA HA
-		//VALORADO EL ARTICULO. ESTE METODO SOLO SE EJECUTA
-		//SI ES UNA VALORACION NUEVA
-		
 		User u = user_dao.select(user);
 		Article art = art_dao.select(title);
 		Rate r = new Rate(rate,reason,u);
-		rate_dao.insert(r, title);
+		//HAY QUE COMPROBAR PRIMERO SI EL USUARIO YA HA
+		//VALORADO EL ARTICULO. 
+		if (this.existsRate(user, title)){
+			rate_dao.update(r, title);
+		}
+		else{
+			rate_dao.insert(r, title);
+		}
+		
+		
 		
 		/*User u = getUser(user);
 		Article art = getArticle(title);
@@ -110,6 +114,7 @@ public class WikiOperations implements IWikiOperations {
 		}*/
 	}
 
+	
 	@Override
 	public boolean existsArticle(String name) {
 		// PELIGRO, PUEDE FALLAR
@@ -117,9 +122,9 @@ public class WikiOperations implements IWikiOperations {
 	}
 
 	@Override
-	public boolean existsRate(User user, Article art) {
+	public boolean existsRate(String user, String art) {
 		// PELIGRO, PUEDE FALLAR
-		return (rate_dao.select(user.getNick(), art.getTitle()) != null);
+		return (rate_dao.select(art, user) != null);
 	}
 
 	@Override
