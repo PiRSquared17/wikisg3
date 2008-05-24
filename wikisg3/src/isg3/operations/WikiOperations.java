@@ -201,7 +201,9 @@ public class WikiOperations implements IWikiOperations {
 		boolean b = false;
 		
 		User u = user_dao.select(nick);
-		b = (u.getPass().equals(pass));
+		if (u != null){
+			b = (u.getPass().equals(pass));
+		}
 		
 		return b;
 	}

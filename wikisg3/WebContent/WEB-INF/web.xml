@@ -56,6 +56,15 @@
 		<servlet-class>
 		AddRate</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		NewName</display-name>
+		<servlet-name>NewName</servlet-name>
+		<servlet-class>
+		NewName</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Prueba</servlet-name>
 		<url-pattern>/Prueba</url-pattern>
@@ -79,6 +88,10 @@
 	<servlet-mapping>
 		<servlet-name>AddRate</servlet-name>
 		<url-pattern>/AddRate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NewName</servlet-name>
+		<url-pattern>/NewName</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

@@ -11,7 +11,10 @@
 	<%
 	String id = (String)request.getParameter("id");
 	IWikiOperations op = new WikiOperations();
-	Article art = op.getArticle(id);
+	Article art = null;
+	if (id != null){
+		art = op.getArticle(id);
+	}
 	
 	%>
 	<div id="contenedor">

@@ -42,12 +42,14 @@ import java.util.Map;
 		resources.put("A4e", "editArticle.jsp");
 		resources.put("A5l", "rateArticle.jsp");
 		resources.put("A6l", "editRate.jsp");
+		resources.put("A7e","continueToEdit.jsp");
 		resources.put("C1", "printCategories.jsp");
 		resources.put("C2", "category.jsp");
 		resources.put("L1", "login.jsp");
 		resources.put("S1", "Login");
 		resources.put("S2", "EditArticle");
 		resources.put("S3", "AddRate");
+		resources.put("S4", "NewName");
 		
 		
 		/*resources.put("1", "article.jsp");
