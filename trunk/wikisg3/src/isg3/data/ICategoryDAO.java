@@ -9,6 +9,5 @@ public interface ICategoryDAO {
 	public Category selectByName(String name);
 	public Category selectByOID(String oid);
 	public Collection selectAll();
-	public Collection selectAllArticles(String catName);
 	
 }

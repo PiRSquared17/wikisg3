@@ -37,11 +37,12 @@
 							<select name="cat" id="cat">
 								<option value="-">-</option>
 								<option value="Deportes">Deportes</option>
-								<option value="Ciencias">Ciencias</option>
+								<option value="Ciencia">Ciencia</option>
 								<option value="Sociedad">Sociedad</option>
 								<option value="Historia">Historia</option>
-								<option value="Arte">Arte</option>
-								<option value="Tecnologias">Tecnologias</option>
+								<option value="Cine">Cine</option>
+								<option value="Tecnologia">Tecnologias</option>
+								<option value="Sucesos">Sucesos</option>
 							</select>
 							<input type="submit" value="Aceptar"/>
 							

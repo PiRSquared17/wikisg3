@@ -2,24 +2,51 @@ package isg3.operations;
 
 import isg3.article.*;
 import isg3.user.User;
+import isg3.data.*;
 
 import java.util.Collection;
 import java.util.Iterator;
 
 public class WikiOperations implements IWikiOperations {
 
+	private ICategoryDAO cat_dao;
+	
+	private IArticleDAO art_dao;
+	
+	private IUserDAO user_dao;
+	
+	private IRateDAO rate_dao;
+	
+	public WikiOperations(){
+		cat_dao = new JDBCCategoryDAO();
+		art_dao = new JDBCArticleDAO();
+		user_dao = new JDBCUserDAO();
+		rate_dao = new JDBCRateDAO();
+	}
+	
 	@Override
 	public void addArticle(User author, String title, String content,
 			Category cat) {
 		// TODO Auto-generated method stub
-
+		Article a = new Article(title,content,cat,author);
+		art_dao.insert(a);
+		
 	}
 
 	@Override
 	public void addRate(String user, String reason, int rate, String title) {
 		// TODO Auto-generated method stub
 
-		User u = getUser(user);
+		//HAY QUE COMPROBAR PRIMERO SI EL USUARIO YA HA
+		//VALORADO EL ARTICULO. ESTE METODO SOLO SE EJECUTA
+		//SI ES UNA VALORACION NUEVA
+		
+		User u = user_dao.select(user);
+		Article art = art_dao.select(title);
+		Rate r = new Rate(rate,reason,u);
+		rate_dao.insert(r, title);
+		
+		/*User u = getUser(user);
 		Article art = getArticle(title);
 		Rate r = new Rate(rate, reason, u);
 		
@@ -27,14 +54,16 @@ public class WikiOperations implements IWikiOperations {
 			art.getRates().editRate(r);
 		}else{
 			art.getRates().addNewRate(r);
-		}
+		}*/
 		
 
 	}
 
 	@Override
 	public User getUser(String user){
-		User ret = null;
+		
+		return user_dao.select(user);
+		/*User ret = null;
 		Wiki w = Wiki.getInstance();
 		Iterator it = w.getListUser().iterator();
 		while (it.hasNext()){
@@ -43,14 +72,23 @@ public class WikiOperations implements IWikiOperations {
 				ret = u;
 			}
 		}
-		return ret;
+		return ret;*/
 	}
 	
 	
 	@Override
 	public void editArticle(String content, String idArticle, String user, Category cat) {
 		// TODO Auto-generated method stub
-		Wiki w = Wiki.getInstance();
+		
+		//CUIDADO, ESTE MÉTODO PUEDE FALLAR (POR LA CATEGORIA)
+		
+		Article art = new Article();
+		art.setTitle(idArticle);
+		art.setContent(content);
+		art.setCat(cat);
+		art_dao.update(art, user);
+		
+		/*Wiki w = Wiki.getInstance();
 		Collection l = w.getListArt();
 		Iterator it = l.iterator();
 		boolean b = false;
@@ -69,36 +107,40 @@ public class WikiOperations implements IWikiOperations {
 				//Collection c = u.getProfile().getArticles();
 				Collection c2 = art.getUsersEditors();
 			}
-		}
+		}*/
 	}
 
 	@Override
 	public boolean existsArticle(String name) {
-		// TODO Auto-generated method stub
-		return false;
+		// PELIGRO, PUEDE FALLAR
+		return (art_dao.select(name) != null);
 	}
 
 	@Override
 	public boolean existsRate(User user, Article art) {
-		// TODO Auto-generated method stub
-		return false;
+		// PELIGRO, PUEDE FALLAR
+		return (rate_dao.select(user.getNick(), art.getTitle()) != null);
 	}
 
 	@Override
 	public Collection getArticles(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Category cat = cat_dao.selectByName(name);
+		return cat.getArticles();
 	}
 	
 	@Override
 	public Collection getMostRatedArticles(){
-		//Provisional, implementar luego.
-		return Wiki.getInstance().getListArt();
+		//PROVISIONAL
+		return art_dao.selectLastArticles(3);
+		//return Wiki.getInstance().getListArt();
 	}
 	
 	@Override
 	public Article getArticle(String id){
-		Collection arts = Wiki.getInstance().getListArt();
+		
+		return art_dao.select(id);
+		
+		/*Collection arts = Wiki.getInstance().getListArt();
 		Article art = null;
 		Iterator it = arts.iterator();
 		
@@ -109,21 +151,20 @@ public class WikiOperations implements IWikiOperations {
 			}
 		}
 		
-		return art;
+		return art;*/
 	}
 	
 	@Override
 	public Collection getAllCategories(){
-		Collection c;
-		
-		c = Wiki.getInstance().getListCat();
-		
-		return c;
+		return cat_dao.selectAll();
 	}
 	
 	@Override
 	public Category getCategory(String id){
-		Collection arts = Wiki.getInstance().getListCat();
+		
+		return cat_dao.selectByName(id);
+		
+		/*Collection arts = Wiki.getInstance().getListCat();
 		Category cat = null;
 		Iterator it = arts.iterator();
 		
@@ -134,12 +175,15 @@ public class WikiOperations implements IWikiOperations {
 			}
 		}
 		
-		return cat;
+		return cat;*/
 	}
 	
 	@Override
 	public Rate getRate(String title, String user){
-		Rate r = null;
+		
+		return rate_dao.select(title, user);
+		
+		/*Rate r = null;
 		
 		Article ar = this.getArticle(title);
 		Iterator it = ar.getRates().getRates().iterator();
@@ -150,7 +194,16 @@ public class WikiOperations implements IWikiOperations {
 			}
 		}
 		
-		return r;
+		return r;*/
+	}
+	
+	public boolean login(String nick, String pass){
+		boolean b = false;
+		
+		User u = user_dao.select(nick);
+		b = (u.getPass().equals(pass));
+		
+		return b;
 	}
 
 }

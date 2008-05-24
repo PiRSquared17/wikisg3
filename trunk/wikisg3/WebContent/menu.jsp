@@ -17,16 +17,18 @@
 					</div>
 					<div id="usuario">
 						<!-- Aquí irá el login y los datos del usuario -->
-						<form action="./Login" method="post">
-							<fieldset>
-								<legend>Login</legend>
-								<label class="inputBlock" for="usuario">Usuario: </label>
-								<input class="inputBlock" type="text"id="usuario" name="usuario" size="12">
-								<label class="inputBlock" for="pass">Contrase�a: </label>
-								<input class="inputBlock" id="pass" type="password" name="pass" size="12">
-								<input class="inputBlock" type="submit" value="login">
-							</fieldset>
-						</form>
+						<%
+						HttpSession s = request.getSession(false);
+						if (s == null){
+							out.print("<a href=\"./FrontController?res=L1\">Loguese</a>");
+						}
+						else{
+							out.print("<a href=\"./FrontController?res=L1\">Perfil</a>");
+						
+						}
+						%>
+						
+						
 					</div>
 					<div id="buscador">
 						<form action="por determinar">

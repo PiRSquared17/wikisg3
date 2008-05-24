@@ -1,5 +1,7 @@
 package isg3.pruebasDAO;
 
+import java.util.Collection;
+
 import isg3.data.*;
 import isg3.article.*;
 import isg3.user.*;
@@ -41,6 +43,13 @@ public class PruebasArticle {
 		System.out.println(a.getContent());
 	}
 	
+	public void selectLastArticles(){
+		IArticleDAO art_dao = new JDBCArticleDAO();
+		Collection c = art_dao.selectLastArticles(2);
+		
+		System.out.println(c.size());
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -49,7 +58,8 @@ public class PruebasArticle {
 		PruebasArticle pruebas = new PruebasArticle();
 		//pruebas.selectArticle();
 		//pruebas.insertArticle();
-		pruebas.updateArticle();
+		//pruebas.updateArticle();
+		pruebas.selectLastArticles();
 	}
 
 }
