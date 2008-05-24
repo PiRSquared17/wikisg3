@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import=isg3.operations.*,isg3.user.*" session="false"%>
+    pageEncoding="ISO-8859-1" import="isg3.operations.*,isg3.user.*" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% HttpSession session = request.getSession(false);
-	String u = (String)session.getAttribute("user");
+	<% 
+	HttpSession s = request.getSession(false);
+	String u = (String)s.getAttribute("user");
 	IWikiOperations op = new WikiOperations();
 	User user = op.getUser(u);
 	%>
