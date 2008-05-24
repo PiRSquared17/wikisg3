@@ -9,6 +9,6 @@ public interface IMessageDAO {
 	public Collection selectAllSent(String userOID);
 	public Collection selectAllReceived(String userOID);
 	public boolean insert(Message m);
-	public boolean delete();
+	public boolean delete(String idMessage);
 	
 }
