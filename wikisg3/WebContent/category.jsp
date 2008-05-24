@@ -29,6 +29,27 @@
 							<% out.print(cat.getDescription()); %>
 					</div>
 					
+					<table>
+				<%
+				
+				Iterator it = cat.getArticles().iterator();
+				
+				while (it.hasNext()){
+					Article ar = (Article)it.next();
+				//en un futuro, mostrar tambien las valoraciones, junto al enlace
+				%>
+				
+				
+					<tr>
+						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a><td>
+						
+					</tr>
+				
+				<%
+				}
+				%>
+				</table>
+					
 				</div>
 				
 			</div>
