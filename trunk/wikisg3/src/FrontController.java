@@ -36,6 +36,7 @@ import java.util.Map;
 		
 		resources = new TreeMap();
 		
+		resources.put("index", "index.jsp");
 		resources.put("A1", "printArticles.jsp");
 		resources.put("A2", "article.jsp");
 		resources.put("A3e","newArticleName.jsp" );
@@ -43,13 +44,15 @@ import java.util.Map;
 		resources.put("A5l", "rateArticle.jsp");
 		resources.put("A6l", "editRate.jsp");
 		resources.put("A7e","continueToEdit.jsp");
+		resources.put("A8l", "continueToRate.jsp");
 		resources.put("C1", "printCategories.jsp");
 		resources.put("C2", "category.jsp");
 		resources.put("L1", "login.jsp");
 		resources.put("S1", "Login");
-		resources.put("S2", "EditArticle");
-		resources.put("S3", "AddRate");
-		resources.put("S4", "NewName");
+		resources.put("S2l", "EditArticle");
+		resources.put("S3l", "AddRate");
+		resources.put("S4l", "NewName");
+		resources.put("S5l", "NewRate");
 		resources.put("P1l", "profile.jsp");
 		resources.put("P2l", "editProfile.jsp");
 		
