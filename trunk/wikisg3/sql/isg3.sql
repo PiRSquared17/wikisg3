@@ -94,6 +94,7 @@ DROP TABLE IF EXISTS isg3.Message;
 
 CREATE TABLE isg3.Message(
 oid VARCHAR(30) NOT NULL,
+idMessage VARCHAR(6) NOT NULL,
 senderUserOID VARCHAR(30) NOT NULL,
 receiverUserOID VARCHAR(30) NOT NULL,
 subject VARCHAR(50) NOT NULL,
@@ -101,5 +102,6 @@ content TEXT NOT NULL,
 dateSend DATE,
 PRIMARY KEY (oid),
 FOREIGN KEY(senderUserOID) REFERENCES isg3.User(oid),
-FOREIGN KEY(receiverUserOID) REFERENCES isg3.User(oid)
+FOREIGN KEY(receiverUserOID) REFERENCES isg3.User(oid),
+UNIQUE(idMessage)
 );

@@ -29,12 +29,12 @@ public class Message {
 		return isNew;
 	}
 	
-	public Message(String from, String to, String subject, String content){
+	public Message(String from, String to, String subject, String content, Date date){
 		this.from=from;
 		this.to=to;
 		this.subject=subject;
 		this.content=content;
-		date = new Date(System.currentTimeMillis());
+		this.date = date;
 	}
 	
 	
