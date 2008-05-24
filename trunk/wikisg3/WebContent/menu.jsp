@@ -23,7 +23,7 @@
 							out.print("<a href=\"./FrontController?res=L1\">Loguese</a>");
 						}
 						else{
-							out.print("<a href=\"./FrontController?res=L1\">Perfil</a>");
+							out.print("<a href=\"./FrontController?res=P1l\">Perfil</a>");
 						
 						}
 						%>

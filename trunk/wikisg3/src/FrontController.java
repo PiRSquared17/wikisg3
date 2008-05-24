@@ -50,6 +50,8 @@ import java.util.Map;
 		resources.put("S2", "EditArticle");
 		resources.put("S3", "AddRate");
 		resources.put("S4", "NewName");
+		resources.put("P1l", "profile.jsp");
+		resources.put("P2l", "editProfile.jsp");
 		
 		
 		/*resources.put("1", "article.jsp");
