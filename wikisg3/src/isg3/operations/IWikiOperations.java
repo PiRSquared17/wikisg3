@@ -30,4 +30,6 @@ public interface IWikiOperations {
 	
 	public Rate getRate(String title, String user);
 	
+	public boolean login(String nick, String pass);
+	
 }

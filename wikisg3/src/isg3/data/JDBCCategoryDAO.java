@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.LinkedList;
 
 public class JDBCCategoryDAO implements ICategoryDAO {
 
@@ -104,13 +105,27 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 	@Override
 	public Collection selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		Collection c = null;
+		
+		ResultSet result = null;
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM Category";
+		try {
+			stmt = this.conn.prepareStatement(query);
+			result = stmt.executeQuery();
+			c = new LinkedList();
+			while (result.next()){
+				Category cat = this.selectByOID(result.getString("oid"));
+				c.add(cat);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return c;
 	}
 
-	@Override
-	public Collection selectAllArticles(String catName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

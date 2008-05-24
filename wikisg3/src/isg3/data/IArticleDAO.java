@@ -13,6 +13,7 @@ public interface IArticleDAO {
 	public Article select(String title);
 	public boolean remove(String title);
 	public Collection selectAll();
-	public Collection selectMostRatedArticles();
+	public Collection selectMostRatedArticles(int n);
+	public Collection selectLastArticles(int n);
 	
 }

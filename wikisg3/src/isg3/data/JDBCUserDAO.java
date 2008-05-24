@@ -73,8 +73,10 @@ public class JDBCUserDAO implements IUserDAO {
 				u.setNick(nick);
 				u.setPass(res.getString("pass"));
 				up.setMail(res.getString("mail"));
+				java.sql.Date sDate = res.getDate("registeredDate");
+				up.setRegisteredDate(new java.util.Date(sDate.getTime()));
 				u.setProfile(up);
-				//FALTA LA FECHA
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -152,8 +154,9 @@ public class JDBCUserDAO implements IUserDAO {
 				u.setNick(res.getString("nick"));
 				u.setPass(res.getString("pass"));
 				up.setMail(res.getString("mail"));
+				java.sql.Date sDate = res.getDate("registeredDate");
+				up.setRegisteredDate(new java.util.Date(sDate.getTime()));
 				u.setProfile(up);
-				//FALTA LA FECHA
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

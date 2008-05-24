@@ -241,7 +241,8 @@ public class JDBCArticleDAO implements IArticleDAO {
 				art.setTitle(s1.getString("title"));
 				art.setContent(s1.getString("content"));
 				art.setVisits(s1.getInt("visits"));
-				art.setLastRevision(s1.getDate("lastRevision"));
+				java.sql.Date sDate = s1.getDate("lastRevision");
+				art.setLastRevision(new java.util.Date(sDate.getTime()));
 				
 				Category cat = this.cat_dao.selectByOID(cat_oid);
 				art.setCat(cat);
@@ -269,8 +270,10 @@ public class JDBCArticleDAO implements IArticleDAO {
 	}
 
 	@Override
-	public Collection selectMostRatedArticles() {
+	public Collection selectMostRatedArticles(int n) {
 		// TODO Auto-generated method stub
+		//POR AHORA ESTE MÉTODO NO PUEDE UTILIZARSE
+		//NO TENEMOS EN LA BD LA NOTA MEDIA
 		return null;
 	}
 
@@ -330,8 +333,54 @@ public class JDBCArticleDAO implements IArticleDAO {
 				art.setTitle(s1.getString("title"));
 				art.setContent(s1.getString("content"));
 				art.setVisits(s1.getInt("visits"));
-				art.setLastRevision(s1.getDate("lastRevision"));
+				java.sql.Date sDate = s1.getDate("lastRevision");
+				art.setLastRevision(new java.util.Date(sDate.getTime()));
 				
+				art.setCat(cat);
+				
+				Collection editors = this.user_dao.selectAllEditors(art_oid);
+				art.setUSersEditors(editors);
+				
+				Collection c1 = this.rate_dao.selectAllByOID(art_oid);
+				RatesCollection rates = new RatesCollection();
+				rates.setRates(c1);
+				art.setRatesCollection(rates);
+				
+				c.add(art);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return c;
+	}
+
+	@Override
+	public Collection selectLastArticles(int n) {
+		// TODO Auto-generated method stub
+		Collection c = null;
+		ResultSet s1 = null;
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM Article ORDER BY lastRevision DESC LIMIT ?";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setInt(1, n);
+			s1 = stmt.executeQuery();
+			c = new LinkedList();
+			while(s1.next()){
+				//creamos articulos
+				Article art = new Article();
+				String art_oid = s1.getString("oid");
+				String cat_oid = s1.getString("categoryOID");
+				art.setTitle(s1.getString("title"));
+				art.setContent(s1.getString("content"));
+				art.setVisits(s1.getInt("visits"));
+				java.sql.Date sDate = s1.getDate("lastRevision");
+				art.setLastRevision(new java.util.Date(sDate.getTime()));
+				
+				Category cat = this.cat_dao.selectByOID(cat_oid);
 				art.setCat(cat);
 				
 				Collection editors = this.user_dao.selectAllEditors(art_oid);

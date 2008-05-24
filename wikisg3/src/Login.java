@@ -1,5 +1,7 @@
 
 
+import isg3.operations.*;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -47,7 +49,9 @@ import javax.servlet.http.HttpSession;
 		String resource = req.getParameter("oldres");
 		String id = req.getParameter("id");
 		
-		if (user.equals(usuario) && pass.equals(password)){
+		IWikiOperations op = new WikiOperations();
+		
+		if (op.login(user, pass)){
 			HttpSession session = req.getSession(true);
 			session.setAttribute("user", user);
 			RequestDispatcher d;
