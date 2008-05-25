@@ -24,6 +24,10 @@ public class JDBCUserDAO implements IUserDAO {
 		//this.ms_dao = new JDBCMessageDAO();
 	}
 	
+	public void finalize(){
+		ConnectionManager.getInstance().checkIn(con);
+	}
+	
 	@Override
 	public boolean delete(String nick) {
 		// TODO Auto-generated method stub

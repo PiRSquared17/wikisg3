@@ -28,6 +28,10 @@ public class JDBCArticleDAO implements IArticleDAO {
 		this(true);
 	}
 	
+	public void finalize(){
+		ConnectionManager.getInstance().checkIn(con);
+	}
+	
 	/**
 	 * Constructor
 	 * @param b indica si vamos a constuir tambien el DAO
@@ -55,7 +59,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 		String art_oid = UIDGenerator.getInstance().getKey();
 		String user_art_oid = UIDGenerator.getInstance().getKey();
 		PreparedStatement stmt = null;
-		String query1 = "INSERT INTO Article(oid, title, content, lastRevision, visits, categoryOID) VALUES(?, ?, ?, NOW(), ?, ?)";
+		String query1 = "INSERT INTO Article(oid, title, content, lastRevision, visits, categoryOID, underDiscussion) VALUES(?, ?, ?, NOW(), ?, ?, false)";
 		String query2 = "INSERT INTO UserArticle(oid, userOID, articleOID) VALUES(?, ?, ?)";
 		try {
 			stmt = this.con.prepareStatement(query1);
@@ -241,6 +245,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 				art.setTitle(s1.getString("title"));
 				art.setContent(s1.getString("content"));
 				art.setVisits(s1.getInt("visits"));
+				art.setUnderDiscussion(s1.getBoolean("underDiscussion"));
 				java.sql.Date sDate = s1.getDate("lastRevision");
 				art.setLastRevision(new java.util.Date(sDate.getTime()));
 				
@@ -289,7 +294,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 		String art_oid = this.getOidOfArticle(a.getTitle());
 		PreparedStatement stmt = null;
 		String query1 = "UPDATE Article SET content = ?, " +
-				"lastRevision = NOW(), visits = ?, categoryOID = ? " +
+				"lastRevision = NOW(), visits = ?, categoryOID = ?, underDiscussion = ? " +
 				"WHERE (title = ?)";
 		String query2 = "INSERT INTO UserArticle(oid, userOID, articleOID) VALUES(?, ?, ?)";
 		try {
@@ -297,7 +302,8 @@ public class JDBCArticleDAO implements IArticleDAO {
 			stmt.setString(1, a.getContent());
 			stmt.setLong(2, a.getVisits());
 			stmt.setString(3, cat_oid);
-			stmt.setString(4, a.getTitle());
+			stmt.setBoolean(4, a.getUnderDiscussion());
+			stmt.setString(5, a.getTitle());
 			int aux1 = stmt.executeUpdate();
 			
 			stmt = this.con.prepareStatement(query2);
@@ -334,6 +340,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 				art.setContent(s1.getString("content"));
 				art.setVisits(s1.getInt("visits"));
 				java.sql.Date sDate = s1.getDate("lastRevision");
+				art.setUnderDiscussion(s1.getBoolean("underDiscussion"));
 				art.setLastRevision(new java.util.Date(sDate.getTime()));
 				
 				art.setCat(cat);
@@ -378,6 +385,7 @@ public class JDBCArticleDAO implements IArticleDAO {
 				art.setContent(s1.getString("content"));
 				art.setVisits(s1.getInt("visits"));
 				java.sql.Date sDate = s1.getDate("lastRevision");
+				art.setUnderDiscussion(s1.getBoolean("underDiscussion"));
 				art.setLastRevision(new java.util.Date(sDate.getTime()));
 				
 				Category cat = this.cat_dao.selectByOID(cat_oid);

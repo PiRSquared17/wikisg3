@@ -119,6 +119,15 @@
 		<servlet-class>
 		AddMessage</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AddArticleDiscussion</display-name>
+		<servlet-name>AddArticleDiscussion</servlet-name>
+		<servlet-class>
+		AddArticleDiscussion</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Prueba</servlet-name>
 		<url-pattern>/Prueba</url-pattern>
@@ -170,6 +179,10 @@
 	<servlet-mapping>
 		<servlet-name>AddMessage</servlet-name>
 		<url-pattern>/AddMessage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddArticleDiscussion</servlet-name>
+		<url-pattern>/AddArticleDiscussion</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
