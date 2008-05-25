@@ -2,6 +2,7 @@ package isg3.operations;
 
 import java.util.Collection;
 import isg3.article.*;
+import isg3.mailBox.Message;
 import isg3.user.User;
 
 public interface IWikiOperations {
@@ -35,5 +36,13 @@ public interface IWikiOperations {
 	public void editProfile(User user);
 	
 	public Collection searchArticle(String article);
+	
+	public Collection getAllMessages(String user);
+	
+	public Message getMessage(String idMessage);
+	
+	public boolean removeMessage(String idMessage);
+	
+	public boolean sendMessage(String userFrom, String userTo, String subject, String content);
 	
 }

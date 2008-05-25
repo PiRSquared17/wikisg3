@@ -1,10 +1,12 @@
 package isg3.operations;
 
 import isg3.article.*;
+import isg3.mailBox.Message;
 import isg3.user.User;
 import isg3.data.*;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 public class WikiOperations implements IWikiOperations {
@@ -17,11 +19,14 @@ public class WikiOperations implements IWikiOperations {
 	
 	private IRateDAO rate_dao;
 	
+	private IMessageDAO message_dao;
+	
 	public WikiOperations(){
 		cat_dao = new JDBCCategoryDAO();
 		art_dao = new JDBCArticleDAO();
 		user_dao = new JDBCUserDAO();
 		rate_dao = new JDBCRateDAO();
+		message_dao = new JDBCMessageDAO();
 	}
 	
 	@Override
@@ -220,5 +225,28 @@ public class WikiOperations implements IWikiOperations {
 	public Collection searchArticle(String article){
 		Collection c = art_dao.search(article);
 		return c;
+	}
+	
+	public Collection getAllMessages(String user){
+		Collection c;
+		c = message_dao.selectAllReceived(user);
+		return c;
+	}
+	
+	public Message getMessage(String idMessage){
+		Message m = message_dao.select(idMessage);
+		return m;
+		
+	}
+	
+	public boolean removeMessage(String idMessage){
+		boolean b = message_dao.delete(idMessage);
+		return b;
+	}
+	
+	public boolean sendMessage(String userFrom, String userTo, String subject, String content){
+		Message m = new Message(userFrom, userTo, subject, content, new Date());
+		boolean b = message_dao.insert(m);
+		return b;
 	}
 }

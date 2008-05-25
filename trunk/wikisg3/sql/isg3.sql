@@ -94,7 +94,7 @@ DROP TABLE IF EXISTS isg3.Message;
 
 CREATE TABLE isg3.Message(
 oid VARCHAR(30) NOT NULL,
-idMessage VARCHAR(6) NOT NULL,
+idMessage INT(11) NOT NULL,
 senderUserOID VARCHAR(30) NOT NULL,
 receiverUserOID VARCHAR(30) NOT NULL,
 subject VARCHAR(50) NOT NULL,

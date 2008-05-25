@@ -33,7 +33,7 @@ public class JDBCMessageDAO implements IMessageDAO {
 		boolean b = false;
 		
 		PreparedStatement stmt = null;
-		String query = "DELETE FROM Message WHERE (idMessage = ?)";
+		String query = "DELETE FROM Message WHERE (oid = ?)";
 		try {
 			stmt = this.conn.prepareStatement(query);
 			stmt.setString(1, idMessage);
@@ -65,7 +65,7 @@ public class JDBCMessageDAO implements IMessageDAO {
 		String receiver_oid = this.getOidOfUser(m.getTo());
 		
 		PreparedStatement stmt = null;
-		String query = "INSERT INTO Message(oid, senderUserOID, receiverUserOID, subject, content, dataSend) VALUES(?, ?, ?, ?, ?, NOW())";
+		String query = "INSERT INTO Message(oid, senderUserOID, receiverUserOID, subject, content, dateSend) VALUES(?, ?, ?, ?, ?, NOW())";
 		try{
 			stmt = this.conn.prepareStatement(query);
 			stmt.setString(1, mes_oid);
@@ -73,6 +73,8 @@ public class JDBCMessageDAO implements IMessageDAO {
 			stmt.setString(3, receiver_oid);
 			stmt.setString(4, m.getSubject());
 			stmt.setString(5, m.getContent());
+			int aux = stmt.executeUpdate();
+			b = (aux == 1);
 			//stmt.setString(6, "NOW()");
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -114,11 +116,12 @@ public class JDBCMessageDAO implements IMessageDAO {
 	}
 
 	@Override
-	public Collection selectAllReceived(String userOID) {
+	public Collection selectAllReceived(String nick) {
 		// TODO Auto-generated method stub
 		Collection c = null;
 		ResultSet s1 = null;
 		PreparedStatement stmt = null;
+		String userOID = this.getOidOfUser(nick);
 		String query = "SELECT * FROM Message WHERE (receiverUserOID = ?)";
 		try {
 			stmt = this.conn.prepareStatement(query);
@@ -131,9 +134,11 @@ public class JDBCMessageDAO implements IMessageDAO {
 				String to = s1.getString("receiverUserOID");
 				String subject = s1.getString("subject");
 				String content = s1.getString("content");
-				java.sql.Date d = s1.getDate("date");
+				java.sql.Date d = s1.getDate("dateSend");
 				Date date = new Date(d.getTime());
 				Message m = new Message(from,to,subject,content,date);
+				String id = s1.getString("oid");
+				m.setIdMessage(id);
 				c.add(m);
 			}
 		} catch (SQLException e) {
@@ -144,35 +149,30 @@ public class JDBCMessageDAO implements IMessageDAO {
 		return c;
 	}
 
-	@Override
-	public Collection selectAllSent(String userOID) {
-		// TODO Auto-generated method stub
-		Collection c = null;
+	public Message select(String idMessage){
 		ResultSet s1 = null;
 		PreparedStatement stmt = null;
-		String query = "SELECT * FROM Message WHERE (senderUserOID = ?)";
-		try {
+		String query = "SELECT * FROM Message WHERE (oid = ?)";
+		Message m = null;
+		try{
 			stmt = this.conn.prepareStatement(query);
-			stmt.setString(1, userOID);
+			stmt.setString(1, idMessage);
 			s1 = stmt.executeQuery();
-			c = new LinkedList();
-			while(s1.next()){
-				//creamos mensajes
+			if (s1.next()){
 				String from = s1.getString("senderUserOID");
 				String to = s1.getString("receiverUserOID");
 				String subject = s1.getString("subject");
 				String content = s1.getString("content");
-				java.sql.Date d = s1.getDate("date");
+				java.sql.Date d = s1.getDate("dateSend");
 				Date date = new Date(d.getTime());
-				Message m = new Message(from,to,subject,content,date);
-				c.add(m);
+				m = new Message(from,to,subject,content,date);
+				m.setIdMessage(idMessage);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch (Exception e){
 			e.printStackTrace();
 		}
 		
-		return c;
+		return m;
 	}
 
 }
