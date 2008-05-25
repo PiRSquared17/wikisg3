@@ -28,10 +28,6 @@ public class JDBCArticleDAO implements IArticleDAO {
 		this(true);
 	}
 	
-	public void finalize(){
-		ConnectionManager.getInstance().checkIn(con);
-	}
-	
 	/**
 	 * Constructor
 	 * @param b indica si vamos a constuir tambien el DAO
@@ -47,6 +43,10 @@ public class JDBCArticleDAO implements IArticleDAO {
 			this.cat_dao = new JDBCCategoryDAO();
 		}
 		
+	}
+
+	public void finalize(){
+		ConnectionManager.getInstance().checkIn(con);
 	}
 	
 	@Override

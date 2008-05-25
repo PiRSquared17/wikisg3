@@ -21,18 +21,19 @@ public class WikiOperations implements IWikiOperations {
 	
 	private IMessageDAO message_dao;
 	
-	public WikiOperations(){
+	/*public WikiOperations(){
 		cat_dao = new JDBCCategoryDAO();
 		art_dao = new JDBCArticleDAO();
 		user_dao = new JDBCUserDAO();
 		rate_dao = new JDBCRateDAO();
 		message_dao = new JDBCMessageDAO();
-	}
+	}*/
 	
 	@Override
 	public void addArticle(User author, String title, String content,
 			Category cat) {
 		// TODO Auto-generated method stub
+		art_dao = new JDBCArticleDAO();
 		Article a = new Article(title,content,cat,author);
 		art_dao.insert(a);
 		
@@ -41,6 +42,10 @@ public class WikiOperations implements IWikiOperations {
 	@Override
 	public void addRate(String user, String reason, int rate, String title) {
 		// TODO Auto-generated method stub
+		art_dao = new JDBCArticleDAO();
+		user_dao = new JDBCUserDAO();
+		rate_dao = new JDBCRateDAO();
+		
 		User u = user_dao.select(user);
 		Article art = art_dao.select(title);
 		Rate r = new Rate(rate,reason,u);
@@ -53,35 +58,13 @@ public class WikiOperations implements IWikiOperations {
 			rate_dao.insert(r, title);
 		}
 		
-		
-		
-		/*User u = getUser(user);
-		Article art = getArticle(title);
-		Rate r = new Rate(rate, reason, u);
-		
-		if (art.getRates().getRates().contains(r)){
-			art.getRates().editRate(r);
-		}else{
-			art.getRates().addNewRate(r);
-		}*/
-		
-
 	}
 
 	@Override
 	public User getUser(String user){
-		
+		user_dao = new JDBCUserDAO();
 		return user_dao.select(user);
-		/*User ret = null;
-		Wiki w = Wiki.getInstance();
-		Iterator it = w.getListUser().iterator();
-		while (it.hasNext()){
-			User u = (User)it.next();
-			if (u.getNick().equals(user)){
-				ret = u;
-			}
-		}
-		return ret;*/
+
 	}
 	
 	
@@ -90,6 +73,7 @@ public class WikiOperations implements IWikiOperations {
 		// TODO Auto-generated method stub
 		
 		//CUIDADO, ESTE MÉTODO PUEDE FALLAR (POR LA CATEGORIA)
+		art_dao = new JDBCArticleDAO();
 		
 		Article art = new Article();
 		art.setTitle(idArticle);
@@ -97,43 +81,26 @@ public class WikiOperations implements IWikiOperations {
 		art.setCat(cat);
 		art_dao.update(art, user);
 		
-		/*Wiki w = Wiki.getInstance();
-		Collection l = w.getListArt();
-		Iterator it = l.iterator();
-		boolean b = false;
-		while (it.hasNext() && !b){
-			Article art = (Article)it.next();
-			if (art.getTitle().equals(idArticle)){
-				b = true;
-				art.setContent(content);
-				User u = getUser(user);
-				//añadimos al articulo el usuario que 
-				//lo ha editado
-				art.getUsersEditors().add(u);
-				//guardamos en el perfil del usuario el articulo 
-				//que ha editado
-				//u.getProfile().getArticles().add(art);
-				//Collection c = u.getProfile().getArticles();
-				Collection c2 = art.getUsersEditors();
-			}
-		}*/
 	}
 
 	
 	@Override
 	public boolean existsArticle(String name) {
 		// PELIGRO, PUEDE FALLAR
+		art_dao = new JDBCArticleDAO();
 		return (art_dao.select(name) != null);
 	}
 
 	@Override
 	public boolean existsRate(String user, String art) {
 		// PELIGRO, PUEDE FALLAR
+		rate_dao = new JDBCRateDAO();
 		return (rate_dao.select(art, user) != null);
 	}
 
 	@Override
 	public Collection getArticles(String name) {
+		cat_dao = new JDBCCategoryDAO();
 		Category cat = cat_dao.selectByName(name);
 		return cat.getArticles();
 	}
@@ -141,75 +108,40 @@ public class WikiOperations implements IWikiOperations {
 	@Override
 	public Collection getMostRatedArticles(){
 		//PROVISIONAL
+		art_dao = new JDBCArticleDAO();
 		return art_dao.selectLastArticles(5);
-		//return Wiki.getInstance().getListArt();
 	}
 	
 	@Override
 	public Article getArticle(String id){
-		
+		art_dao = new JDBCArticleDAO();
 		return art_dao.select(id);
 		
-		/*Collection arts = Wiki.getInstance().getListArt();
-		Article art = null;
-		Iterator it = arts.iterator();
-		
-		while(it.hasNext()){
-			Article aux = (Article)it.next();
-			if (aux.getTitle().equals(id)){
-				art = aux;;
-			}
-		}
-		
-		return art;*/
 	}
 	
 	@Override
 	public Collection getAllCategories(){
+		cat_dao = new JDBCCategoryDAO();
 		return cat_dao.selectAll();
 	}
 	
 	@Override
 	public Category getCategory(String id){
-		
+		cat_dao = new JDBCCategoryDAO();
 		return cat_dao.selectByName(id);
-		
-		/*Collection arts = Wiki.getInstance().getListCat();
-		Category cat = null;
-		Iterator it = arts.iterator();
-		
-		while(it.hasNext()){
-			Category aux = (Category)it.next();
-			if (aux.getName().equals(id)){
-				cat = aux;
-			}
-		}
-		
-		return cat;*/
+
 	}
 	
 	@Override
 	public Rate getRate(String title, String user){
-		
+		rate_dao = new JDBCRateDAO();
 		return rate_dao.select(title, user);
-		
-		/*Rate r = null;
-		
-		Article ar = this.getArticle(title);
-		Iterator it = ar.getRates().getRates().iterator();
-		while (it.hasNext() && (r == null)){
-			Rate rate = (Rate)it.next();
-			if (rate.getUser().getNick().equals(user)){
-				r = rate;
-			}
-		}
-		
-		return r;*/
+
 	}
 	
 	public boolean login(String nick, String pass){
 		boolean b = false;
-		
+		user_dao = new JDBCUserDAO();
 		User u = user_dao.select(nick);
 		if (u != null){
 			b = (u.getPass().equals(pass));
@@ -219,32 +151,38 @@ public class WikiOperations implements IWikiOperations {
 	}
 	
 	public void editProfile(User user){
+		user_dao = new JDBCUserDAO();
 		user_dao.update(user);
 	}
 	
 	public Collection searchArticle(String article){
+		art_dao = new JDBCArticleDAO();
 		Collection c = art_dao.search(article);
 		return c;
 	}
 	
 	public Collection getAllMessages(String user){
+		message_dao = new JDBCMessageDAO();
 		Collection c;
 		c = message_dao.selectAllReceived(user);
 		return c;
 	}
 	
 	public Message getMessage(String idMessage){
+		message_dao = new JDBCMessageDAO();
 		Message m = message_dao.select(idMessage);
 		return m;
 		
 	}
 	
 	public boolean removeMessage(String idMessage){
+		message_dao = new JDBCMessageDAO();
 		boolean b = message_dao.delete(idMessage);
 		return b;
 	}
 	
 	public boolean sendMessage(String userFrom, String userTo, String subject, String content){
+		message_dao = new JDBCMessageDAO();
 		Message m = new Message(userFrom, userTo, subject, content, new Date());
 		boolean b = message_dao.insert(m);
 		return b;
@@ -253,6 +191,7 @@ public class WikiOperations implements IWikiOperations {
 	@Override
 	public void setUnderDiscussion(String title, String user) {
 		// TODO Auto-generated method stub
+		art_dao = new JDBCArticleDAO();
 		Article art = this.art_dao.select(title);
 		art.setUnderDiscussion(true);
 		this.art_dao.update(art, user);

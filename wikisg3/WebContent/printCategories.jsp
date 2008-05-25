@@ -17,9 +17,10 @@
 				<h1>Categor&iacute;as </h1>
 				<table>
 				<% 
-				IWikiOperations op = new WikiOperations();
-				Collection cat = op.getAllCategories();
-				Iterator it = cat.iterator();
+				//IWikiOperations op = new WikiOperations();
+				//Collection cat = op.getAllCategories();
+				//Iterator it = cat.iterator();
+				Iterator it = new WikiOperations().getAllCategories().iterator();
 				
 				while (it.hasNext()){
 					Category c = (Category)it.next();
