@@ -5,6 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" href="./estilo.css" rel="stylesheet"></link>
+<script type="text/javascript" src="./javascript/validaciones.js" ></script>
+<script type="text/javascript">
+	
+function mensajeValido(){
+	var b = true;
+	if(!valida(1,"to")){
+		b = false;
+		alert("Por favor, escriba el nick de un destinatario");
+	}
+	return b;
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -24,7 +37,7 @@
 			}
 			%>
 			
-			<form action="./FrontController?res=S10l" method="post">
+			<form action="./FrontController?res=S10l" method="post" onsubmit="return mensajeValido();">
 				<table>
 					
 					<tr>

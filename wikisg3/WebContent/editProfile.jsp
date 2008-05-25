@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" href="./estilo.css" rel="stylesheet"></link>
+<script type="text/javascript" src="./javaScript/comunes.js" ></script>
 <title>Editar Perfil</title>
 </head>
 <body>
