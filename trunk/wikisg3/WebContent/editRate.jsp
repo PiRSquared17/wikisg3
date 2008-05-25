@@ -5,6 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" href="./estilo.css" rel="stylesheet"></link>
+<script type="text/javascript" src="./javascript/validaciones.js" ></script>
+<script type="text/javascript">
+	
+function valoracionValida(){
+	var b = true;
+	if(!valida(3,"rate")){
+		b = false;
+		alert("Por favor, elija una nota");
+	}
+	return b;
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -26,7 +39,7 @@
 						<% out.print(title); %>
 				</div>
 				<div id="rating">
-					<form action="./FrontController?res=S3l" method="post">
+					<form action="./FrontController?res=S3l" method="post" onsubmit="return valoracionValida();">
 						<textarea name="reason" id="reason" rows="20" cols="50">
 							<%
 							if (rate != null){

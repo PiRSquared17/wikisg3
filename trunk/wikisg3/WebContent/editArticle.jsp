@@ -5,6 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" href="./estilo.css" rel="stylesheet"></link>
+<script type="text/javascript" src="./javascript/validaciones.js" ></script>
+<script type="text/javascript">
+	
+function articuloValido(){
+	var b = true;
+	if(!valida(3,"cat")){
+		b = false;
+		alert("Por favor, elija una categoria");
+	}
+	return b;
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -29,7 +42,7 @@
 						<% out.print(id); %>
 					</div>
 					<div id="cuerpoArt">
-						<form action="./FrontController?res=S2l&id=<%out.print(id); %>" method="post">
+						<form action="./FrontController?res=S2l&id=<%out.print(id); %>" method="post" onsubmit="return articuloValido();">
 							<textarea name="content" id="content" rows="20" cols="50">
 								<%
 								if (art != null){
