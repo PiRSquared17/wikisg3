@@ -24,6 +24,11 @@ public class JDBCUserDAO implements IUserDAO {
 		//this.ms_dao = new JDBCMessageDAO();
 	}
 	
+	public JDBCUserDAO(Connection c){
+		con = c;
+	}
+	
+	
 	public void finalize(){
 		ConnectionManager.getInstance().checkIn(con);
 	}

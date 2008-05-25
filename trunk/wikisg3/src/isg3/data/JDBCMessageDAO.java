@@ -28,6 +28,10 @@ public class JDBCMessageDAO implements IMessageDAO {
 		conn = ConnectionManager.getInstance().checkOut();
 	}
 	
+	public JDBCMessageDAO(Connection c){
+		conn = c;
+	}
+	
 	public void finalize(){
 		ConnectionManager.getInstance().checkIn(conn);
 	}

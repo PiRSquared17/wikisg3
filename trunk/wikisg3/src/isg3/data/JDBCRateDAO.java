@@ -21,8 +21,12 @@ public class JDBCRateDAO implements IRateDAO {
 	
 	public JDBCRateDAO(){
 		con = ConnectionManager.getInstance().checkOut();
-		//this.art_dao = new JDBCArticleDAO();
-		this.user_dao = new JDBCUserDAO();
+		this.user_dao = new JDBCUserDAO(con);
+	}
+	
+	public JDBCRateDAO(Connection c){
+		con = c;
+		this.user_dao = new JDBCUserDAO(con);
 	}
 	
 	public void finalize(){
