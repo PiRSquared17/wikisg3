@@ -54,8 +54,10 @@ import java.util.Map;
 		resources.put("S4l", "NewName");
 		resources.put("S5l", "NewRate");
 		resources.put("S6l", "EditProfile");
+		resources.put("S7l", "Logout");
 		resources.put("P1l", "profile.jsp");
 		resources.put("P2l", "editProfile.jsp");
+		
 		
 		
 		/*resources.put("1", "article.jsp");
@@ -186,7 +188,7 @@ import java.util.Map;
 
 		HttpSession session = request.getSession(false);
 		
-		if (session != null){
+		if (session != null && session.getAttribute("user")!=null){
 			logado=true;
 		}
 		

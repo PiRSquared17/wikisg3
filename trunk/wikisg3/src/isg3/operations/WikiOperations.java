@@ -212,5 +212,8 @@ public class WikiOperations implements IWikiOperations {
 		
 		return b;
 	}
-
+	
+	public void editProfile(User user){
+		user_dao.update(user);
+	}
 }
