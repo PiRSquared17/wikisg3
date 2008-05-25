@@ -23,7 +23,7 @@
 			<div id="principal">
 			<%
 			String b = request.getParameter("b");
-			if (b != null){
+			if (b!=null && b.equals("false")){
 				out.print("Datos Incorrectos");
 			}
 			%>

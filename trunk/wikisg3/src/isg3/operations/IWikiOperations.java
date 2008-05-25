@@ -34,4 +34,6 @@ public interface IWikiOperations {
 	
 	public void editProfile(User user);
 	
+	public Collection searchArticle(String article);
+	
 }

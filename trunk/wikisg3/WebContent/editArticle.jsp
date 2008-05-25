@@ -15,6 +15,7 @@
 	if (id != null){
 		art = op.getArticle(id);
 	}
+	Category c = null;
 	
 	%>
 	<div id="contenedor">
@@ -32,20 +33,21 @@
 							<textarea name="content" id="content" rows="20" cols="50">
 								<%
 								if (art != null){
-									out.print(art.getContent());	
+									out.print(art.getContent());
+									c = art.getCat();
 								}
 								
 								%>
 							</textarea>
 							<select name="cat" id="cat">
-								<option value="-">-</option>
-								<option value="Deportes">Deportes</option>
-								<option value="Ciencia">Ciencia</option>
-								<option value="Sociedad">Sociedad</option>
-								<option value="Historia">Historia</option>
-								<option value="Cine">Cine</option>
-								<option value="Tecnologia">Tecnologias</option>
-								<option value="Sucesos">Sucesos</option>
+								<option <%if (c==null){out.print("selected");} %> value="-">-</option>
+								<option <%if (c!=null && c.getName().equals("Deportes")){out.print("selected");} %> value="Deportes">Deportes</option>
+								<option <%if (c!=null && c.getName().equals("Ciencia")){out.print("selected");} %> value="Ciencia">Ciencia</option>
+								<option <%if (c!=null && c.getName().equals("Sociedad")){out.print("selected");} %> value="Sociedad">Sociedad</option>
+								<option <%if (c!=null && c.getName().equals("Historia")){out.print("selected");} %> value="Historia">Historia</option>
+								<option <%if (c!=null && c.getName().equals("Cine")){out.print("selected");} %> value="Cine">Cine</option>
+								<option <%if (c!=null && c.getName().equals("Tecnologias")){out.print("selected");} %> value="Tecnologia">Tecnologias</option>
+								<option <%if (c!=null && c.getName().equals("Sucesos")){out.print("selected");} %> value="Sucesos">Sucesos</option>
 							</select>
 							<input type="submit" value="Aceptar"/>
 							

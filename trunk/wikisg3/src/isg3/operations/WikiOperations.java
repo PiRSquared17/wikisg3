@@ -216,4 +216,9 @@ public class WikiOperations implements IWikiOperations {
 	public void editProfile(User user){
 		user_dao.update(user);
 	}
+	
+	public Collection searchArticle(String article){
+		Collection c = art_dao.search(article);
+		return c;
+	}
 }
