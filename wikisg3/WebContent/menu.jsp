@@ -19,11 +19,12 @@
 						<!-- Aquí irá el login y los datos del usuario -->
 						<%
 						HttpSession s = request.getSession(false);
-						if (s == null){
+						if (s == null || s.getAttribute("user") == null){
 							out.print("<a href=\"./FrontController?res=L1\">Loguese</a>");
 						}
 						else{
 							out.print("<a href=\"./FrontController?res=P1l\">Perfil</a>");
+							out.print("<a href=\"./FrontController?res=S7l\">Logout</a>");
 						
 						}
 						%>

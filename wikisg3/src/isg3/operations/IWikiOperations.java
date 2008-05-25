@@ -32,4 +32,6 @@ public interface IWikiOperations {
 	
 	public boolean login(String nick, String pass);
 	
+	public void editProfile(User user);
+	
 }
