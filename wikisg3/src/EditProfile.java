@@ -58,20 +58,20 @@ import javax.servlet.http.HttpSession;
 					if (newPass.equals(passConfirm)){
 						User newU = new User(user, newPass, new UserProfile("",eMail));
 						op.editProfile(newU);
-						RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P1l");
+						RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P1l&b=true");
 						req.forward(request, response);
 					}else{
-						RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P2l&b=true");
+						RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P2l&b=false");
 						req.forward(request, response);
 					}
 				}else{
 					User newU = new User(user, pass, new UserProfile("",eMail));
 					op.editProfile(newU);
-					RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P1l");
+					RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P1l&b=true");
 					req.forward(request, response);
 				}
 			}else{
-				RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P2l&b=true");
+				RequestDispatcher req = request.getRequestDispatcher("./FrontController?res=P2l&b=false");
 				req.forward(request, response);
 		}
 		

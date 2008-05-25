@@ -20,6 +20,12 @@
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
+			<%
+			String b = request.getParameter("b");
+			if (b!=null && b.equals("true")){
+				out.print("Cambios guardados");
+			}
+			%>
 				<h1>Perfil de Usuario</h1>
 				<div id="nick">
 					<h2>Nick: </h2><%out.print(user.getNick()); %>

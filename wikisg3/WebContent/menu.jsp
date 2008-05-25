@@ -23,7 +23,7 @@
 							out.print("<a href=\"./FrontController?res=L1\">Loguese</a>");
 						}
 						else{
-							out.print("<a href=\"./FrontController?res=P1l\">Perfil</a>");
+							out.print("<a href=\"./FrontController?res=P1l\">Perfil</a><br>");
 							out.print("<a href=\"./FrontController?res=S7l\">Logout</a>");
 						
 						}
@@ -32,7 +32,7 @@
 						
 					</div>
 					<div id="buscador">
-						<form action="por determinar">
+						<form action="./FrontController?res=B1s" method="post">
 							<fieldset>
 								<legend>
 									Buscar 

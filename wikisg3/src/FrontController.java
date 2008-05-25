@@ -57,6 +57,7 @@ import java.util.Map;
 		resources.put("S7l", "Logout");
 		resources.put("P1l", "profile.jsp");
 		resources.put("P2l", "editProfile.jsp");
+		resources.put("B1s", "search.jsp");
 		
 		
 		
@@ -128,7 +129,7 @@ import java.util.Map;
 						//No ha realizado ninguna busqueda
 						lastEdit = new Long(System.currentTimeMillis());
 						RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
-						s.setAttribute("session.lastSearch", lastEdit);
+						s.setAttribute("session.lastEdit", lastEdit);
 						if(d!=null){
 							d.forward(request,response);
 						}
@@ -136,10 +137,10 @@ import java.util.Map;
 					}else{
 						//Ya ha realizado alguna busqueda
 						Long currentEdit = System.currentTimeMillis();
-						if ((currentEdit - lastEdit) > 300000){
+						if ((currentEdit - lastEdit) > 30000){
 							//Han pasado mas de 5 minutos (300 segundos)
 							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
-							s.setAttribute("session.lastSearch", currentEdit);
+							s.setAttribute("session.lastEdit", currentEdit);
 							if(d!=null){
 								d.forward(request,response);
 							}

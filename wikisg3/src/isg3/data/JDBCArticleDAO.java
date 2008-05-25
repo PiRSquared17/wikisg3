@@ -402,6 +402,25 @@ public class JDBCArticleDAO implements IArticleDAO {
 		return c;
 	}
 	
-	
+	public Collection search(String article){
+		Collection c = new LinkedList();
+		ResultSet rs;
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM Article WHERE title LIKE ?";
+		try {
+			stmt = this.con.prepareStatement(query);
+			stmt.setString(1, "%"+article+"%");
+			rs = stmt.executeQuery();
+			while (rs.next()){
+				String title = rs.getString("title");
+				Article a = this.select(title);
+				c.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
+	}
 
 }

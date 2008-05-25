@@ -15,5 +15,5 @@ public interface IArticleDAO {
 	public Collection selectAll();
 	public Collection selectMostRatedArticles(int n);
 	public Collection selectLastArticles(int n);
-	
+	public Collection search(String article);
 }

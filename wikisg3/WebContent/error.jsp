@@ -8,40 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-IWikiOperations op = new WikiOperations();
-String article = (String)request.getParameter("busca");
-Collection c = op.searchArticle(article);
-%>
-
 	<div id="contenedor">
 		<jsp:include  page="head.jsp"/>
 		
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
-			<h1>Se han producido <%out.print(c.size()); %> resultados:</h1>  
-			<table>
-				<%
+			<%
+			String type = request.getParameter("type");
+			String t;
+			if (type.equals("search")){
+				t= "búsquedas";
+			}else{
+				t="ediciones";
+			}
+			%>
+			<h1>Tiempo mínimo entre <%out.print(t); %> no transcurrido</h1>
 			
-				Iterator it = c.iterator();
-				
-				while (it.hasNext()){
-					Article ar = (Article)it.next();
-				
-				%>
-				
-				
-					<tr>
-						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a><td>
-						
-					</tr>
-				
-				
-				<%
-				}
-				%>
-			</table>
 			</div>
 		</div>
 	</div>
