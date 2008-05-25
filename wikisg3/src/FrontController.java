@@ -53,6 +53,7 @@ import java.util.Map;
 		resources.put("S3l", "AddRate");
 		resources.put("S4l", "NewName");
 		resources.put("S5l", "NewRate");
+		resources.put("S6l", "EditProfile");
 		resources.put("P1l", "profile.jsp");
 		resources.put("P2l", "editProfile.jsp");
 		

@@ -20,15 +20,15 @@
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
-				<h2>Perfil de Usuario</h2>
+				<h1>Perfil de Usuario</h1>
 				<div id="nick">
-					<h1>Nick: </h1><%out.print(user.getNick()); %>
+					<h2>Nick: </h2><%out.print(user.getNick()); %>
 				</div>
 				<div id="mail">
-					<h1>eMail: </h1><%out.print(user.getProfile().getMail()); %>
+					<h2>eMail: </h2><%out.print(user.getProfile().getMail()); %>
 				</div>
 				<div id="registeredDate">
-					<h1>Fecha de Registro: </h1><%out.print(user.getProfile().getRegisteredDate()); %>
+					<h2>Fecha de Registro: </h2><%out.print(user.getProfile().getRegisteredDate()); %>
 				</div>
 				<div id=editar>
 					<a href="./FrontController?res=P2l&id=<%out.print(u); %>">Editar Perfil</a>

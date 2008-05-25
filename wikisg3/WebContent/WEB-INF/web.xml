@@ -74,6 +74,15 @@
 		<servlet-class>
 		NewRate</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		EditProfile</display-name>
+		<servlet-name>EditProfile</servlet-name>
+		<servlet-class>
+		EditProfile</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Prueba</servlet-name>
 		<url-pattern>/Prueba</url-pattern>
@@ -105,6 +114,10 @@
 	<servlet-mapping>
 		<servlet-name>NewRate</servlet-name>
 		<url-pattern>/NewRate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditProfile</servlet-name>
+		<url-pattern>/EditProfile</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
