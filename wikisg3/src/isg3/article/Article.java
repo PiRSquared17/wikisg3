@@ -15,6 +15,8 @@ public class Article {
 	
 	private long visits;
 	
+	private boolean underDiscussion;
+	
 	private Category cat;
 	
 	Collection usersEditor;
@@ -110,6 +112,14 @@ public class Article {
 		}
 		
 		return b;
+	}
+
+	public void setUnderDiscussion(boolean underDiscussion) {
+		this.underDiscussion = underDiscussion;
+	}
+
+	public boolean getUnderDiscussion() {
+		return underDiscussion;
 	}
 	
 	

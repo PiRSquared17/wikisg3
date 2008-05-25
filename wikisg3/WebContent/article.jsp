@@ -30,8 +30,12 @@
 						<a href="./FrontController?res=A4e&id=<%out.print(id); %>">Edite</a> o <a href="./FrontController?res=S5l&id=<%out.print(id); %>">valore</a> este art&iacute;culo
 					</div>
 					<div id="tituloArt">
-						<% out.print(art.getTitle()); %>
-						<% out.print("  -  Categoría:   "+art.getCat().getName()); %>
+						<% out.print(art.getTitle()); 
+						 out.print("  -  Categoría:   "+art.getCat().getName()); 
+						 if (art.getUnderDiscussion()){
+							 out.print("<br>(Atención, artículo bajo discusión)");
+						 }
+						 %>
 					</div>
 					<div id="cuerpoArt">
 							<% out.print(art.getContent()); %>

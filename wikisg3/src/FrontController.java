@@ -45,6 +45,8 @@ import java.util.Map;
 		resources.put("A6l", "editRate.jsp");
 		resources.put("A7e","continueToEdit.jsp");
 		resources.put("A8l", "continueToRate.jsp");
+		resources.put("A9l","continueToDiscussion.jsp");
+		resources.put("A10l","newArticleDiscussion.jsp");
 		resources.put("C1", "printCategories.jsp");
 		resources.put("C2", "category.jsp");
 		resources.put("L1", "login.jsp");
@@ -58,6 +60,7 @@ import java.util.Map;
 		resources.put("S8l", "DeleteMessage");
 		resources.put("S9l", "SendMessage");
 		resources.put("S10l", "AddMessage");
+		resources.put("S11l","AddArticleDiscussion");
 		resources.put("P1l", "profile.jsp");
 		resources.put("P2l", "editProfile.jsp");
 		resources.put("B1s", "search.jsp");
@@ -143,8 +146,8 @@ import java.util.Map;
 					}else{
 						//Ya ha realizado alguna busqueda
 						Long currentEdit = System.currentTimeMillis();
-						if ((currentEdit - lastEdit) > 30000){
-							//Han pasado mas de 5 minutos (300 segundos)
+						if ((currentEdit - lastEdit) > 3000){
+							//Han pasado mas de(3 segundos)
 							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
 							s.setAttribute("session.lastEdit", currentEdit);
 							if(d!=null){

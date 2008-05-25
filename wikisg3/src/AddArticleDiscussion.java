@@ -1,10 +1,6 @@
 
 
-import isg3.article.Article;
-import isg3.article.Rate;
-import isg3.operations.IWikiOperations;
-import isg3.operations.WikiOperations;
-import isg3.user.User;
+import isg3.operations.*;
 
 import java.io.IOException;
 
@@ -14,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class for Servlet: AddRate
+ * Servlet implementation class for Servlet: AddArticleDiscussion
  *
  */
- public class AddRate extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
+ public class AddArticleDiscussion extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
    static final long serialVersionUID = 1L;
    
     /* (non-Java-doc)
 	 * @see javax.servlet.http.HttpServlet#HttpServlet()
 	 */
-	public AddRate() {
+	public AddArticleDiscussion() {
 		super();
 	}   	
 	
@@ -41,30 +37,17 @@ import javax.servlet.http.HttpServletResponse;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.processRequest(request, response);
-	}   	  	    
+	}   	
 	
-	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user = request.getParameter("user");
-		String title = request.getParameter("title");
-		String reason = request.getParameter("reason");
-		int rate = Integer.parseInt(request.getParameter("rate"));
-		
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IWikiOperations op = new WikiOperations();
-		//internamente, el metodo addRate se encarga
-		//de comprobar si es necesario insertar o actualizar
-		op.addRate(user, reason, rate, title);
+		String title = request.getParameter("id");
+		String user = (String)request.getSession(false).getAttribute("user");
+		op.setUnderDiscussion(title,user);
 		
-		RequestDispatcher rd = null;
-		
-		if (rate == 0){
-			rd = request.getRequestDispatcher("./FrontController?res=A9l&id="+title);
-		}
-		else{
-			rd = request.getRequestDispatcher("./FrontController?res=A2&id="+title);
-		}
-		
+		RequestDispatcher rd = request.getRequestDispatcher("./FrontController?res=A2&id="+title);
 		if (rd != null){
-			rd.forward(request,response);
+			rd.forward(request,response );
 		}
 	}
 }

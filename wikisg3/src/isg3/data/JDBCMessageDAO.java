@@ -28,6 +28,10 @@ public class JDBCMessageDAO implements IMessageDAO {
 		conn = ConnectionManager.getInstance().checkOut();
 	}
 	
+	public void finalize(){
+		ConnectionManager.getInstance().checkIn(conn);
+	}
+	
 	@Override
 	public boolean delete(String idMessage) { //Que Date importar
 		boolean b = false;

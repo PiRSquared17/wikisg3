@@ -20,8 +20,13 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 		this.art_dao = new JDBCArticleDAO(false);
 	}
 	
+	public void finalize(){
+		ConnectionManager.getInstance().checkIn(conn);
+	}
+	
 	@Override
 	public Category selectByName(String name) {
+		//conn = ConnectionManager.getInstance().checkOut();
 		// TODO Auto-generated method stub
 		Category cat = null;
 		String cat_oid = this.getOidFromCat(name);
@@ -44,6 +49,9 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			//ConnectionManager.getInstance().checkIn(conn);
+		}
 		
 		if (cat != null){
 			//Collection aux = this.art_dao.getAllArticles(cat_oid);
@@ -54,6 +62,7 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 	}
 	
 	private String getOidFromCat(String name){
+		//conn = ConnectionManager.getInstance().checkOut();
 		String s = null;
 		
 		ResultSet s1 = null;
@@ -70,13 +79,15 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+		finally{
+			//ConnectionManager.getInstance().checkIn(conn);
+		}
 		return s;
 	}
 	
 	@Override
 	public Category selectByOID(String oid){
+		//conn = ConnectionManager.getInstance().checkOut();
 		Category cat = null;
 		
 		ResultSet res = null;
@@ -97,14 +108,16 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+		finally{
+			//ConnectionManager.getInstance().checkIn(conn);
+		}
 		return cat;
 	}
 
 	@Override
 	public Collection selectAll() {
 		// TODO Auto-generated method stub
+		//conn = ConnectionManager.getInstance().checkOut();
 		Collection c = null;
 		
 		ResultSet result = null;
@@ -122,6 +135,10 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			//ConnectionManager.getInstance().checkIn(conn);
+		}
+		
 		
 		return c;
 	}

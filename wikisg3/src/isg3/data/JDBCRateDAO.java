@@ -25,6 +25,10 @@ public class JDBCRateDAO implements IRateDAO {
 		this.user_dao = new JDBCUserDAO();
 	}
 	
+	public void finalize(){
+		ConnectionManager.getInstance().checkIn(con);
+	}
+	
 	@Override
 	public boolean insert(Rate r, String article) {
 		// TODO Auto-generated method stub

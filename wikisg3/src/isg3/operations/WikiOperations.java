@@ -141,7 +141,7 @@ public class WikiOperations implements IWikiOperations {
 	@Override
 	public Collection getMostRatedArticles(){
 		//PROVISIONAL
-		return art_dao.selectLastArticles(3);
+		return art_dao.selectLastArticles(5);
 		//return Wiki.getInstance().getListArt();
 	}
 	
@@ -248,5 +248,13 @@ public class WikiOperations implements IWikiOperations {
 		Message m = new Message(userFrom, userTo, subject, content, new Date());
 		boolean b = message_dao.insert(m);
 		return b;
+	}
+
+	@Override
+	public void setUnderDiscussion(String title, String user) {
+		// TODO Auto-generated method stub
+		Article art = this.art_dao.select(title);
+		art.setUnderDiscussion(true);
+		this.art_dao.update(art, user);
 	}
 }

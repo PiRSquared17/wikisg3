@@ -14,7 +14,7 @@
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
-				<h1>Articulos mas valorados </h1>
+				<h1>Últimos artículos</h1>
 				<table>
 				<%
 				IWikiOperations op = new WikiOperations();

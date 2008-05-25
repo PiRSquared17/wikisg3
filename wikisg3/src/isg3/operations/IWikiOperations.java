@@ -45,4 +45,5 @@ public interface IWikiOperations {
 	
 	public boolean sendMessage(String userFrom, String userTo, String subject, String content);
 	
+	public void setUnderDiscussion(String title, String user);
 }
