@@ -11,9 +11,9 @@
 
 <%
 	String id = (String)request.getParameter("id");
-	IWikiOperations op = new WikiOperations();
-	Article art = op.getArticle(id);
-	
+	//IWikiOperations op = new WikiOperations();
+	//Article art = op.getArticle(id);
+	Article art = new WikiOperations().getArticle(id);
 	RatesCollection rates = art.getRates();
 	
 	

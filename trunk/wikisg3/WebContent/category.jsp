@@ -10,8 +10,9 @@
 <body>
 <%
 	String id = (String)request.getParameter("id");
-	IWikiOperations op = new WikiOperations();
-	Category cat = op.getCategory(id);
+	//IWikiOperations op = new WikiOperations();
+	//Category cat = op.getCategory(id);
+	Category cat = new WikiOperations().getCategory(id);
 
 %>
 

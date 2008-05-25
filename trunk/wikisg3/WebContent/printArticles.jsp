@@ -17,11 +17,12 @@
 				<h1>Últimos artículos</h1>
 				<table>
 				<%
-				IWikiOperations op = new WikiOperations();
+				//IWikiOperations op = new WikiOperations();
 				
-				Collection mostRated = op.getMostRatedArticles();
+				//Collection mostRated = op.getMostRatedArticles();
 				
-				Iterator it = mostRated.iterator();
+				//Iterator it = mostRated.iterator();
+				Iterator it = new WikiOperations().getMostRatedArticles().iterator();
 				
 				while (it.hasNext()){
 					Article ar = (Article)it.next();
