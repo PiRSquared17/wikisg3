@@ -8,7 +8,7 @@ public class Message {
 	private String subject;
 	private String content;
 	private Date date;
-	private boolean isNew; 
+	private String idMessage; 
 	
 	public String getFrom() {
 		return from;
@@ -25,8 +25,12 @@ public class Message {
 	public Date getDate() {
 		return date;
 	}
-	public boolean getIsNew(){
-		return isNew;
+	public String getIdMessage(){
+		return idMessage;
+	}
+	
+	public void setIdMessage(String id){
+		this.idMessage = id;
 	}
 	
 	public Message(String from, String to, String subject, String content, Date date){

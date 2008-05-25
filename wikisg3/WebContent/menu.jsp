@@ -24,7 +24,8 @@
 						}
 						else{
 							out.print("<a href=\"./FrontController?res=P1l\">Perfil</a><br>");
-							out.print("<a href=\"./FrontController?res=S7l\">Logout</a>");
+							out.print("<a href=\"./FrontController?res=S7l\">Logout</a><br>");
+							out.print("<a href=\"./FrontController?res=M1l\">Mi Buzón</a>");
 						
 						}
 						%>

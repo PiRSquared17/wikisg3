@@ -55,9 +55,15 @@ import java.util.Map;
 		resources.put("S5l", "NewRate");
 		resources.put("S6l", "EditProfile");
 		resources.put("S7l", "Logout");
+		resources.put("S8l", "DeleteMessage");
+		resources.put("S9l", "SendMessage");
+		resources.put("S10l", "AddMessage");
 		resources.put("P1l", "profile.jsp");
 		resources.put("P2l", "editProfile.jsp");
 		resources.put("B1s", "search.jsp");
+		resources.put("M1l", "mailBox.jsp");
+		resources.put("M2l", "readMessage.jsp");
+		resources.put("M3l", "newMessage.jsp");
 		
 		
 		
