@@ -24,8 +24,16 @@ public class JDBCArticleDAO implements IArticleDAO {
 	
 	private IRateDAO rate_dao;
 	
-	public JDBCArticleDAO(){
+	/*public JDBCArticleDAO(){
 		this(true);
+	}*/
+	
+	public JDBCArticleDAO(){
+		con = ConnectionManager.getInstance().checkOut();
+		this.user_dao = new JDBCUserDAO(con);
+		this.rate_dao = new JDBCRateDAO(con);
+		this.cat_dao = new JDBCCategoryDAO(con);
+		
 	}
 	
 	/**
@@ -34,16 +42,23 @@ public class JDBCArticleDAO implements IArticleDAO {
 	 * de Category. Si es así, b debe de ser true.
 	 * Para no construir el DAO de Category, pasar false.
 	 */
-	public JDBCArticleDAO(boolean b){
+	/*public JDBCArticleDAO(boolean b){
 		con = ConnectionManager.getInstance().checkOut();
-		this.user_dao = new JDBCUserDAO();
-		this.rate_dao = new JDBCRateDAO();
+		this.user_dao = new JDBCUserDAO(con);
+		this.rate_dao = new JDBCRateDAO(con);
 		
 		if (b){
-			this.cat_dao = new JDBCCategoryDAO();
+			this.cat_dao = new JDBCCategoryDAO(con);
 		}
 		
+	}*/
+	public JDBCArticleDAO(Connection c){
+		con = c;
+		this.user_dao = new JDBCUserDAO(con);
+		this.rate_dao = new JDBCRateDAO(con);
+		
 	}
+	
 
 	public void finalize(){
 		ConnectionManager.getInstance().checkIn(con);

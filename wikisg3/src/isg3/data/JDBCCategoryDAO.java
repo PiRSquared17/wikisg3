@@ -15,9 +15,14 @@ public class JDBCCategoryDAO implements ICategoryDAO {
 	
 	private IArticleDAO art_dao;
 	
+	public JDBCCategoryDAO(Connection c){
+		this.conn = c;
+		this.art_dao = new JDBCArticleDAO(c);
+	}
+	
 	public JDBCCategoryDAO(){
 		conn = ConnectionManager.getInstance().checkOut();
-		this.art_dao = new JDBCArticleDAO(false);
+		this.art_dao = new JDBCArticleDAO(conn);
 	}
 	
 	public void finalize(){
