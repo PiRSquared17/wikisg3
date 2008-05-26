@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<td>Fecha de Registro: </td>
-					<td><%out.print(user.getProfile().getRegisteredDate()); %></td>
+					<td><%out.print(op.convertDate(user.getProfile().getRegisteredDate())); %></td>
 					
 				</tr>
 				<tr>

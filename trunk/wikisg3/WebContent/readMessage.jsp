@@ -36,7 +36,7 @@
 				
 				<tr>
 					<td class="titulo">Fecha:</td>
-					<td class="contenido"><% out.print(m.getDate()); %></td>
+					<td class="contenido"><% out.print(op.convertDate(m.getDate())); %></td>
 				</tr>
 				
 				<tr>

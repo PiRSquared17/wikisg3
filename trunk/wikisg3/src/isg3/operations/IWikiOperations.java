@@ -1,6 +1,8 @@
 package isg3.operations;
 
 import java.util.Collection;
+import java.util.Date;
+
 import isg3.article.*;
 import isg3.mailBox.Message;
 import isg3.user.User;
@@ -27,7 +29,7 @@ public interface IWikiOperations {
 	
 	public boolean existsRate(String user, String art);
 	
-	public Collection getMostRatedArticles();
+	public Collection getLastArticles(int n);
 	
 	public Rate getRate(String title, String user);
 	
@@ -46,4 +48,6 @@ public interface IWikiOperations {
 	public boolean sendMessage(String userFrom, String userTo, String subject, String content);
 	
 	public void setUnderDiscussion(String title, String user);
+	
+	public String convertDate(Date date);
 }
