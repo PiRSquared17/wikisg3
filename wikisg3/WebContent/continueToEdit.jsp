@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" href="./estilo.css" rel="stylesheet"></link>
-<title>Introducir nombre articulo</title>
+<title>WikiMedia</title>
 </head>
 <body>
 	<%

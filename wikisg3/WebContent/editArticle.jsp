@@ -18,7 +18,7 @@ function articuloValido(){
 }
 
 </script>
-<title>Insert title here</title>
+<title>WikiMedia: Nuevo Artículo</title>
 </head>
 <body>
 	<%

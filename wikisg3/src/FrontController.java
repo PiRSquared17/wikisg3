@@ -46,7 +46,6 @@ import java.util.Map;
 		resources.put("A7e","continueToEdit.jsp");
 		resources.put("A8l", "continueToRate.jsp");
 		resources.put("A9l","continueToDiscussion.jsp");
-		resources.put("A10l","newArticleDiscussion.jsp");
 		resources.put("C1", "printCategories.jsp");
 		resources.put("C2", "category.jsp");
 		resources.put("L1", "login.jsp");
@@ -94,43 +93,13 @@ import java.util.Map;
 	}
 		
 	private void processRequest(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		HttpSession session = request.getSession(true);
 		String id = (String)request.getParameter("id");
 		String resource = (String)request.getParameter("res");
 		if (loginRequire(resource)){
 			if (login(request)){
-				//Si quiere acceder a una pagina que requiere que este registrado
-				if (isSearchPage(resource)){
-					//Quiere acceder a una pagina de busqueda
-					HttpSession s = request.getSession(false);
-					Long lastSearch = (Long)s.getAttribute("session.lastSearch");
-					if (lastSearch == null){
-						//No ha realizado ninguna busqueda
-						lastSearch = new Long(System.currentTimeMillis());
-						RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
-						if(d!=null){
-							d.forward(request,response);
-						}
-						s.setAttribute("session.lastSearch", lastSearch);
-					}else{
-						//Ya ha realizado alguna busqueda
-						Long currentSearch = System.currentTimeMillis();
-						if ((currentSearch-lastSearch) > 30000){
-							//Han pasado mas de 30 segundos
-							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
-							if(d!=null){
-								d.forward(request,response);
-							}
-							s.setAttribute("session.lastSearch", currentSearch);
-						}else{
-							//No han pasado mas de 30 segundos
-							RequestDispatcher d = request.getRequestDispatcher("error.jsp?type=search");
-							if(d!=null){
-								d.forward(request,response);
-							}
-						}
-					}
-				}//fin search
-				else if(isEditPage(resource)){
+				
+				if(isEditPage(resource)){
 					//Quiere acceder a una pagina de edicion
 					HttpSession s = request.getSession(false);
 					Long lastEdit = (Long)s.getAttribute("session.lastEdit");
@@ -146,8 +115,8 @@ import java.util.Map;
 					}else{
 						//Ya ha realizado alguna busqueda
 						Long currentEdit = System.currentTimeMillis();
-						if ((currentEdit - lastEdit) > 3000){
-							//Han pasado mas de(3 segundos)
+						if ((currentEdit - lastEdit) > 15000){
+							//Han pasado mas de 15 segundos
 							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
 							s.setAttribute("session.lastEdit", currentEdit);
 							if(d!=null){
@@ -155,7 +124,7 @@ import java.util.Map;
 							}
 							
 						}else{
-							//No han pasado mas de 5 minutos (300 segundos)
+							//No han pasado mas de 15 segundo)
 							RequestDispatcher d = request.getRequestDispatcher("error.jsp?type=edit");
 							if(d!=null){
 								d.forward(request,response);
@@ -178,7 +147,38 @@ import java.util.Map;
 			}//fin sino login
 		}//fin login required
 		else{
-			RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+			RequestDispatcher d = null;
+			//Si quiere acceder a una pagina que requiere que este registrado
+			if (isSearchPage(resource)){
+				//Quiere acceder a una pagina de busqueda
+				HttpSession s = request.getSession(false);
+				Long lastSearch = null;
+				if (s!=null){
+					lastSearch = (Long)s.getAttribute("session.lastSearch");
+				}
+				if (lastSearch == null){
+					//No ha realizado ninguna busqueda
+					lastSearch = new Long(System.currentTimeMillis());
+					d = request.getRequestDispatcher((String)resources.get(resource));
+					
+					s.setAttribute("session.lastSearch", lastSearch);
+				}else{
+					//Ya ha realizado alguna busqueda
+					Long currentSearch = System.currentTimeMillis();
+					if ((currentSearch-lastSearch) > 15000){
+						//Han pasado mas de 15 segundos
+						d = request.getRequestDispatcher((String)resources.get(resource));
+
+						s.setAttribute("session.lastSearch", currentSearch);
+					}else{
+						//No han pasado mas de 30 segundos
+						d = request.getRequestDispatcher("error.jsp?type=search");
+
+					}
+				}//fin search
+			}else{
+				d = request.getRequestDispatcher((String)resources.get(resource));
+			}
 			if(d!=null){
 				d.forward(request,response);
 			}
@@ -220,7 +220,7 @@ import java.util.Map;
 		//logado.
 		//un recurso que termine en e implica que es una pagina
 		//para editar articulos.
-		if (s.endsWith("l") || s.endsWith("s") || s.endsWith("e")){
+		if (s.endsWith("l") || s.endsWith("e")){
 			b=true;
 		}
 		return b;

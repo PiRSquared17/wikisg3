@@ -29,7 +29,7 @@
 				<div id="artPrincipal">
 					<h4> Ultimo Artículo</h4>
 					<div id="tituloArt">
-						<h3><% out.print(art.getTitle()); %>
+						<h3><a href="./FrontController?res=A2&id=<%out.print(art.getTitle()); %>"> <%out.print(art.getTitle());%></a>
 						<% out.print("  -  Categoría:   "+art.getCat().getName()); %></h3>
 						<% if (art.getUnderDiscussion()){
 							 out.print("<br><div class=\"aviso\">(Atención, artículo bajo discusión)</div>");
