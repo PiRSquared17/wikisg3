@@ -99,45 +99,11 @@ import java.util.Map;
 		if (loginRequire(resource)){
 			if (login(request)){
 				
-				if(isEditPage(resource)){
-					//Quiere acceder a una pagina de edicion
-					HttpSession s = request.getSession(false);
-					Long lastEdit = (Long)s.getAttribute("session.lastEdit");
-					if (lastEdit == null){
-						//No ha realizado ninguna busqueda
-						lastEdit = new Long(System.currentTimeMillis());
-						RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
-						s.setAttribute("session.lastEdit", lastEdit);
-						if(d!=null){
-							d.forward(request,response);
-						}
-						
-					}else{
-						//Ya ha realizado alguna busqueda
-						Long currentEdit = System.currentTimeMillis();
-						if ((currentEdit - lastEdit) > 15000){
-							//Han pasado mas de 15 segundos
-							RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
-							s.setAttribute("session.lastEdit", currentEdit);
-							if(d!=null){
-								d.forward(request,response);
-							}
-							
-						}else{
-							//No han pasado mas de 15 segundo)
-							RequestDispatcher d = request.getRequestDispatcher("error.jsp?type=edit");
-							if(d!=null){
-								d.forward(request,response);
-							}
-						}
-					}
-				}//fin edit
-				else{
-					RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
-					if(d!=null){
-						d.forward(request,response);
-					}
-				}//fin sino search o edit
+				RequestDispatcher d = request.getRequestDispatcher((String)resources.get(resource));
+				if(d!=null){
+					d.forward(request,response);
+				}
+				
 			}//fin login
 			else{
 				RequestDispatcher d = request.getRequestDispatcher((String)resources.get("L1"));
