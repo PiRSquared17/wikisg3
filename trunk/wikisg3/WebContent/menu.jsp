@@ -5,7 +5,7 @@
 
 	<div id="inicio">
 		<ul>
-			<li><a href="FrontController?res=index">Portada</a></li>
+			<li><a href="FrontController?res=index"> Portada </a></li>
 			<li><a href="FrontController?res=C1">Lista de categor&iacute;as</a></li>
 			<li><a href="FrontController?res=A1">Art&iacute;culos recientes</a></li>
 			<li><a href="FrontController?res=A3e">Nuevo art&iacute;culo</a></li>
