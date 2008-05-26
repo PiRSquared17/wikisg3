@@ -14,12 +14,8 @@ String user = (String)s.getAttribute("user");
 IWikiOperations op = new WikiOperations();
 Collection c = op.getAllMessages(user);
 
-String b = request.getParameter("error");
-if (b != null){
-	if (b.equals("false")){
-		out.print("El mensaje ha sido enviado correctamente");
-	}
-}
+
+
 
 %>
 	<div id="contenedor">
@@ -28,6 +24,15 @@ if (b != null){
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
+			<%
+			String b = request.getParameter("error");
+			if (b != null){
+				if (b.equals("false")){
+					out.print("El mensaje ha sido enviado correctamente");
+				}
+			}
+			%>
+			<br><br>
 			<a  class="edit" href="./FrontController?res=M3l">Enviar Mensaje</a>
 			<h2>Mensajes recibidos</h2>
 			<table id="tabla">
@@ -48,7 +53,7 @@ if (b != null){
 			<tr>
 				<td class="contenido"><a href="./FrontController?res=M2l&message=<% out.print(m.getIdMessage()); %>"><% out.print(subject); %></a></td>
 				<td class="contenido"><% out.print(sender); %></td>
-				<td class="contenido"><% out.print(date); %></td>
+				<td class="contenido"><% out.print(op.convertDate(date)); %></td>
 				<td class="contenido"><a href="./FrontController?res=S8l&message=<% out.print(m.getIdMessage()); %>" ><img src="./imagenes/botonBorrar.png"></a></td>
 			</tr>	
 				

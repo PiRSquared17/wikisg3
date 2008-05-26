@@ -2,5 +2,5 @@
     pageEncoding="ISO-8859-1" session="false"%>
 
 	<div id="cabecera">
-			<!--por aqui iran las imagenes-->	
+			<img src="./imagenes/wikipedia isg3.jpg" height="52px" width="750">	
 	</div>

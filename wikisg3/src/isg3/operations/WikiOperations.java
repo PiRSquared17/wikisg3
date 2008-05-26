@@ -64,7 +64,6 @@ public class WikiOperations implements IWikiOperations {
 	public User getUser(String user){
 		user_dao = new JDBCUserDAO();
 		return user_dao.select(user);
-
 	}
 	
 	
@@ -106,10 +105,10 @@ public class WikiOperations implements IWikiOperations {
 	}
 	
 	@Override
-	public Collection getMostRatedArticles(){
+	public Collection getLastArticles(int n){
 		//PROVISIONAL
 		art_dao = new JDBCArticleDAO();
-		return art_dao.selectLastArticles(5);
+		return art_dao.selectLastArticles(n);
 	}
 	
 	@Override
@@ -195,5 +194,11 @@ public class WikiOperations implements IWikiOperations {
 		Article art = this.art_dao.select(title);
 		art.setUnderDiscussion(true);
 		this.art_dao.update(art, user);
+	}
+	
+	@Override
+	public String convertDate(Date date){
+		String s = (date.getDate()+" / "+ (date.getMonth()+1)+" / "+(date.getYear()+1900));
+		return s;
 	}
 }

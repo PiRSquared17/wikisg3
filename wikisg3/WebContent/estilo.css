@@ -23,14 +23,6 @@ body {
 	background: #E7F0F5;
 }
 
-/*#menuizq{
-	width: 150px;
-	float: left;
-	clear: both;
-	border-color: #FF0000;
-	border:1px solid #42432d;
-	margin: 10px;
-}*/
 
 /*
  * ---------------------
@@ -233,7 +225,7 @@ form div{
 	border:1px solid #42432d;*/
 }
 
-#artPrincipal #cuerpoArt{
+#cuerpoArt{
 	background: #C1D9E6;
 	padding: 8px;
 	text-align: left;
@@ -267,11 +259,7 @@ form div{
 }
 
 #ultArticulos{
-	border-color: #FF0000;
-	border:1px solid #42432d;
-	height: 75px;
-	padding: 8px;
-	margin: 5px;
+
 }
 
 a.edit:link, a.edit:visited{
@@ -286,10 +274,13 @@ a.edit:hover{
 	text-decoration: none;
 }
 
-a{
+a:link, a:visited{
 	text-decoration: none;
+	color: #255D7D;
 }
 
 #pie{
 	float: left;
 }
+
+

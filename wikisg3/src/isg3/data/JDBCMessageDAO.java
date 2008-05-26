@@ -22,10 +22,13 @@ public class JDBCMessageDAO implements IMessageDAO {
 	
 	private Connection conn;
 	
+	private IUserDAO user_dao;
+	
 	//pensar si de verdad necesita tener un dao de user
 	
 	public JDBCMessageDAO(){
 		conn = ConnectionManager.getInstance().checkOut();
+		
 	}
 	
 	public JDBCMessageDAO(Connection c){
@@ -125,6 +128,7 @@ public class JDBCMessageDAO implements IMessageDAO {
 
 	@Override
 	public Collection selectAllReceived(String nick) {
+		this.user_dao = new JDBCUserDAO(this.conn);
 		// TODO Auto-generated method stub
 		Collection c = null;
 		ResultSet s1 = null;
@@ -138,8 +142,8 @@ public class JDBCMessageDAO implements IMessageDAO {
 			c = new LinkedList();
 			while(s1.next()){
 				//creamos mensajes
-				String from = s1.getString("senderUserOID");
-				String to = s1.getString("receiverUserOID");
+				String from = (user_dao.selectByOID(s1.getString("senderUserOID"))).getNick();
+				String to = (user_dao.selectByOID(s1.getString("receiverUserOID"))).getNick();
 				String subject = s1.getString("subject");
 				String content = s1.getString("content");
 				java.sql.Date d = s1.getDate("dateSend");
@@ -158,6 +162,7 @@ public class JDBCMessageDAO implements IMessageDAO {
 	}
 
 	public Message select(String idMessage){
+		this.user_dao = new JDBCUserDAO(conn);
 		ResultSet s1 = null;
 		PreparedStatement stmt = null;
 		String query = "SELECT * FROM Message WHERE (oid = ?)";
@@ -167,8 +172,8 @@ public class JDBCMessageDAO implements IMessageDAO {
 			stmt.setString(1, idMessage);
 			s1 = stmt.executeQuery();
 			if (s1.next()){
-				String from = s1.getString("senderUserOID");
-				String to = s1.getString("receiverUserOID");
+				String from = (user_dao.selectByOID(s1.getString("senderUserOID"))).getNick();
+				String to = (user_dao.selectByOID(s1.getString("receiverUserOID"))).getNick();
 				String subject = s1.getString("subject");
 				String content = s1.getString("content");
 				java.sql.Date d = s1.getDate("dateSend");

@@ -22,7 +22,7 @@
 				//Collection mostRated = op.getMostRatedArticles();
 				
 				//Iterator it = mostRated.iterator();
-				Iterator it = new WikiOperations().getMostRatedArticles().iterator();
+				Iterator it = new WikiOperations().getLastArticles(5).iterator();
 				
 				while (it.hasNext()){
 					Article ar = (Article)it.next();
