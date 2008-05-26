@@ -32,16 +32,32 @@
 			<form action = "./FrontController?res=S6l" method = "post">
 				<fieldset>
 					<legend>Editar Perfil</legend>
-					<label class="inputBlock" for="password">Contraseña: </label>
-					<input class="inputBlock" id="password" type="password" name="password" size="12">
-					<label class="inputBlock" for="newPassword">Nueva Contraseña: </label>
-					<input class="inputBlock" id="newPassword" type="password" name="newPassword" size="12">
-					<label class="inputBlock" for="passwordConfirm">Confirmar contraseña: </label>
-					<input class="inputBlock" id="passwordConfirm" type="password" name="passwordConfirm" size="12">
-					<label class="inputBlock" for="eMail">eMail: </label>
-					<input class="inputBlock" id="eMail" type="text" name="eMail" size="12" value=<% out.print(user.getProfile().getMail()); %>>
-					<input class="inputBlock" type="submit" value="Editar">
+					<table>
+						<tr>
+							<td>Contraseña</td>
+							<td><input class="inputBlock" id="password" type="password" name="password" size="12"></td>
+						</tr>
+						<tr>
+							<td>Nueva contraseña</td>
+							<td><input class="inputBlock" id="newPassword" type="password" name="newPassword" size="12"></td>
+						</tr>
+						<tr>
+							<td>Repita nueva contraseña</td>
+							<td><input class="inputBlock" id="passwordConfirm" type="password" name="passwordConfirm" size="12"></td>
+						</tr>
+						<tr>
+							<td>eMail</td>
+							<td><input class="inputBlock" id="eMail" type="text" name="eMail" size="12" value=<% out.print(user.getProfile().getMail()); %>></td>
+						</tr>
+						<tr>
+							<td><input class="boton" type="submit" value="Editar"></td>
+						</tr>
+					</table>
+					
+					
+					
 				</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>

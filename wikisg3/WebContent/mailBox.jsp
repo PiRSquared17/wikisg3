@@ -28,14 +28,14 @@ if (b != null){
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
-			<a href="./FrontController?res=M3l">Enviar Mensaje</a>
+			<a  class="edit" href="./FrontController?res=M3l">Enviar Mensaje</a>
 			<h2>Mensajes recibidos</h2>
-			<table>
+			<table id="tabla">
 			<tr>
-				<td>Asunto</td>
-				<td>De:</td>
-				<td>Fecha</td>
-				<td>Eliminar</td>
+				<td width="30%" class="titulo">Asunto</td>
+				<td width="25%" class="titulo">De:</td>
+				<td width="35%" class="titulo">Fecha</td>
+				<td width="10%" class="titulo">Eliminar</td>
 			</tr>
 			<%
 			Iterator it = c.iterator();
@@ -46,10 +46,10 @@ if (b != null){
 				Date date = m.getDate();				
 			%>
 			<tr>
-				<td><a href="./FrontController?res=M2l&message=<% out.print(m.getIdMessage()); %>"><% out.print(subject); %></a></td>
-				<td><% out.print(sender); %></td>
-				<td><% out.print(date); %></td>
-				<td><a href="./FrontController?res=S8l&message=<% out.print(m.getIdMessage()); %>" >eliminar</a></td>
+				<td class="contenido"><a href="./FrontController?res=M2l&message=<% out.print(m.getIdMessage()); %>"><% out.print(subject); %></a></td>
+				<td class="contenido"><% out.print(sender); %></td>
+				<td class="contenido"><% out.print(date); %></td>
+				<td class="contenido"><a href="./FrontController?res=S8l&message=<% out.print(m.getIdMessage()); %>" ><img src="./imagenes/botonBorrar.png"></a></td>
 			</tr>	
 				
 			<%

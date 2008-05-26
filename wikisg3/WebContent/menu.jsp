@@ -3,33 +3,33 @@
 
 
 
-
+	<div id="inicio">
+		<ul>
+			<li><a href="FrontController?res=index">Portada</a></li>
+			<li><a href="FrontController?res=C1">Lista de categor&iacute;as</a></li>
+			<li><a href="FrontController?res=A1">Art&iacute;culos recientes</a></li>
+			<li><a href="FrontController?res=A3e">Nuevo art&iacute;culo</a></li>
+			<li><a href="http://wikipedia.org">Wikipedia</a></li>
+		</ul>
+	</div>
 	<div id="menuizq">
-					<div id="inicio">
-						<ul>
-							<li><a href="FrontController?res=index">Portada</a></li>
-							<li><a href="FrontController?res=C1">Categor&iacute;as</a></li>
-							<li><a href="FrontController?res=A1">Art&iacute;culos</a></li>
-							<li><a href="FrontController?res=A3e">Nuevo art&iacute;culo</a></li>
-							<li><a href="FrontController?res=1">Actualidad</a></li>
-							<li><a href="FrontController?res=1">Ayuda</a></li>
-						</ul>
-					</div>
+					
 					<div id="usuario">
+						<ul>
 						<!-- AquÃ­ irÃ¡ el login y los datos del usuario -->
 						<%
 						HttpSession s = request.getSession(false);
 						if (s == null || s.getAttribute("user") == null){
-							out.print("<a href=\"./FrontController?res=L1\">Loguese</a>");
+							out.print("<li><a href=\"./FrontController?res=L1\">Entrar</a></li>");
 						}
 						else{
-							out.print("<a href=\"./FrontController?res=P1l\">Perfil</a><br>");
-							out.print("<a href=\"./FrontController?res=S7l\">Logout</a><br>");
-							out.print("<a href=\"./FrontController?res=M1l\">Mi Buzón</a>");
+							out.print("<li><a href=\"./FrontController?res=P1l\">Perfil</a></li>");
+							out.print("<li><a href=\"./FrontController?res=M1l\">Mi Buzón</a></li>");
+							out.print("<li><a href=\"./FrontController?res=S7l\">Logout</a></li>");
 						
 						}
 						%>
-						
+						</ul>
 						
 					</div>
 					<div id="buscador">
@@ -39,7 +39,7 @@
 									Buscar 
 								</legend>
 								<input class="inputBlock" type="text" name="busca" id="busca" size="12">
-								<input class="inputBlock" type="submit" title="Buscar" value="Buscar">
+								<input class="boton" type="submit" title="Buscar" value="Buscar">
 							</fieldset>
 						</form>
 					</div>

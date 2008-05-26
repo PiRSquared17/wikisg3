@@ -22,26 +22,26 @@
 			Message m = op.getMessage(idMessage);
 			%>
 			
-			<table>
+			<table id="tabla">
 				
 				<tr>
-					<td>Asunto:</td>
-					<td><% out.print(m.getSubject()); %></td>
+					<td class="titulo">Asunto:</td>
+					<td class="contenido"><% out.print(m.getSubject()); %></td>
 				</tr>
 				
 				<tr>
-					<td>De:</td>
-					<td><% out.print(m.getFrom()); %></td>
+					<td class="titulo">De:</td>
+					<td class="contenido"><% out.print(m.getFrom()); %></td>
 				</tr>
 				
 				<tr>
-					<td>Fecha:</td>
-					<td><% out.print(m.getDate()); %></td>
+					<td class="titulo">Fecha:</td>
+					<td class="contenido"><% out.print(m.getDate()); %></td>
 				</tr>
 				
 				<tr>
-					<td>Contenido:</td>
-					<td><% out.print(m.getContent()); %></td>
+					<td class="titulo">Contenido:</td>
+					<td class="contenido"><% out.print(m.getContent()); %></td>
 				</tr>
 				
 			</table>

@@ -36,18 +36,13 @@ function valoracionValida(){
 			<div id="principal">
 			
 				<div id="tituloArt">
-						<% out.print(title); %>
+						<h3><% out.print(title); %></h3>
 				</div>
 				<div id="rating">
 					<form action="./FrontController?res=S3l" method="post" onsubmit="return valoracionValida();">
-						<textarea name="reason" id="reason" rows="20" cols="50">
-							<%
-							if (rate != null){
-								out.print(rate.getReason());	
-							}
-								
-							%>
-						</textarea>
+						<textarea name="reason" id="reason" rows="20" cols="50"><%if (rate != null){out.print(rate.getReason());}%></textarea>
+						<br>
+						Nota: &nbsp;&nbsp;
 						<select name="rate" id="rate">
 							<option <% if(rate == null){out.print("selected");} %> value="">-</option>
 							<option <% if ((rate != null) && (rate.getRate() == 0)){out.print("selected");} %> value="0">0</option>
@@ -59,7 +54,7 @@ function valoracionValida(){
 						</select>
 						<input type="hidden" name="title" value="<%out.print(title); %>" >
 						<input type="hidden" name="user" value="<%out.print(user); %>" >
-						<input type="submit" value="Aceptar"/>
+						<input class="boton" type="submit" value="Aceptar"/>
 							
 							
 					</form>

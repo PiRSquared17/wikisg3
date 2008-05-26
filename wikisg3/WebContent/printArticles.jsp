@@ -31,7 +31,7 @@
 				
 				
 					<tr>
-						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a><td>
+						<td><h3>&bull;<a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a> </h3><td>
 						
 					</tr>
 				
