@@ -20,7 +20,7 @@ Collection c = op.searchArticle(article);
 		<div id="contenido">
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
-			<h1>Se han producido <%out.print(c.size()); %> resultados:</h1>  
+			<h3>Se han producido <%out.print(c.size()); %> resultados:</h3>  
 			<table>
 				<%
 			
@@ -33,7 +33,7 @@ Collection c = op.searchArticle(article);
 				
 				
 					<tr>
-						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a><td>
+						<td><h3>&bull;<a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a></h3><td>
 						
 					</tr>
 				

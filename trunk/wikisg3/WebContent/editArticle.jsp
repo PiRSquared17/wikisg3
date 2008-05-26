@@ -39,19 +39,12 @@ function articuloValido(){
 			<div id="principal">
 				<div id="artPrincipal">
 					<div id="tituloArt">
-						<% out.print(id); %>
+						<h3><% out.print(id); %></h3>
 					</div>
 					<div id="cuerpoArt">
 						<form action="./FrontController?res=S2l&id=<%out.print(id); %>" method="post" onsubmit="return articuloValido();">
-							<textarea name="content" id="content" rows="20" cols="50">
-								<%
-								if (art != null){
-									out.print(art.getContent());
-									c = art.getCat();
-								}
-								
-								%>
-							</textarea>
+							<textarea name="content" id="content" rows="20" cols="50"><%if (art != null){out.print(art.getContent()); c = art.getCat();}%></textarea>
+							<strong>Categoría: &nbsp;&nbsp; </strong> 
 							<select name="cat" id="cat">
 								<option <%if (c==null){out.print("selected");} %> value="-">-</option>
 								<option <%if (c!=null && c.getName().equals("Deportes")){out.print("selected");} %> value="Deportes">Deportes</option>
@@ -62,7 +55,7 @@ function articuloValido(){
 								<option <%if (c!=null && c.getName().equals("Tecnologias")){out.print("selected");} %> value="Tecnologia">Tecnologias</option>
 								<option <%if (c!=null && c.getName().equals("Sucesos")){out.print("selected");} %> value="Sucesos">Sucesos</option>
 							</select>
-							<input type="submit" value="Aceptar"/>
+							<input class="boton" type="submit" value="Aceptar"/>
 							
 							
 						</form>

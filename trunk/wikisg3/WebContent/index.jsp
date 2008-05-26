@@ -15,6 +15,8 @@
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
 			
+				<h3>Bienvenido al wiki de ISG3.</h3>
+			
 				<div id="artPrincipal">
 					<div id="tituloArt">
 						gdfgdfg

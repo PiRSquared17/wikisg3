@@ -26,18 +26,30 @@
 				out.print("Cambios guardados");
 			}
 			%>
-				<h1>Perfil de Usuario</h1>
-				<div id="nick">
-					<h2>Nick: </h2><%out.print(user.getNick()); %>
-				</div>
-				<div id="mail">
-					<h2>eMail: </h2><%out.print(user.getProfile().getMail()); %>
-				</div>
-				<div id="registeredDate">
-					<h2>Fecha de Registro: </h2><%out.print(user.getProfile().getRegisteredDate()); %>
-				</div>
-				<div id=editar>
-					<a href="./FrontController?res=P2l&id=<%out.print(u); %>">Editar Perfil</a>
+				<h2>Perfil de <% out.print(user.getNick()); %></h2>
+				<table id="tabla">
+				<tr>
+					<td>Nick:</td>
+					<td><%out.print(user.getNick()); %></td>
+					
+				</tr>
+				<tr>
+					<td>eMail:</td>
+					<td><%out.print(user.getProfile().getMail()); %></td>
+					
+				</tr>
+				<tr>
+					<td>Fecha de Registro: </td>
+					<td><%out.print(user.getProfile().getRegisteredDate()); %></td>
+					
+				</tr>
+				<tr>
+					<td><br><a class="edit"  href="./FrontController?res=P2l&id=<%out.print(u); %>">Editar Perfil</a></td>
+
+				</tr>
+				</table>
+			
+			
 			</div>
 		</div>
 	</div>

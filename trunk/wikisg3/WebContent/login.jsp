@@ -4,10 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type="text/css" href="./estilo.css" rel="stylesheet"></link>
 <title>Registrese</title>
 </head>
 <body>
-	<h2>Est&aacute; intentando acceder a un &aacute;rea restringida</h2>
+
+<div id="contenedor">
+		<jsp:include  page="head.jsp"/>
+		
+		<div id="contenido">
+			<jsp:include  page="menu.jsp"/>
+			<div id="principal">
+			<h2>Est&aacute; intentando acceder a un &aacute;rea restringida</h2>
 	Por favor, ingrese como usuario.
 	<%
 		String s = request.getParameter("b");
@@ -22,15 +30,28 @@
 	%>
 	<form action="./Login" method="post">
 		<fieldset>
-			<legend>Login</legend>
-			<label class="inputBlock" for="usuario">Usuario: </label>
-			<input class="inputBlock" type="text"id="usuario" name="usuario" size="12">
-			<label class="inputBlock" for="pass">Contraseña: </label>
-			<input class="inputBlock" id="pass" type="password" name="pass" size="12">
-			<input type="hidden" name="oldres" value="<%out.print(res); %>"/>
-			<input type="hidden" name="id" value="<%out.print(idArt); %>"/>
-			<input class="inputBlock" type="submit" value="login">
+		<legend>Login</legend>
+		<table> 
+			<tr>
+				<td>Usuario</td>
+				<td><input  type="text" id="usuario" name="usuario" size="8"></td>
+			</tr>
+			<tr>
+				<td>Contraseña</td>
+				<td><input  id="pass" type="password" name="pass" size="12"></td>
+			</tr>
+
+		</table>
+		<input type="hidden" name="oldres" value="<%out.print(res); %>"/>
+		<input type="hidden" name="id" value="<%out.print(idArt); %>"/>
+		<input class="boton" type="submit" value="Entrar">
 		</fieldset>
+		
 	</form>
+			</div>
+		</div>
+	</div>
+
+	
 </body>
 </html>

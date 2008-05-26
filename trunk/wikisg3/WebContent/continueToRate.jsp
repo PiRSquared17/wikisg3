@@ -18,8 +18,8 @@
 			<jsp:include  page="menu.jsp"/>
 			<div id="principal">
 				<h2>Usted ya ha valorado este art&iacute;culo</h2>
-				Puede <a href="./FrontController?res=A2&id=<%out.print(idArt); %>">ver el art&iacute;culo</a>,
-				 o <a href="./FrontController?res=A6l&id=<%out.print(idArt); %>">editar</a> su valoraci&oacute;n previa.
+				Puede <a class="edit"  href="./FrontController?res=A2&id=<%out.print(idArt); %>">ver el art&iacute;culo</a>,
+				 o <a  class="edit" href="./FrontController?res=A6l&id=<%out.print(idArt); %>">editar</a> su valoraci&oacute;n previa.
 				
 			</div>
 		</div>

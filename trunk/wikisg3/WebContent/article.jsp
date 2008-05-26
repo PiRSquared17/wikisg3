@@ -27,25 +27,30 @@
 			<div id="principal">
 				<div id="artPrincipal">
 					<div id="barrita">
-						<a href="./FrontController?res=A4e&id=<%out.print(id); %>">Edite</a> o <a href="./FrontController?res=S5l&id=<%out.print(id); %>">valore</a> este art&iacute;culo
+						<a class="edit"  href="./FrontController?res=A4e&id=<%out.print(id); %>">Edite</a> o <a  class="edit" href="./FrontController?res=S5l&id=<%out.print(id); %>">valore</a> este art&iacute;culo
 					</div>
+					<br>
 					<div id="tituloArt">
-						<% out.print(art.getTitle()); 
-						 out.print("  -  Categoría:   "+art.getCat().getName()); 
-						 if (art.getUnderDiscussion()){
-							 out.print("<br>(Atención, artículo bajo discusión)");
+					
+						<h3><% out.print(art.getTitle()); %>
+						<% out.print("  -  Categoría:   "+art.getCat().getName()); %></h3>
+						<% if (art.getUnderDiscussion()){
+							 out.print("<br><div class=\"aviso\">(Atención, artículo bajo discusión)</div>");
 						 }
 						 %>
+					
 					</div>
 					<div id="cuerpoArt">
 							<% out.print(art.getContent()); %>
 					</div>
+					<br><br>
 					<div id="valoraciones">
-						<table>
+						<h3>Valoraciones</h3>
+						<table id="tabla">
 							<tr>
-								<td>Usuario</td>
-								<td>Nota</td>
-								<td>Raz&oacute;n</td>
+								<td width="20%" class="titulo">Usuario</td>
+								<td width="10%" class="titulo">Nota</td>
+								<td width="70%" class="titulo">Raz&oacute;n</td>
 							</tr>
 						<%
 						if (art.hasRates()){
@@ -56,9 +61,9 @@
 							
 							
 								<tr>
-									<td><% out.print(r.getUser().getNick()); %></td>
-									<td><% out.print(r.getRate()) ;%></td>
-									<td><% out.print(r.getReason()); %></td>
+									<td class="contenido"><% out.print(r.getUser().getNick()); %></td>
+									<td class="contenido"><% out.print(r.getRate()) ;%></td>
+									<td class="contenido"><% out.print(r.getReason()); %></td>
 								</tr>
 							
 							

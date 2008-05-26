@@ -42,21 +42,21 @@ function mensajeValido(){
 					
 					<tr>
 						<td>Destino:</td>
-						<td> <input type="text" id="to" name="to" size="15"> </td>
+						<td> <input type="text" id="to" name="to" size="20"> </td>
 					</tr>
 					
 					<tr>
 						<td>Asunto:</td>
-						<td> <input type="text" id="subject" name="subject" size="15"> </td>
+						<td> <input type="text" id="subject" name="subject" size="20"> </td>
 					</tr>
 					
 					<tr>
-						<td>Contenido:</td>
-						<td> <textarea name="content" id="content" rows="20" cols="20"> </textarea></td>
+						<td valign="top"><br>Contenido:</td>
+						<td> <textarea name="content" id="content" rows="8" cols="20"> </textarea></td>
 					</tr>
 
 					<tr>
-						<input type="submit" value="Enviar">
+						<td><input class="boton" type="submit" value="Enviar"></td>
 					</tr>
 				</table>
 			</form>

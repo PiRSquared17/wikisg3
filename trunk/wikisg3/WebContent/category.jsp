@@ -24,10 +24,10 @@
 			<div id="principal">
 				<div id="artPrincipal">
 					<div id="tituloArt">
-						<% out.print(cat.getName()); %>
+						<h2><% out.print(cat.getName()); %></h2>
 					</div>
 					<div id="cuerpoArt">
-							<% out.print(cat.getDescription()); %>
+							<h3><% out.print(cat.getDescription()); %><h3>
 					</div>
 					
 					<table>
@@ -42,7 +42,7 @@
 				
 				
 					<tr>
-						<td><a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %> </a><td>
+						<td><h3>&bull; <a href="./FrontController?res=A2&id=<%out.print(ar.getTitle()); %>"><% out.print(ar.getTitle()); %></a></h3><td>
 						
 					</tr>
 				
