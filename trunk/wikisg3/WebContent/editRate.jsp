@@ -18,7 +18,7 @@ function valoracionValida(){
 }
 
 </script>
-<title>Insert title here</title>
+<title>WikiMedia</title>
 </head>
 <body>
 	<%

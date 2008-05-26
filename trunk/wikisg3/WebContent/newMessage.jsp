@@ -18,7 +18,7 @@ function mensajeValido(){
 }
 
 </script>
-<title>Insert title here</title>
+<title>WikiMedia: Nuevo Mensaje</title>
 </head>
 <body>
 	<div id="contenedor">
