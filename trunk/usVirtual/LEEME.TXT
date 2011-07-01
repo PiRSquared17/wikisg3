@@ -1,0 +1,67 @@
+####################################################################
+################ Web Service Document Generator ####################
+####################################################################
+
+Las instrucciones para instalar la aplicacion del servicio web son las siguientes:
+
+
+Requisitos previos:
+-Tener instalado Apache 2
+-Tener instalado MySQL 5
+-Tener instalado PHP 5
+
+Paso 1)
+Copiar docGeneratorProject a nuestro directorio raíz de localhost (con XAMPP es htdocs).
+
+Paso 2)
+Ejecutar el script de creacion de tablas docgenerator.sql en MySQL.
+
+Paso 3)
+Tener un usuario en MySQL con nombre "proyecto", y pass "proyecto" (es el que se usa
+en el config.xml del servicio web. Podemos utilizar otro cualquiera con privilegios
+sobre la base de datos antes creada, para lo que tendriamos que cambiar los parametros
+en el config.xml).
+
+
+####################################################################
+######################### US VIRTUAL ###############################
+####################################################################
+
+Las instrucciones son las siguientes:
+
+Requisitos previos:
+-Tener instalado Apache Tomcat
+-Tener instalada un JRE
+
+Paso 1)
+Montar el proyecto usVirtual en eclipse o lomboz.
+
+Paso 2)
+Con el servicio web en marcha, ejecutar la clase pos.ws.WSSourceMaker para crear los fuentes
+necesarios para consumir el servicio a través de Apache Axis.
+
+Paso 3)
+Con el servicio web en marcha, ejecutar la clase pos.ws.TemplateUploader para subir
+la plantilla situada en el directorio template.
+
+Paso 4)
+Montar las tablas en MySQL del US Virtual (fichero usVirtual.sql). En esta ocasión, el 
+usuario es "root", y la contraseña es "practica" (aparece en el fichero .properties del US Virtual)
+
+Paso 5)
+Echar a andar la aplicación, ya sea a través de lomboz, o generando un .war y copiandolo
+en el directorio webapps del Tomcat
+
+
+Para ver el resultado del uso del servicio web en el US Virtual, entramos a este.
+El usuario es "practica", al igual que la contraseña. Compramos cualquier producto,
+y finalmente confirmamos la compra. Veremos que se nos muestran datos de la facutra
+en un PDF.
+
+
+###################################################################
+################### PRUEBAS DOC GENERATOR #########################
+###################################################################
+
+Para estas pruebas, solo es necesario tener en marcha el servicio web, 
+y correctamente importado en el Build Path las librerias de Apache Axis
