@@ -1,0 +1,1 @@
+<jsp:forward page="/store/productos"></jsp:forward>

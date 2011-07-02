@@ -38,7 +38,7 @@
 				<td>--</td>
 				<td> <%=p.getDescription()%> </td>
 				<td> <%=p.getPrice()%>€</td>
-				<td> <a href="FrontController?res=carrito.jsp?pid=<%=p.getProductID()%>"><img src='img/carro.gif'> </a></td>
+				<td> <a href="store/carrito?pid=<%=p.getProductID()%>"><img src='img/carro.gif'> </a></td>
 			</tr>
 <%
 		}
