@@ -1,4 +1,7 @@
 <%@ page language="java" import="pos.domain.*,java.util.*" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <table summary ="Listado de Productos" cellSpacing="1" cellPadding="6" width="770" align="center" border="0">
 	<tr valign ="middle" align="center">
@@ -27,7 +30,8 @@
 %>
 			<tr align="center" id="productos">
 				<td>--</td>	<td> <%=description%> </td>	<td> <%=amount%> </td><td> <%=price%>€</td>	<td> <%=total%>€</td>
-				<td> <a href="FrontController?res=eliminar.jsp?pid=<%=pid%>">
+				<c:url var="deleteUrl" value="/store/eliminar" />
+				<td> <a href="${deleteUrl}?pid=<%=pid%>">
 				     <img src='img/eliminar.jpg'></a>
 			    </td>
 				</tr>
@@ -51,10 +55,12 @@
 	<%if(!request.getParameter("botones").equals("0")){%>
 			<tr align="center" id="productos">
 				<td colspan='3'>
-				<a href="FrontController?res=productos.jsp"><img src='img/seguir.jpg'></a>
+				<c:url var="productosUrl" value="/store/productos" />
+				<a href="${productosUrl}"><img src='img/seguir.jpg'></a>
 				</td>
 				<td colspan='3'>
-				<a href="FrontController?res=confirmar.jsp"><img src='img/confirmar.jpg'></a>
+				<c:url var="confirmarUrl" value="/store/confirmar" />
+				<a href="${confirmarUrl}"><img src='img/confirmar.jpg'></a>
 				</td>
 			</tr>
 <%}

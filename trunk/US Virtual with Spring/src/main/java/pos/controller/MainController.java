@@ -30,19 +30,21 @@ public class MainController {
 	@RequestMapping("/confirmar")
 	public String getConfirmar(Model model){
 		//TODO
-		return null;
+		return "confirmar";
 	}
 	
 	@RequestMapping("/pagar")
 	public String getPagar(Model model){
-		//TODO
-		return null;
+		//TODO aqui si que habria que obtener los datos de la cuenta
+		//y la direccion para insertarlos
+		//insertar solo esto, asi nos ahorramos el n a m de hibernate :-)
+		return "pagar";
 	}
 	
-	@RequestMapping(value="/eliminar", method = RequestMethod.POST)
-	public String getEliminar(Model model){
-		//TODO
-		return null;
+	@RequestMapping(value="/eliminar")
+	public String getEliminar(@RequestParam("pid") String pid, Model model){
+		//TODO hay que eliminar el producto del carrito
+		return "productos";
 	}
 	
 	@RequestMapping(value="/insertar", method = RequestMethod.POST)
