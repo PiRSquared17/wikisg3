@@ -17,9 +17,8 @@
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 	<!-- listener comentado para que funcione el cambio de theme e idioma 
-	me da la impresion de que este listener lo que hace es cargar
-	el applicationContext...-->
-	<!-- <listener>
+	este listener lo que hace es cargar el applicationContext...-->
+	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener> -->
+	</listener>
 </web-app>
