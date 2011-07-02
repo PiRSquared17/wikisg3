@@ -1,4 +1,8 @@
 <%@ page language="java" import="pos.domain.*,java.util.*" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
@@ -34,11 +38,12 @@
         for (Iterator iter = products.iterator(); iter.hasNext();) {
             Product p = (Product) iter.next();
 %>
+<c:url var="addUrl" value="/store/carrito" />
 			<tr align="center" id="productos">
 				<td>--</td>
 				<td> <%=p.getDescription()%> </td>
 				<td> <%=p.getPrice()%>€</td>
-				<td> <a href="store/carrito?pid=<%=p.getProductID()%>"><img src='img/carro.gif'> </a></td>
+				<td> <a href="${addUrl}?pid=<%=p.getProductID()%>"><img src='img/carro.gif'> </a></td>
 			</tr>
 <%
 		}
