@@ -1,3 +1,6 @@
+<%@  page  language="java"  contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
@@ -15,21 +18,21 @@
 
 
 <div id="content">
-		<form action="FrontController?res=productos.jsp" method="post">
+		<form:form  action="loginform.html"  commandName="loginForm">
 		 <div id="arribaDcha">
 		 <fieldset>
 		 <legend  style="font-family: Arial,sans-serif; font-size: 18px; color: #660000" align="center">Datos de Usuario</legend>
 
-		<table summary="Identificaciï¿½n de Usuario" align="center">
+		<table summary="Identificacion de Usuario" align="center">
 
 		 <tr>
 		 <td>		 Nombre de Usuario:		 </td>
-		 <td>		 <input type="text" name="user"/> </td>
+		 <td>		 <form:input  path="userName" /> </td>
 		 </tr>
 		
 		 <tr>
-		 <td>		 Contraseï¿½a:		 </td>
-		 <td>		 <input type="password" name="passwd" /> </td>
+		 <td>		 Contraseña:		 </td>
+		 <td>		 <form:password  path="password" /> </td>
 		 </tr>
 		 
 		 <tr>
@@ -41,7 +44,7 @@
  		 </fieldset>
 		 </div> <!--cierra arribaDcha -->
 		 
-</form>
+</form:form>
 </div> <!-- cierra content -->
 
 
