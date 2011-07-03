@@ -5,10 +5,10 @@
 
 <table summary ="Listado de Productos" cellSpacing="1" cellPadding="6" width="770" align="center" border="0">
 	<tr valign ="middle" align="center">
-		<td id = "colchones" colspan="6"><b>SU PEDIDO</b></td>
+		<td id = "colchones" colspan="6"><b><spring:message code="label.order"/></b></td>
 	</tr>
 	<tr valign =" middle" align="center" id="cabecera">
-		<td>&nbsp;</td><td>Descripción</td><td>Cantidad</><td>Precio</td><td>Total</td><td>Eliminar</td>
+		<td>&nbsp;</td><td><spring:message code="label.description"/></td><td><spring:message code="label.quantity"/></><td><spring:message code="label.price"/></td><td><spring:message code="label.total"/></td><td><spring:message code="label.remove"/></td>
 	</tr>
 <%
 		Order sessionCart = (Order)session.getAttribute("session.cart");
@@ -42,13 +42,13 @@
         else
         {%>
 			<tr align="center" id="productos">
-			<td colspan='6'>NO HAY PRODUCTOS</td>
+			<td colspan='6'><spring:message code="label.noproducts"/></td>
 			</tr>
         <%}
 %>
 
 			<tr align="center" id="productos">
-				<td colspan='5' align="right">	<b>Importe Total</b></td>
+				<td colspan='5' align="right">	<b><spring:message code="label.totalcost"/></b></td>
 				<td> <%=importeTotal%> €</td>
 			</tr>
 

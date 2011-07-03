@@ -52,7 +52,7 @@
 	}
 %>
 <div id="top">
-<jsp:include  page="head.html"/>
+<jsp:include  page="head.jsp"/>
 </div>
 <div id="content">
 <jsp:include page="printCarrito.jsp?botones=1"  />

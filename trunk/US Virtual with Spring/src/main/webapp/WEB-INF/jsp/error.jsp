@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Productos</title>
+<title><spring:message code="label.products"/></title>
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 <style type="text/css">
 <!--
@@ -20,10 +20,7 @@
 <body>
 
 <div id="top">
-<img src="http://www.lsi.us.es/imagenes/logolsi49x56.gif" alt="Lenguajes y Sistemas Informáticos"/>
-<img src="http://www.lsi.us.es/imagenes/rotulo-lsi-grande2.gif" alt="Lenguajes y Sistemas Informáticos"/>
-<img src="http://www.lsi.us.es/imagenes/logous50x50.gif" alt="Universidad de Sevilla"/>
-
+<jsp:include  page="head.jsp"/>
 </div>
 
 <div id="content">

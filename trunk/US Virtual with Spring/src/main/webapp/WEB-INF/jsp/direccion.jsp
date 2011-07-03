@@ -1,45 +1,48 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 		<table summary="forma de pago">
   	<tr>
-	 		 <td style="font-family: Arial,sans-serif; font-size: 18px; color: #660000;" align="left">Dirección</td> 
+	 		 <td style="font-family: Arial,sans-serif; font-size: 18px; color: #660000;" align="left"><spring:message code="label.address"/></td> 
 		</tr>
 		
 		 <tr>
-		 <td>		 Nombre del Destinatario:		 </td>
-		 <td>		 <input type="text" name="receiver" value="Miguel Romero" /> </td>
+		 <td>		 <form:label path="address.name"><spring:message code="label.name"/>:		</form:label> </td>
+		 <td>		 <form:input path="address.name"/> </td>
 		 </tr>
 		
 		 <tr>
-		 <td>		 Calle:		 </td>
-		 <td>		 <input type="text" name="street" value="C Tres Vientos"/> </td>
+		 <td>		 <form:label path="address.street"><spring:message code="label.street"/>:	</form:label>	 </td>
+		 <td>		 <form:input path="address.street"/> </td>
 		 </tr>
 
 		 <tr>
-		 <td>		 Ciudad:		 </td>
-		 <td>		 <input type="text" name="city" value="Macondo"/> </td>
+		 <td>		 <form:label path="address.city"><spring:message code="label.city"/>:	</form:label>	 </td>
+		 <td>		 <form:input path="address.city"/> </td>
 		 </tr>
 
 		 <tr>
-		 <td>		 Código Postal:		 </td>
-		 <td>		 <input type="text" size="5" name="zipcode" value="00000"/> </td>
+		 <td>		 <form:label path="address.zipcode"><spring:message code="label.postal"/>:	</form:label>	 </td>
+		 <td>		 <form:input path="address.zipcode"/> </td>
 		 </tr>
 
 		 <tr>
-		 <td>		 Correo-e:		 </td>
-		 <td>		 <input type="text" name="email" value="miguelromero@us.es"/> </td>
+		 <td>		 <form:label path="address.email"><spring:message code="label.email"/>:	</form:label>	 </td>
+		 <td>		 <form:input path="address.email"/> </td>
 		 </tr>
 
 		 <tr>
-		 <td>		 Teléfono:		 </td>
-		 <td>		 <input type="text" size="10" name="phone" value="954555555"/> </td>
+		 <td>		 <form:label path="address.telephone"><spring:message code="label.telephone"/>:</form:label>		 </td>
+		 <td>		 <form:input path="address.telephone"/> </td>
 		 </tr>
 	 
 		 <tr>
-		 <td>		 FAX:		 </td>
-		 <td>		 <input type="text" size="10" name="fax" value="954555555" /> </td>
+		 <td>		 <form:label path="address.fax"><spring:message code="label.fax"/>:	</form:label>	 </td>
+		 <td>		 <form:input path="address.fax"/> </td>
 		 </tr>
 
  		 <tr>
-		 <td colspan="3" align="center"><input type="submit" value="comprar"/></td>
+		 <td colspan="3" align="center"><input type="submit" value="<spring:message code="label.buy"/>"/></td>
 		 </tr>
 
 		 </table>		 
