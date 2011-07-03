@@ -30,5 +30,9 @@ public class Detail {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	public int getTotal(){
+		return product.getPrice() * quantity;
+	}
 
 }

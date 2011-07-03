@@ -7,53 +7,32 @@
 	<tr valign ="middle" align="center">
 		<td id = "colchones" colspan="6"><b><spring:message code="label.order"/></b></td>
 	</tr>
-	<tr valign =" middle" align="center" id="cabecera">
+	<tr valign ="middle" align="center" id="cabecera">
 		<td>&nbsp;</td><td><spring:message code="label.description"/></td><td><spring:message code="label.quantity"/></><td><spring:message code="label.price"/></td><td><spring:message code="label.total"/></td><td><spring:message code="label.remove"/></td>
 	</tr>
-<%
-		Order sessionCart = (Order)session.getAttribute("session.cart");
-
-        int importeTotal = 0;
-		if(sessionCart != null) 
-		{
-        Collection litems = sessionCart.getDetails();
-        Iterator li = litems.iterator();
-        while (li.hasNext()) {
-			Detail detailSession= (Detail) li.next();
-			Product p = detailSession.getProduct();
-			String description = p.getDescription();
-			int amount = detailSession.getQuantity();
-			int price = p.getPrice();
-			String pid = p.getId();
-			int	total = price*amount;
-			
-%>
-			<tr align="center" id="productos">
-				<td>--</td>	<td> <%=description%> </td>	<td> <%=amount%> </td><td> <%=price%>€</td>	<td> <%=total%>€</td>
-				<c:url var="deleteUrl" value="/store/eliminar" />
-				<td> <a href="${deleteUrl}?pid=<%=pid%>">
+	
+	<c:if test="${!empty order.details}">
+	<c:forEach items="${order.details}" var="detail">
+		<tr align="center" id="productos">
+				<td>--</td>	<td> <c:out value="${detail.product.description}"/> </td>	<td> <c:out value="${detail.quantity}"/> </td><td> <c:out value="${detail.product.price}"/></td>	<td> <c:out value="${detail.total}"/>€</td>
+				<c:url var="deleteUrl" value="/store/eliminar?pid=${detail.product.id}" />
+				<td> <a href="${deleteUrl}">
 				     <img src='img/eliminar.jpg'></a>
 			    </td>
 				</tr>
-<%
-		importeTotal+=total;
-		}
-        }
-        else
-        {%>
-			<tr align="center" id="productos">
+	</c:forEach>
+	<tr align="center" id="productos">
+				<td colspan='5' align="right">	<b><spring:message code="label.totalcost"/></b></td>
+				<td> <c:out value="${order.total}"/> €</td>
+			</tr>
+	</c:if>
+	<c:if test="${empty order.details}">
+		<tr align="center" id="productos">
 			<td colspan='6'><spring:message code="label.noproducts"/></td>
 			</tr>
-        <%}
-%>
-
-			<tr align="center" id="productos">
-				<td colspan='5' align="right">	<b><spring:message code="label.totalcost"/></b></td>
-				<td> <%=importeTotal%> €</td>
-			</tr>
-
-	<%if(!request.getParameter("botones").equals("0")){%>
-			<tr align="center" id="productos">
+	</c:if>
+	<c:if  test="${botones != 0}">
+		<tr align="center" id="productos">
 				<td colspan='3'>
 				<c:url var="productosUrl" value="/store/productos" />
 				<a href="${productosUrl}"><img src='img/seguir.jpg'></a>
@@ -63,6 +42,6 @@
 				<a href="${confirmarUrl}"><img src='img/confirmar.jpg'></a>
 				</td>
 			</tr>
-<%}
-%>
+	</c:if>
+
 </table>

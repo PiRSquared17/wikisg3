@@ -25,7 +25,7 @@ public class HibernateProductDAO implements ProductDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional
+//	@Transactional
 	public List<Product> getAllProducts() {
 		Session session = sessionFactory.getCurrentSession();
 		Query q = session.createQuery("From Product");

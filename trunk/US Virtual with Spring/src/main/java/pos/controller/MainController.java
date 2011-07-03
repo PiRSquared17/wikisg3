@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import pos.domain.Address;
 import pos.domain.AddressCreditCardForm;
 import pos.domain.CreditCard;
+import pos.domain.Detail;
 import pos.domain.IPOSProcessor;
 import pos.domain.Order;
 import pos.domain.POSProcessor;
@@ -34,15 +35,12 @@ public class MainController {
 	
 	@RequestMapping("/productos")
 	public String getProductos(ModelMap map){
-		//XXX aqui creamos la orden al principio de la sesion
-		//cuidado, si pasamos otra vez por aqui... que pasa???
 		if (!map.containsAttribute("order")){
 			Order order = new Order();
 			map.addAttribute("order",order);
-			List<Product> products = posService.getAllProducts();
-			map.addAttribute("products", products);
-			System.out.println("La orden se crea correctamente");
 		}
+		List<Product> products = posService.getAllProducts();
+		map.addAttribute("products", products);
 		return "productos";
 	}
 
@@ -98,7 +96,13 @@ public class MainController {
 			@RequestParam("pid") Integer pid,
 			Model model){
 		
-		//XXX por aqui pasa correctamente
+		Product p = posService.getProduct(pid);
+		Detail d = new Detail();
+		d.setProduct(p);
+		d.setQuantity(1);
+		d.setNote("");
+		order.addDetail(d);
+		
 		System.out.println("Vamos a meter al carrito "+pid);
 		//TODO dada la orden, obtener desde BD el producto
 		//indicado por pid, y meterlo en la orden

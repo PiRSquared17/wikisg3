@@ -20,7 +20,7 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
-	private String id;
+	private Integer id;
 
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -44,11 +44,11 @@ public class Product implements Serializable{
 		this.price = price;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

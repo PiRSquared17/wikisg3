@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
-<title>Productos</title>
+<title><spring:message code="label.products"/></title>
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 <style type="text/css">
 <!--
@@ -22,7 +22,7 @@
 
 <%
 	// extraigo del el parámetro indicándome el producto que se va a añadir al carro
-	String pid = request.getParameter("pid");
+/*	String pid = request.getParameter("pid");
 	Order sessionCart = null;
 
 	// si el parámetro no es nulo (se acceder directamente a carrito) o si su longitud no es mayor a cero
@@ -49,7 +49,7 @@
 	{
 	System.out.println("PRODUCTO NULO");
 	
-	}
+	}*/
 %>
 <div id="top">
 <jsp:include  page="head.jsp"/>
