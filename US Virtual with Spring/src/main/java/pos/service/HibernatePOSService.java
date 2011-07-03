@@ -17,29 +17,29 @@ import pos.domain.CreditCard;
 import pos.domain.Product;
 
 @Service("posService")
-@Transactional
+//@Transactional
 public class HibernatePOSService implements POSService {
 
 	//XXX si peta usando la interfaz, pasar a la implementacion
 	
-//	@Resource(name="addressDAO")
+	@Resource(name="addressDAO")
 	private AddressDAO addressDAO;
 	
-//	@Resource(name="productDAO")
+	@Resource(name="productDAO")
 	private ProductDAO productDAO;
 	
-//	@Resource(name = "creditCardDAO")
+	@Resource(name = "creditCardDAO")
 	private CreditCardDAO creditCardDAO;
 	
-	@Resource(name="sessionFactory")
-	private SessionFactory sessionFactory;
+//	@Resource(name="sessionFactory")
+//	private SessionFactory sessionFactory;
 	
 
 	public List<Product> getAllProducts() {
-		Session currentSession = sessionFactory.getCurrentSession();
-		List result = currentSession.createQuery("FROM Product").list();
-		return result;
-//		return productDAO.getAllProducts();
+//		Session currentSession = sessionFactory.getCurrentSession();
+//		List result = currentSession.createQuery("FROM Product").list();
+//		return result;
+		return productDAO.getAllProducts();
 	}
 
 	@Override

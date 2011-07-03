@@ -83,4 +83,12 @@ public class Order {
 			}
 		}
 	}
+	
+	public int getTotal(){
+		int res = 0;
+		for (Detail d:(List<Detail>)details){
+			res += d.getTotal();
+		}
+		return res;
+	}
 }
