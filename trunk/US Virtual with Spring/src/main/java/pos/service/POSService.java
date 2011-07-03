@@ -4,6 +4,8 @@ import java.util.List;
 
 import pos.domain.Address;
 import pos.domain.CreditCard;
+import pos.domain.Detail;
+import pos.domain.Order;
 import pos.domain.Product;
 
 public interface POSService {
@@ -16,5 +18,9 @@ public interface POSService {
 	
 	public Address getAddress(Integer id);
 	public void saveAddress(Address address);
+	
+	public void saveOrder(Order o);
+	
+	public void saveDetail(Detail d);
 	
 }

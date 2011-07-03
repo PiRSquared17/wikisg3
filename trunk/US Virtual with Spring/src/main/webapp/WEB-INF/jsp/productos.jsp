@@ -39,7 +39,7 @@
 		<td>&nbsp;</td><td><spring:message code="label.description"/></td><td><spring:message code="label.price"/></td> <td><spring:message code="label.add"/></td>
 	</tr>
 
-<c:url var="carritoImg" value="img/carro.gif" />
+<c:url var="carritoImg" value="http://www.thefoofstore.com/Images/temp_cart.gif" />
 <c:forEach items="${products}" var="product">
 <tr align="center" id="productos">
 				<c:url var="addUrl" value="/store/carrito/?pid=${product.id}"/>

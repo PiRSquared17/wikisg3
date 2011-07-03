@@ -4,23 +4,21 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import pos.dao.AddressDAO;
 import pos.dao.CreditCardDAO;
+import pos.dao.DetailDAO;
+import pos.dao.OrderDAO;
 import pos.dao.ProductDAO;
 import pos.domain.Address;
 import pos.domain.CreditCard;
+import pos.domain.Detail;
+import pos.domain.Order;
 import pos.domain.Product;
 
 @Service("posService")
-//@Transactional
 public class HibernatePOSService implements POSService {
-
-	//XXX si peta usando la interfaz, pasar a la implementacion
 	
 	@Resource(name="addressDAO")
 	private AddressDAO addressDAO;
@@ -31,14 +29,14 @@ public class HibernatePOSService implements POSService {
 	@Resource(name = "creditCardDAO")
 	private CreditCardDAO creditCardDAO;
 	
-//	@Resource(name="sessionFactory")
-//	private SessionFactory sessionFactory;
+	@Resource(name = "orderDAO")
+	private OrderDAO orderDAO;
+	
+	@Resource(name = "detailDAO")
+	private DetailDAO detailDAO;
 	
 
 	public List<Product> getAllProducts() {
-//		Session currentSession = sessionFactory.getCurrentSession();
-//		List result = currentSession.createQuery("FROM Product").list();
-//		return result;
 		return productDAO.getAllProducts();
 	}
 
@@ -65,6 +63,22 @@ public class HibernatePOSService implements POSService {
 	@Override
 	public void saveAddress(Address address) {
 		addressDAO.saveAddress(address);
+	}
+
+	@Override
+	public void saveOrder(Order o) {
+		this.saveAddress(o.getDeliverto());
+		this.saveCreditCard(o.getPayment());
+		orderDAO.saveOrder(o);
+		List<Detail> details = o.getDetails();
+		for (Detail d:details){
+			this.saveDetail(d);
+		}
+	}
+
+	@Override
+	public void saveDetail(Detail d) {
+		detailDAO.saveDetail(d);
 	}
 
 }

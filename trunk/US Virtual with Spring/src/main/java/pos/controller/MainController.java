@@ -1,5 +1,6 @@
 package pos.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,14 +19,11 @@ import pos.domain.Address;
 import pos.domain.AddressCreditCardForm;
 import pos.domain.CreditCard;
 import pos.domain.Detail;
-import pos.domain.IPOSProcessor;
 import pos.domain.Order;
-import pos.domain.POSProcessor;
 import pos.domain.Product;
 import pos.service.POSService;
 
 @Controller
-//asi guardo el carrito como sesion
 @RequestMapping("/store")
 @SessionAttributes("order")
 public class MainController {
@@ -47,7 +45,7 @@ public class MainController {
 	
 	@RequestMapping("/confirmar")
 	public String getConfirmar(Model model){
-		System.out.println("Por confirmar pasa correctamente");
+//		System.out.println("Por confirmar pasa correctamente");
 		model.addAttribute("addressCreditCard", new AddressCreditCardForm());
 		return "confirmar";
 	}
@@ -65,33 +63,31 @@ public class MainController {
 		//y la direccion para insertarlos
 		//insertar solo esto, asi nos ahorramos el n a m de hibernate :-)
 		
-		System.out.println("Pasando por getPagar con el Address");
+//		System.out.println("Pasando por getPagar con el Address");
 		
 		//XXX momentaneo antes de usar hibernate
-		IPOSProcessor pos = new POSProcessor();
 		Address address = acc.getAddress();
 		CreditCard ccard = acc.getCreditCard();
 		
-//		order.setDeliverto(address);
-//		order.setPayment(ccard);
-//		order.setTimeplaced(new Date());
-//		order.setPlacedbyCustomer("practica");
-//		pos.placeOrder(order);
-//		order.setPlacedbyCustomer((String)session.getAttribute("session.user"));
+		order.setDeliverto(address);
+		order.setPayment(ccard);
+		order.setTimeplaced(System.nanoTime());
+		order.setPlacedbyCustomer("practica");
+		
+		//XXX guardamos la orden y todos sus elementos
+		posService.saveOrder(order);
 		
 		return "pagar";
 	}
 	
 	@RequestMapping(value="/eliminar")
-	public String getEliminar(@RequestParam("pid") Integer pid, Model model){
-		//TODO hay que eliminar el producto del carrito
-		
-		System.out.println("Por eliminar pasa correctamente");
-		return "productos";
+	public String getEliminar(@ModelAttribute("order") Order order, 
+			@RequestParam("pid") Integer pid, Model model){
+		order.removeDetail(pid);
+		return "carrito";
 	}
 	
 	@RequestMapping("/carrito")
-//	@RequestMapping(value="/insertar", method = RequestMethod.POST)
 	public String getNuevoProducto(@ModelAttribute("order") Order order,
 			@RequestParam("pid") Integer pid,
 			Model model){
@@ -103,9 +99,6 @@ public class MainController {
 		d.setNote("");
 		order.addDetail(d);
 		
-		System.out.println("Vamos a meter al carrito "+pid);
-		//TODO dada la orden, obtener desde BD el producto
-		//indicado por pid, y meterlo en la orden
 		return "carrito";
 	}
 
