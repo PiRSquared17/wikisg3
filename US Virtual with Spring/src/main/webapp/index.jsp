@@ -1,1 +1,2 @@
-<jsp:forward page="/store/productos"></jsp:forward>
+<jsp:forward page="/store/init"></jsp:forward>
+
