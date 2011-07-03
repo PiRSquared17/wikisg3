@@ -49,16 +49,14 @@ else{
 <jsp:include page="printCarrito.jsp?botones=0"/>
 
 <c:url var="pagarUrl" value="/store/pagar" />
-<form:form action="${pagarUrl}" method="post">
+
+<form:form action="${pagarUrl}" method="post" modelAttribute="addressCreditCard">
 <div id="left">
 <jsp:include page="pago.jsp"/>
-</div>
-<div="right">
+ </div>
+<div id="right">
 <jsp:include page="direccion.jsp"/>
-
-
-
-</div>
+ </div>
 </form:form>
 
 <%
