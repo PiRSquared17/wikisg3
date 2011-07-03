@@ -19,9 +19,10 @@
 	
 	<!-- Configures the annotation-driven Spring MVC Controller programming model.
 	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
+	<!-- dejar desactivao esto, si no peta el cambio de idioma -->
 	<!-- <mvc:annotation-driven /> --> 
 	
 	<!-- Load Hibernate related configuration -->
-	<!-- <import resource="hibernate-context.xml" /> -->
+	<import resource="hibernate-context.xml" /> 
 	
 </beans>

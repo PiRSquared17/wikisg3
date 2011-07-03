@@ -1,11 +1,24 @@
 package pos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Product")
 public class Product {
 
-	private String productID;
+	@Id
+	@GeneratedValue
+	@Column(name="ID")
+	private String id;
 
+	@Column(name = "DESCRIPTION")
 	private String description;
 
+	@Column(name = "PRICE")
 	private int price;
 
 	public String getDescription() {
@@ -24,12 +37,12 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getProductID() {
-		return this.productID;
+	public String getId() {
+		return this.id;
 	}
 
-	public void setProductID(String productID) {
-		this.productID = productID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

@@ -53,7 +53,7 @@ public class JDBCDetailDAO implements IDetailDAO {
                 stmt.clearParameters();
                 stmt.setString(1, UIDGenerator.getInstance().getKey());
                 stmt.setString(2, orderOID);
-                String oidp = pdao.selectProductOID(conn,d.getProduct().getProductID());
+                String oidp = pdao.selectProductOID(conn,d.getProduct().getId());
                 stmt.setString(3, oidp);
                 stmt.setString(4, d.getNote());
                 stmt.setInt(5, d.getQuantity());

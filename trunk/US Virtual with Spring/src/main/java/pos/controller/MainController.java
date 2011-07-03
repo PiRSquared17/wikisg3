@@ -1,5 +1,7 @@
 package pos.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,10 +14,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pos.domain.Address;
 import pos.domain.AddressCreditCardForm;
+import pos.domain.CreditCard;
 import pos.domain.IPOSProcessor;
-import pos.domain.Name;
 import pos.domain.Order;
 import pos.domain.POSProcessor;
+import pos.service.POSService;
 
 @Controller
 //asi guardo el carrito como sesion
@@ -23,6 +26,8 @@ import pos.domain.POSProcessor;
 @SessionAttributes("order")
 public class MainController {
 
+	@Resource(name="posService")
+	private POSService posService;
 	
 	@RequestMapping("/productos")
 	public String getProductos(ModelMap map){
@@ -61,8 +66,8 @@ public class MainController {
 		
 		//XXX momentaneo antes de usar hibernate
 		IPOSProcessor pos = new POSProcessor();
-//		Address address = acc.getAddress();
-//		CreditCard ccard = acc.getCreditCard();
+		Address address = acc.getAddress();
+		CreditCard ccard = acc.getCreditCard();
 		
 //		order.setDeliverto(address);
 //		order.setPayment(ccard);

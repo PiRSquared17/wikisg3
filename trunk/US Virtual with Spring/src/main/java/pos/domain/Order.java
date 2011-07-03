@@ -57,8 +57,8 @@ public class Order {
 		} else {
 			for (Iterator iter = details.iterator(); iter.hasNext();) {
 				Detail d = (Detail) iter.next();
-				if (d.getProduct().getProductID().equals(
-						detail.getProduct().getProductID())) {
+				if (d.getProduct().getId().equals(
+						detail.getProduct().getId())) {
 					d.setQuantity(d.getQuantity() + detail.getQuantity());
 					d.setNote(d.getNote() + detail.getNote());
 					found = true;
@@ -76,7 +76,7 @@ public class Order {
 			Iterator iter = details.iterator();
 			while (iter.hasNext() && !found) {
 				Detail d = (Detail) iter.next();
-				if (d.getProduct().getProductID().equals(pid)) {
+				if (d.getProduct().getId().equals(pid)) {
 					details.remove(d);
 					found = true;
 				}
