@@ -29,7 +29,7 @@ public class ProductStore {
         Product result = null;
         for (Iterator iter = products.iterator(); iter.hasNext();) {
             Product p = (Product) iter.next();
-            if (p.getProductID().compareTo(productID) == 0) {
+            if (p.getId().compareTo(productID) == 0) {
                 result = p;
             }
         }

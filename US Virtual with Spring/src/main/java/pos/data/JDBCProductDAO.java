@@ -27,7 +27,7 @@ public class JDBCProductDAO implements IProductDAO {
 
             while (result.next()) {
                 Product temp = new Product();
-                temp.setProductID(result.getString("productID"));
+                temp.setId(result.getString("productID"));
                 temp.setDescription(result.getString("description"));
                 temp.setPrice(result.getInt("price"));
                 searchResults.add(temp);
@@ -65,7 +65,7 @@ public class JDBCProductDAO implements IProductDAO {
             p = new Product();
             p.setDescription(result.getString("description"));
             p.setPrice(result.getInt("price"));
-            p.setProductID(result.getString("productid"));
+            p.setId(result.getString("productid"));
             
         } catch (SQLException e) {
             System.out.println("Message: " + e.getMessage());
