@@ -6,10 +6,10 @@
 		  		 <td style="font-family: Arial,sans-serif; font-size: 18px; color: #660000;" align="left"><spring:message code="label.datapayment"/></td> 
 		</tr>
 
-		 <!-- <tr>
+		 <tr>
 		 <td>		 <form:label path="creditCard.number"><spring:message code="label.card"/>:	</form:label>	 </td>
 		 <td>		 <form:input path="creditCard.number" /> </td>
-		 </tr> -->
+		 </tr>
 		
 		 <tr>
 		 <td>		 <form:label path="creditCard.holder"><spring:message code="label.holder"/>:	</form:label>	 </td>

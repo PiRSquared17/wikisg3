@@ -7,7 +7,7 @@
 		</tr>
 		
 		 <tr>
-		 <td>		 <form:label path="address.name"><spring:message code="label.name"/>:		</form:label> </td>
+		 <td>		 <form:label path="address.name"><spring:message code="label.name"/>:	</form:label>	 </td>
 		 <td>		 <form:input path="address.name"/> </td>
 		 </tr>
 		
@@ -32,8 +32,8 @@
 		 </tr>
 
 		 <tr>
-		 <td>		 <form:label path="address.telephone"><spring:message code="label.telephone"/>:</form:label>		 </td>
-		 <td>		 <form:input path="address.telephone"/> </td>
+		 <td>		 <form:label path="address.phone"><spring:message code="label.telephone"/>:</form:label>		 </td>
+		 <td>		 <form:input path="address.phone"/> </td>
 		 </tr>
 	 
 		 <tr>

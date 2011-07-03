@@ -1,7 +1,5 @@
 package pos.controller;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,8 +12,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pos.domain.Address;
 import pos.domain.AddressCreditCardForm;
-import pos.domain.CreditCard;
 import pos.domain.IPOSProcessor;
+import pos.domain.Name;
 import pos.domain.Order;
 import pos.domain.POSProcessor;
 
@@ -41,25 +39,30 @@ public class MainController {
 	
 	@RequestMapping("/confirmar")
 	public String getConfirmar(Model model){
-		//TODO
 		System.out.println("Por confirmar pasa correctamente");
+		model.addAttribute("addressCreditCard", new AddressCreditCardForm());
 		return "confirmar";
 	}
 	
-	@RequestMapping("/pagar")
+
+	
+	@RequestMapping(value = "/pagar", method = RequestMethod.POST)
 	public String getPagar(@ModelAttribute("addressCreditCard") AddressCreditCardForm acc,
-			BindingResult br1, 
-			//@ModelAttribute("order") Order order,
-			//BindingResult br2, 
-			Model model){
+			BindingResult br1
+			,@ModelAttribute("order") Order order,
+			BindingResult br2
+			//Model model
+			){
 		//TODO aqui si que habria que obtener los datos de la cuenta
 		//y la direccion para insertarlos
 		//insertar solo esto, asi nos ahorramos el n a m de hibernate :-)
 		
+		System.out.println("Pasando por getPagar con el Address");
+		
 		//XXX momentaneo antes de usar hibernate
 		IPOSProcessor pos = new POSProcessor();
-		Address address = acc.getAddress();
-		CreditCard ccard = acc.getCreditCard();
+//		Address address = acc.getAddress();
+//		CreditCard ccard = acc.getCreditCard();
 		
 //		order.setDeliverto(address);
 //		order.setPayment(ccard);
