@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,19 +22,24 @@ public class HibernatePOSService implements POSService {
 
 	//XXX si peta usando la interfaz, pasar a la implementacion
 	
-	@Resource(name="addressDAO")
+//	@Resource(name="addressDAO")
 	private AddressDAO addressDAO;
 	
-	@Resource(name="productDAO")
+//	@Resource(name="productDAO")
 	private ProductDAO productDAO;
 	
-	@Resource(name = "creditCardDAO")
+//	@Resource(name = "creditCardDAO")
 	private CreditCardDAO creditCardDAO;
 	
+	@Resource(name="sessionFactory")
+	private SessionFactory sessionFactory;
 	
-	@Override
+
 	public List<Product> getAllProducts() {
-		return productDAO.getAllProducts();
+		Session currentSession = sessionFactory.getCurrentSession();
+		List result = currentSession.createQuery("FROM Product").list();
+		return result;
+//		return productDAO.getAllProducts();
 	}
 
 	@Override

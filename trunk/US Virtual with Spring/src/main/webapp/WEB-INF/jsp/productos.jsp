@@ -38,22 +38,18 @@
 	<tr valign ="middle" align="center" id="cabecera">
 		<td>&nbsp;</td><td><spring:message code="label.description"/></td><td><spring:message code="label.price"/></td> <td><spring:message code="label.add"/></td>
 	</tr>
-<%
-        List products = ProductStore.getInstance().getProducts();
-        for (Iterator iter = products.iterator(); iter.hasNext();) {
-            Product p = (Product) iter.next();
-%>
-<c:url var="addUrl" value="/store/carrito" />
-			<tr align="center" id="productos">
+
+<c:url var="carritoImg" value="img/carro.gif" />
+<c:forEach items="${products}" var="product">
+<tr align="center" id="productos">
+				<c:url var="addUrl" value="/store/carrito/?pid=${product.id}"/>
 				<td>--</td>
-				<td> <%=p.getDescription()%> </td>
-				<td> <%=p.getPrice()%>€</td>
-				<c:url var="carritoImg" value="img/carro.gif" />
-				<td> <a href="${addUrl}?pid=<%=p.getProductID()%>"><img src="${carritoImg}"> </a></td>
+				<td> <c:out value="${product.description}"/> </td>
+				<td> <c:out value="${product.price}"/></td>
+				<td> <a href="${addUrl}"><img src="${carritoImg}"> </a></td>
 			</tr>
-<%
-		}
-%>
+</c:forEach>
+
 </table>
 </div>
 </body>

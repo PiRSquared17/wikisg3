@@ -13,16 +13,11 @@
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
 	
+	<!-- Load Hibernate related configuration -->
+	<import resource="hibernate-context.xml" /> 
+	
 	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans.
 	 For example @Controller and @Service. Make sure to set the correct base-package-->
 	<context:component-scan base-package="pos" />
-	
-	<!-- Configures the annotation-driven Spring MVC Controller programming model.
-	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
-	<!-- dejar desactivao esto, si no peta el cambio de idioma -->
-	<!-- <mvc:annotation-driven /> --> 
-	
-	<!-- Load Hibernate related configuration -->
-	<import resource="hibernate-context.xml" /> 
 	
 </beans>
