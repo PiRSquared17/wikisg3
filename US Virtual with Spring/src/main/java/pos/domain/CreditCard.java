@@ -1,5 +1,7 @@
 package pos.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +10,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CreditCard")
-public class CreditCard {
+public class CreditCard implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 661023652611122717L;
+
 	@Id
 	@GeneratedValue
 	@Column(name="id")

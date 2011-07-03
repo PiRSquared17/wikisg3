@@ -1,5 +1,7 @@
 package pos.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import pos.domain.CreditCard;
 import pos.domain.IPOSProcessor;
 import pos.domain.Order;
 import pos.domain.POSProcessor;
+import pos.domain.Product;
 import pos.service.POSService;
 
 @Controller
@@ -36,6 +39,8 @@ public class MainController {
 		if (!map.containsAttribute("order")){
 			Order order = new Order();
 			map.addAttribute("order",order);
+			List<Product> products = posService.getAllProducts();
+			map.addAttribute("products", products);
 			System.out.println("La orden se crea correctamente");
 		}
 		return "productos";
@@ -80,7 +85,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/eliminar")
-	public String getEliminar(@RequestParam("pid") String pid, Model model){
+	public String getEliminar(@RequestParam("pid") Integer pid, Model model){
 		//TODO hay que eliminar el producto del carrito
 		
 		System.out.println("Por eliminar pasa correctamente");
@@ -90,7 +95,7 @@ public class MainController {
 	@RequestMapping("/carrito")
 //	@RequestMapping(value="/insertar", method = RequestMethod.POST)
 	public String getNuevoProducto(@ModelAttribute("order") Order order,
-			@RequestParam("pid") String pid,
+			@RequestParam("pid") Integer pid,
 			Model model){
 		
 		//XXX por aqui pasa correctamente

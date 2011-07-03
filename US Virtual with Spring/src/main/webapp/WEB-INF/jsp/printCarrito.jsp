@@ -24,7 +24,7 @@
 			String description = p.getDescription();
 			int amount = detailSession.getQuantity();
 			int price = p.getPrice();
-			String pid = p.getProductID();
+			String pid = p.getId();
 			int	total = price*amount;
 			
 %>
