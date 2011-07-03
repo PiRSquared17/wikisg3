@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
-<title>Productos</title>
+<title><spring:message code="label.products"/></title>
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 </head>
 <body>
@@ -71,7 +71,7 @@ if(order != null)
 		if(validar(datosForm))
 		{
 
-			CreditCard ccard = new CreditCard();
+			/*CreditCard ccard = new CreditCard();
 			ccard.setHolder(holderForm);
 			ccard.setNumber(numberForm);
 			ccard.setMonth(Integer.parseInt(monthForm));
@@ -90,9 +90,9 @@ if(order != null)
 			order.setPayment(ccard);
 			order.setTimeplaced(new Date());
 			order.setPlacedbyCustomer((String)session.getAttribute("session.user"));
-			SecureRandom random = new SecureRandom();
+			SecureRandom random = new SecureRandom();*/
 			
-			pos.placeOrder(order);
+			//pos.placeOrder(order);
 			
 			/*DocGenerator dg = new DocGenerator();
 			byte[] res = dg.generateDoc(numberForm,holderForm,monthForm);
@@ -116,7 +116,7 @@ else// no tiene orden o no tiene producto
 
 
 <div id="top">
-<jsp:include  page="head.html"/>
+<jsp:include  page="head.jsp"/>
 </div>
 <div id="content">
 <p>

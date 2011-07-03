@@ -6,7 +6,7 @@
 <!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
-<title>Productos</title>
+<title><spring:message code="label.products"/></title>
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 <style type="text/css">
 <!--
@@ -22,16 +22,21 @@
 <body>
 
 <div id="top">
-<jsp:include  page="head.html"/>
+<jsp:include  page="head.jsp"/>
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=es">es</a>
+</span>
 </div>
 
 <div id="content">
 <table summary ="Listado de Productos" cellSpacing="1" cellPadding="6" width="770" align="center" border="0">
 	<tr valign ="middle" align="center">
-		<td  colspan="6"><b>PRODUCTOS</b></td>
+		<td  colspan="6"><b><spring:message code="label.products"/></b></td>
 	</tr>
-	<tr valign =" middle" align="center" id="cabecera">
-		<td>&nbsp;</td><td>Descripción</td><td>Precio</td> <td>Añadir</td>
+	<tr valign ="middle" align="center" id="cabecera">
+		<td>&nbsp;</td><td><spring:message code="label.description"/></td><td><spring:message code="label.price"/></td> <td><spring:message code="label.add"/></td>
 	</tr>
 <%
         List products = ProductStore.getInstance().getProducts();
@@ -43,7 +48,8 @@
 				<td>--</td>
 				<td> <%=p.getDescription()%> </td>
 				<td> <%=p.getPrice()%>€</td>
-				<td> <a href="${addUrl}?pid=<%=p.getProductID()%>"><img src='img/carro.gif'> </a></td>
+				<c:url var="carritoImg" value="img/carro.gif" />
+				<td> <a href="${addUrl}?pid=<%=p.getProductID()%>"><img src="${carritoImg}"> </a></td>
 			</tr>
 <%
 		}

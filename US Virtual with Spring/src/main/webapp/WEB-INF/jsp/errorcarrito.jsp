@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Productos</title>
+<title><spring:message code="label.products"/>s</title>
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 <style type="text/css">
 <!--
@@ -21,7 +21,7 @@
 
 
 <div id="content">
-<H1>CARRITO VACIO </H1>
+<H1><spring:message code="label.noproducts"/> </H1>
 
 </div>
 

@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
-<title>Productos</title>
+<title><spring:message code="label.products"/></title>
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 <style type="text/css">
 <!--
@@ -38,7 +38,7 @@
 	}
 %>
 <div id="top">
-<jsp:include  page="head.html"/>
+<jsp:include  page="head.jsp"/>
 </div>
 <div id="content">
 <jsp:include page="printCarrito.jsp?botones=1"  />

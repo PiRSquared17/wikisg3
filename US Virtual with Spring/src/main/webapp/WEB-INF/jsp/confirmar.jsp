@@ -22,7 +22,12 @@
 </head>
 <body>
 <div id="top">
-<jsp:include  page="head.html"/>
+<jsp:include  page="head.jsp"/>
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=es">es</a>
+</span>
 </div>
 
 <div id="content">
@@ -44,20 +49,22 @@ else{
 <jsp:include page="printCarrito.jsp?botones=0"/>
 
 <c:url var="pagarUrl" value="/store/pagar" />
-<form action="${pagarUrl}" method="post">
+<form:form action="${pagarUrl}" method="post">
 <div id="left">
 <jsp:include page="pago.jsp"/>
 </div>
 <div="right">
 <jsp:include page="direccion.jsp"/>
 
+
+
+</div>
+</form:form>
+
 <%
 }
 
 %>
-
-</div>
-</form>
 
 </div>
 </body>
