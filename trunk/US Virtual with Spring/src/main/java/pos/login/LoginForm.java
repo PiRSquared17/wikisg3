@@ -6,11 +6,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 public class LoginForm {
-	@NotEmpty
-	@Size(min = 1, max = 50)
+//	@NotEmpty
+//	@Size(min = 1, max = 50)
 	private String userName;
-	@NotEmpty
-	@Size(min = 1, max = 20)
+//	@NotEmpty
+//	@Size(min = 1, max = 20)
 	private String password;
 
 	public void setUserName(String userName) {

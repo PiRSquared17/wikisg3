@@ -21,6 +21,7 @@ import pos.domain.CreditCard;
 import pos.domain.Detail;
 import pos.domain.Order;
 import pos.domain.Product;
+import pos.login.LoginForm;
 import pos.service.POSService;
 
 @Controller
@@ -30,6 +31,25 @@ public class MainController {
 
 	@Resource(name="posService")
 	private POSService posService;
+	
+	@RequestMapping("/init")
+	public String initLogin(ModelMap map){
+		map.addAttribute("loginForm",new LoginForm());
+		return "login";
+	}
+	
+	@RequestMapping("/login")
+	public String getLogin(@ModelAttribute("loginForm") LoginForm login, 
+			BindingResult br, ModelMap map){
+		if (login.getPassword().equals("practica") &&
+				login.getUserName().equals("practica")){
+			return "redirect:/store/productos";
+		}
+		else{
+			map.addAttribute("loginForm",new LoginForm());
+			return "login";
+		}
+	}
 	
 	@RequestMapping("/productos")
 	public String getProductos(ModelMap map){
