@@ -32,37 +32,24 @@
 
 <div id="content">
 
-
-<%
-
-Order sessionCart = (Order)session.getAttribute("session.cart");
-		
-// El carrito está vacío porque no se ha creado o porque no tiene elementos
-if(sessionCart == null || sessionCart.getDetails().size() == 0) 
-{%>
+<c:if test="${empty order.details}">
 	<jsp:include page="errorcarrito.jsp"/>
-<%
-}
-else{
+</c:if>
+<c:if test="${!empty order.details}">
+	<jsp:include page="printCarrito.jsp?botones=0"/>
 
-%>
-<jsp:include page="printCarrito.jsp?botones=0"/>
+	<c:url var="pagarUrl" value="/store/pagar" />
 
-<c:url var="pagarUrl" value="/store/pagar" />
+	<form:form action="${pagarUrl}" method="post" modelAttribute="addressCreditCard">
+		<div id="left">
+			<jsp:include page="pago.jsp"/>
+ 		</div>
+		<div id="right">
+			<jsp:include page="direccion.jsp"/>
+ 		</div>
+	</form:form>
+</c:if>
 
-<form:form action="${pagarUrl}" method="post" modelAttribute="addressCreditCard">
-<div id="left">
-<jsp:include page="pago.jsp"/>
- </div>
-<div id="right">
-<jsp:include page="direccion.jsp"/>
- </div>
-</form:form>
-
-<%
-}
-
-%>
 
 </div>
 </body>

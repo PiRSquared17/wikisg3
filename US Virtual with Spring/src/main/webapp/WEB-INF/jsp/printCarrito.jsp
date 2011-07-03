@@ -17,7 +17,7 @@
 				<td>--</td>	<td> <c:out value="${detail.product.description}"/> </td>	<td> <c:out value="${detail.quantity}"/> </td><td> <c:out value="${detail.product.price}"/></td>	<td> <c:out value="${detail.total}"/>€</td>
 				<c:url var="deleteUrl" value="/store/eliminar?pid=${detail.product.id}" />
 				<td> <a href="${deleteUrl}">
-				     <img src='img/eliminar.jpg'></a>
+				     <img src='http://findicons.com/files/icons/1620/crystal_project/32/button_cancel.png'></a>
 			    </td>
 				</tr>
 	</c:forEach>
@@ -35,11 +35,11 @@
 		<tr align="center" id="productos">
 				<td colspan='3'>
 				<c:url var="productosUrl" value="/store/productos" />
-				<a href="${productosUrl}"><img src='img/seguir.jpg'></a>
+				<a href="${productosUrl}"><spring:message code="label.products"/></a>
 				</td>
 				<td colspan='3'>
 				<c:url var="confirmarUrl" value="/store/confirmar" />
-				<a href="${confirmarUrl}"><img src='img/confirmar.jpg'></a>
+				<a href="${confirmarUrl}"><spring:message code="label.shipping"/></a>
 				</td>
 			</tr>
 	</c:if>

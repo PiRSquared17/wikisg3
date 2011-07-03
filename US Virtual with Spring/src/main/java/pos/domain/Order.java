@@ -1,16 +1,49 @@
 package pos.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Order {
-	private String orderID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Orders")
+public class Order implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4964953205365386152L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name="addressId")
 	private Address deliverto;
+	
+	@OneToOne
+	@JoinColumn(name="cardId")
 	private CreditCard payment;
-	private Date timeplaced;
-	private List details;
+	
+	@Column(name="timeplaced")
+	private Long timeplaced;
+	
+	@OneToMany(mappedBy = "order")
+	private List<Detail> details;
+	
+	@Column(name="placedbycustomer")
 	private String placedbyCustomer;
 
 	public Address getDeliverto() {
@@ -19,17 +52,17 @@ public class Order {
 	public void setDeliverto(Address deliverto) {
 		this.deliverto = deliverto;
 	}
-	public List getDetails() {
+	public List<Detail> getDetails() {
 		return this.details;
 	}
-	public void setDetails(List details) {
+	public void setDetails(List<Detail> details) {
 		this.details = details;
 	}
-	public String getOrderID() {
-		return this.orderID;
+	public Integer getId() {
+		return this.id;
 	}
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public CreditCard getPayment() {
 		return this.payment;
@@ -43,10 +76,10 @@ public class Order {
 	public void setPlacedbyCustomer(String placedbyCustomer) {
 		this.placedbyCustomer = placedbyCustomer;
 	}
-	public Date getTimeplaced() {
+	public Long getTimeplaced() {
 		return this.timeplaced;
 	}
-	public void setTimeplaced(Date timeplaced) {
+	public void setTimeplaced(Long timeplaced) {
 		this.timeplaced = timeplaced;
 	}
 	public void addDetail(Detail detail) {
@@ -61,23 +94,31 @@ public class Order {
 						detail.getProduct().getId())) {
 					d.setQuantity(d.getQuantity() + detail.getQuantity());
 					d.setNote(d.getNote() + detail.getNote());
+					d.setOrder(this);
 					found = true;
 				}
 			}
 		}
 		if (!found) {
+			detail.setOrder(this);
 			details.add(detail);
 		}
 	}
 
-	public void removeDetail(String pid) {
+	public void removeDetail(Integer pid) {
 		if (details != null) {
 			boolean found = false;
 			Iterator iter = details.iterator();
 			while (iter.hasNext() && !found) {
 				Detail d = (Detail) iter.next();
 				if (d.getProduct().getId().equals(pid)) {
-					details.remove(d);
+					if (d.getQuantity() > 1){
+						d.setQuantity(d.getQuantity() - 1);
+					}
+					else{
+						details.remove(d);
+						d.setOrder(null);
+					}
 					found = true;
 				}
 			}

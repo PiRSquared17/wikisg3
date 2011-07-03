@@ -20,37 +20,7 @@
 </head>
 <body>
 
-<%
-	// extraigo del el parámetro indicándome el producto que se va a añadir al carro
-/*	String pid = request.getParameter("pid");
-	Order sessionCart = null;
 
-	// si el parámetro no es nulo (se acceder directamente a carrito) o si su longitud no es mayor a cero
-	if(pid!=null && pid.length()>0)
-	{
-		Detail detail = new Detail();
-		detail.setNote("session");
-		detail.setProduct(ProductStore.getInstance().getProduct(pid));
-		detail.setQuantity(1);
-		
-	
-		//saco si esque existe el carrito de la sessión
-		//el carrito será un objeto de tipo Order
-		sessionCart = (Order)session.getAttribute("session.cart");
-		// es la primera vez que se añade un elemento
-		if(sessionCart == null)  {
-		   sessionCart = new Order();
-		   sessionCart.setOrderID(""+System.currentTimeMillis());
-		}
-		sessionCart.addDetail(detail);
-		session.setAttribute("session.cart", sessionCart);
-	}
-	else
-	{
-	System.out.println("PRODUCTO NULO");
-	
-	}*/
-%>
 <div id="top">
 <jsp:include  page="head.jsp"/>
 </div>

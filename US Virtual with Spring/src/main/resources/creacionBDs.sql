@@ -40,20 +40,19 @@ PRIMARY KEY(id));
 DROP TABLE if exists Detail;
 
 CREATE TABLE Detail (
- OID varchar(50) NOT NULL,
- orderOID varchar(50) NOT NULL,
- productOID varchar(50) NOT NULL,
+ id int NOT NULL AUTO_INCREMENT,
+ orderId int NOT NULL,
+ productId int NOT NULL,
  note varchar(250),
  quantity int NOT NULL,
-PRIMARY KEY(OID));
+PRIMARY KEY(id));
 
 DROP TABLE if exists Orders;
 
 CREATE TABLE Orders (
-  OID varchar(50) NOT NULL,
-  orderID varchar(50) NOT NULL,
-  addressOID varchar(50) NOT NULL,
-  creditCardOID varchar(50) NOT NULL,
+  id int NOT NULL AUTO_INCREMENT,
+  addressId int NOT NULL,
+  cardId int NOT NULL,
   timeplaced bigint NOT NULL,
   placedbycustomer varchar(50) NOT NULL,
-PRIMARY KEY(OID));
+PRIMARY KEY(id));
